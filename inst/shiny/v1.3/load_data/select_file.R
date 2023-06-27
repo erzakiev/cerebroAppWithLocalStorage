@@ -7,6 +7,7 @@
 ##----------------------------------------------------------------------------##
 ## UI element to select data to load into Cerebro.
 ##----------------------------------------------------------------------------##
+existing_files <- list.files(path = "C:/Users/flavial/CerebroData", pattern = '.crb', full.names = T)
 
 output[["load_data_select_file_UI"]] <- renderUI({
   if (
@@ -19,7 +20,7 @@ output[["load_data_select_file_UI"]] <- renderUI({
         htmlOutput("load_data_mode_open")
       ),
       fluidRow(
-        column(12,
+        column(6,
           titlePanel("Load data"),
           fileInput(
             inputId = "input_file",
@@ -30,6 +31,13 @@ output[["load_data_select_file_UI"]] <- renderUI({
             buttonLabel = "Browse...",
             placeholder = "No file selected"
           )
+        ),  column(6, 
+               titlePanel("... or select one of the cached files"),
+               #selectizeInput(inputId = "input_file2", '.crb.files', choices=basename(existing_files)), options = list(
+              #   placeholder = 'Please select an option below',
+               #  onInitialize = I('function() { this.setValue(""); }')
+               #)#,
+               selectInput("input_file2", ".crb files", choices = basename(existing_files))
         )
       )
     )
