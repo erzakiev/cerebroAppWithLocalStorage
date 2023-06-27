@@ -70,34 +70,49 @@ server <- function(input, output, session) {
   data_to_load <- reactiveValues()
 
   ## listen to selected 'input_file', initialize before UI element is loaded
-  observeEvent(input[['input_file']], ignoreNULL = FALSE, {
+  observeEvent(c(input[['input_file']], input[['input_file2']]), ignoreNULL = FALSE, {
     path_to_load <- ''
+    #print(input[['input_file2']])
+    prefix <- 'C:/Users/flavial/CerebroData/'
     ## grab path from 'input_file' if one is specified
     if (
       !is.null(input[["input_file"]]) &&
-      !is.na(input[["input_file"]]) &&
+      !is.na(input[["input_file"]]$datapath) &&
       file.exists(input[["input_file"]]$datapath)
     ) {
+      #print("line 81 ok")
+      #print(input[["input_file"]])
       path_to_load <- input[["input_file"]]$datapath
+      file.copy(from = path_to_load, to = paste0(prefix,input[["input_file"]]$name), overwrite = T)
     ## take path or object from 'Cerebro.options' if it is set and points to an
     ## existing file or object
     } else if (
       exists('Cerebro.options') &&
       !is.null(Cerebro.options[["crb_file_to_load"]])
     ) {
+      print("line 89 ok")
       file_to_load <- Cerebro.options[["crb_file_to_load"]]
       if (file.exists(file_to_load) || exists(file_to_load)) {
         path_to_load <- .GlobalEnv$Cerebro.options$crb_file_to_load
       }
+    } else if(
+      !is.null(input[["input_file2"]]) &&
+      file.exists(paste0(prefix, input[["input_file2"]]))
+    ){
+      toPath <- paste0(prefix,input[["input_file2"]])
+      print(toPath)
+      print("line 100 ok")
+      path_to_load <- toPath
     }
     ## assign path to example file if none of the above apply
     if (path_to_load=='') {
+      print("line 105 ok")
       path_to_load <- system.file("extdata/v1.3/example.crb", package = "cerebroApp")
     }
+    print("line 108 ok")
     ## set reactive value to new file path
     data_to_load$path <- path_to_load
   })
-
   ## create reactive value holding the current data set
   data_set <- reactive({
     dataset_to_load <- data_to_load$path
