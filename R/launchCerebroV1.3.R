@@ -65,7 +65,7 @@
 #'
 launchCerebroV1.3 <- function(
   mode = "open",
-  maxFileSize = 5000,
+  maxFileSize = 50000,
   crb_file_to_load = NULL,
   welcome_message = NULL,
   projections_default_point_size = 5,
@@ -166,5 +166,5 @@ launchCerebroV1.3 <- function(
       '##---------------------------------------------------------------------------##'
     )
   )
-runApp(shiny::shinyApp(ui = ui, server = server), host='0.0.0.0',port=3838, launch.browser=FALSE)
+runApp(shiny::shinyApp(ui = ui, server = server), host='0.0.0.0',port=3839, launch.browser=FALSE)
 }
