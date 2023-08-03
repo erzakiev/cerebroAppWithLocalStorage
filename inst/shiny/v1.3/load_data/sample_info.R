@@ -16,7 +16,10 @@ output[["load_data_sample_info_UI"]] <- renderUI({
       valueBoxOutput("load_data_organism"),
       valueBoxOutput("load_data_date_of_analysis"),
       valueBoxOutput("load_data_date_of_export")
-    )
+    ),
+    fluidRow(
+      valueBoxOutput("load_data_number_of_genes")
+      )
   )
 })
 
@@ -50,6 +53,15 @@ output[["load_data_number_of_cells"]] <- renderValueBox({
     color = "light-blue"
   )
 })
+
+output[["load_data_number_of_genes"]] <- renderValueBox({
+  valueBox(
+    value = formatC(length(getGeneNames()), format = "f", big.mark = ",", digits = 0),
+    subtitle = "Genes",
+    color = "light-blue"
+  )
+})
+
 
 ## number of grouping variables
 output[["load_data_number_of_grouping_variables"]] <- renderValueBox({
