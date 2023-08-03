@@ -1,8 +1,12 @@
 ##----------------------------------------------------------------------------##
 ## Server function for Cerebro.
 ##----------------------------------------------------------------------------##
-server <- function(input, output, session) {
+launch.browser = F
+#options(shiny.port = 3838) 
+library(shinyFiles)
 
+server <- function(input, output, session) {
+  
   ##--------------------------------------------------------------------------##
   ## Load color setup, plotting and utility functions.
   ##--------------------------------------------------------------------------##
@@ -68,12 +72,29 @@ server <- function(input, output, session) {
 
   ## reactive value holding path to file of data set to load
   data_to_load <- reactiveValues()
+  prefix <- 'D:/CerebroData/'
+  
+  files_selected <- reactive({
+    shinyFileChoose(
+      input, 
+      "input_file2", 
+      roots = c(home = prefix),
+      filetypes = c('crb'),
+    )
+    return(parseFilePaths(c(home = prefix), input$input_file2)$datapath)
+  })
 
   ## listen to selected 'input_file', initialize before UI element is loaded
   observeEvent(c(input[['input_file']], input[['input_file2']]), ignoreNULL = FALSE, {
     path_to_load <- ''
     #print(input[['input_file2']])
-    prefix <- 'C:/Users/flavial/CerebroData/'
+    print('line 92 ok')
+    print("printing files_selected()")
+    print(files_selected())
+    print("printing file.exists(files_selected())")
+    print(file.exists(files_selected()))
+    print('line 97 ok')
+    
     ## grab path from 'input_file' if one is specified
     if (
       !is.null(input[["input_file"]]) &&
@@ -84,8 +105,8 @@ server <- function(input, output, session) {
       #print(input[["input_file"]])
       path_to_load <- input[["input_file"]]$datapath
       file.copy(from = path_to_load, to = paste0(prefix,input[["input_file"]]$name), overwrite = T)
-    ## take path or object from 'Cerebro.options' if it is set and points to an
-    ## existing file or object
+      ## take path or object from 'Cerebro.options' if it is set and points to an
+      ## existing file or object
     } else if (
       exists('Cerebro.options') &&
       !is.null(Cerebro.options[["crb_file_to_load"]])
@@ -95,14 +116,16 @@ server <- function(input, output, session) {
       if (file.exists(file_to_load) || exists(file_to_load)) {
         path_to_load <- .GlobalEnv$Cerebro.options$crb_file_to_load
       }
-    } else if(
-      !is.null(input[["input_file2"]]) &&
-      file.exists(paste0(prefix, input[["input_file2"]]))
+    } else if(length(files_selected())>0){
+      if(
+      !is.null(files_selected()) &&
+      file.exists(files_selected())
     ){
-      toPath <- paste0(prefix,input[["input_file2"]])
+      toPath <- files_selected()
       print(toPath)
       print("line 100 ok")
       path_to_load <- toPath
+      }
     }
     ## assign path to example file if none of the above apply
     if (path_to_load=='') {
@@ -113,6 +136,7 @@ server <- function(input, output, session) {
     ## set reactive value to new file path
     data_to_load$path <- path_to_load
   })
+
   ## create reactive value holding the current data set
   data_set <- reactive({
     dataset_to_load <- data_to_load$path
@@ -277,4 +301,10 @@ server <- function(input, output, session) {
   source(paste0(Cerebro.options[["cerebro_root"]], "/shiny/v1.3/analysis_info/server.R"), local = TRUE)
   source(paste0(Cerebro.options[["cerebro_root"]], "/shiny/v1.3/color_management/server.R"), local = TRUE)
   source(paste0(Cerebro.options[["cerebro_root"]], "/shiny/v1.3/about/server.R"), local = TRUE)
+  
+  session$onSessionEnded(function() {
+    print('End of session')
+    session$close()
+  })
+  
 }
