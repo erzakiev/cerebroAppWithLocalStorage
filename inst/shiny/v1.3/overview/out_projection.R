@@ -2,19 +2,26 @@
 ## Plotly plot of the selected projection.
 ##----------------------------------------------------------------------------##
 output[["overview_projection"]] <- plotly::renderPlotly({
+xrange <- plot_parameters[["x_range"]]
+yrange <- plot_parameters[["y_range"]]
+  xrange_abs_0.2 <- (max(xrange)-min(xrange))*0.2
+  yrange_abs_0.2 <- (max(yrange)-min(yrange))*0.2
+  
   plotly::plot_ly(type = 'scattergl', mode = 'markers', source = "overview_projection") %>%
   plotly::layout(
     xaxis = list(
-      autorange = TRUE,
+      autorange = F,
       mirror = TRUE,
-      showline = TRUE,
-      zeroline = FALSE
+      showline = F,
+      zeroline = FALSE,
+      range=c(min(xrange)-xrange_abs_0.2, max(xrange)+xrange_abs_0.2)
     ),
     yaxis = list(
-      autorange = TRUE,
+      autorange = F,
       mirror = TRUE,
-      showline = TRUE,
-      zeroline = FALSE
+      showline = F,
+      zeroline = FALSE,
+      range=c(min(yrange)-yrange_abs_0.2, max(yrange)+yrange_abs_0.2)
     )
   )
 })
