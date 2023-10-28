@@ -15,14 +15,12 @@ output[["overview_projection"]] <- plotly::renderPlotly({
     projection_to_display <- input[["overview_projection_to_display"]]
   }
    XYranges <- getXYranges(getProjection(projection_to_display))
-  print('printing Xrange')
+  
   xrange <- XYranges$x
-  print(xrange)
-  print('printing Yrange')
-yrange <- XYranges$y
+  yrange <- XYranges$y
   print(yrange)
-  xrange_abs_0.2 <- (max(xrange)-min(xrange))*0.2
-  yrange_abs_0.2 <- (max(yrange)-min(yrange))*0.2
+  xrange_abs_0.2 <- (xrange$max-xrange$min)*0.2
+  yrange_abs_0.2 <- (xrange$max-xrange$min)*0.2
 
   plotly::plot_ly(type = 'scattergl', mode = 'markers', source = "overview_projection") %>%
   plotly::layout(
@@ -31,14 +29,14 @@ yrange <- XYranges$y
       mirror = TRUE,
       showline = F,
       zeroline = FALSE,
-      range=c(min(xrange)-xrange_abs_0.2, max(xrange)+xrange_abs_0.2)
+      range=c(xrange$min-xrange_abs_0.2, xrange$max+xrange_abs_0.2)
     ),
     yaxis = list(
       autorange = F,
       mirror = TRUE,
       showline = F,
       zeroline = FALSE,
-      range=c(min(yrange)-yrange_abs_0.2, max(yrange)+yrange_abs_0.2)
+      range=c(yrange$min-yrange_abs_0.2, yrange$max+yrange_abs_0.2)
     )
   )
 })
