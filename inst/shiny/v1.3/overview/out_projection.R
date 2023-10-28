@@ -2,6 +2,7 @@
 ## Plotly plot of the selected projection.
 ##----------------------------------------------------------------------------##
 output[["overview_projection"]] <- plotly::renderPlotly({
+  plot_parameters <- input[['plot_parameters']]
 xrange <- plot_parameters[["x_range"]]
 yrange <- plot_parameters[["y_range"]]
   xrange_abs_0.2 <- (max(xrange)-min(xrange))*0.2
