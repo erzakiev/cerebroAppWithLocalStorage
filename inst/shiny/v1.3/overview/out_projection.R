@@ -2,17 +2,22 @@
 ## Plotly plot of the selected projection.
 ##----------------------------------------------------------------------------##
 
-plot_parameters <- input[['plot_parameters']]
-  print('printing plot_parameters')
-  print(plot_parameters)
-xrange <- plot_parameters[["x_range"]]
-yrange <- plot_parameters[["y_range"]]
+output[["overview_projection"]] <- plotly::renderPlotly({
+  if (
+    is.null(input[["overview_projection_to_display"]]) ||
+    is.na(input[["overview_projection_to_display"]]) ||
+    input[["overview_projection_to_display"]] %in% availableProjections() == FALSE
+  ) {
+    projection_to_display <- availableProjections()[1]
+  } else {
+    projection_to_display <- input[["overview_projection_to_display"]]
+  }
+   XYranges <- getXYranges(getProjection(projection_to_display))
+  xrange <- XYranges$x
+yrange <- XYranges$y
   xrange_abs_0.2 <- (max(xrange)-min(xrange))*0.2
   yrange_abs_0.2 <- (max(yrange)-min(yrange))*0.2
- 
 
-output[["overview_projection"]] <- plotly::renderPlotly({
-   
   plotly::plot_ly(type = 'scattergl', mode = 'markers', source = "overview_projection") %>%
   plotly::layout(
     xaxis = list(
