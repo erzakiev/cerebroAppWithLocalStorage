@@ -3,6 +3,8 @@
 ##----------------------------------------------------------------------------##
 
 output[["overview_projection"]] <- plotly::renderPlotly({
+  print('printing input')
+  print(input)
   if (
     is.null(input[["overview_projection_to_display"]]) ||
     is.na(input[["overview_projection_to_display"]]) ||
@@ -13,8 +15,12 @@ output[["overview_projection"]] <- plotly::renderPlotly({
     projection_to_display <- input[["overview_projection_to_display"]]
   }
    XYranges <- getXYranges(getProjection(projection_to_display))
+  print('printing Xrange')
   xrange <- XYranges$x
+  print(xrange)
+  print('printing Yrange')
 yrange <- XYranges$y
+  print(yrange)
   xrange_abs_0.2 <- (max(xrange)-min(xrange))*0.2
   yrange_abs_0.2 <- (max(yrange)-min(yrange))*0.2
 
