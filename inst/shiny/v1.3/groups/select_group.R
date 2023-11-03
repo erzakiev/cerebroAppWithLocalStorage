@@ -29,7 +29,7 @@ output[["excludedGroupsSankeyA_UI"]] <- renderUI({
 selectizeInput(
   'excludedGroupsSankeyA',
   label = 'Initial Points To Remove',
-  choices = data.table::as.data.table(data.frame("Groups" = getGroupLevels())),
+  choices = data.table::as.data.table(data.frame("Groups" = getGroupLevels(input$groups_selected_group))),
   multiple = TRUE,
   options = list(
     create = F
@@ -41,7 +41,7 @@ output[["excludedGroupsSankeyB_UI"]] <- renderUI({
   selectizeInput(
     'excludedGroupsSankeyB',
     label = 'Initial Points To Remove',
-    choices = data.table::as.data.table(data.frame("Groups" = getGroupLevels())),
+    choices = data.table::as.data.table(data.frame("Groups" = getGroupLevels(input$groups_selected_group))),
     multiple = TRUE,
     options = list(
       create = F
