@@ -59,7 +59,9 @@ output[["groups_by_other_group_other_group_buttons_UI"]] <- renderUI({
           status = "primary",
           inline = TRUE
         )
-      )
+      ),
+      column(width=6, uiOutput("excludedGroupsSankeyA_UI")),
+      column(width=6, uiOutput("excludedGroupsSankeyB_UI")),
     )
   )
 })
@@ -101,6 +103,8 @@ output[["groups_by_other_group_plot"]] <- plotly::renderPlotly({
       getMetaData(),
       input[[ "groups_selected_group" ]],
       input[[ "groups_by_other_group_second_group" ]],
+      input[[ "excludedGroupsSankeyA" ]],
+      input[[ "excludedGroupsSankeyB" ]],
       mode = "long",
       percent = input[["groups_by_other_group_show_as_percent"]]
     )
