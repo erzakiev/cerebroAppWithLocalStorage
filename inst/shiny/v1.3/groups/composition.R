@@ -35,13 +35,13 @@ output[["groups_by_other_group_other_group_buttons_UI"]] <- renderUI({
       column(
         width = 3,
         shinyWidgets::radioGroupButtons(
-           inputId = "groups_by_other_group_plot_type",
-           label = NULL,
-           choices = c("Bar chart", "Sankey plot"),
-           status = "primary",
-           justified = TRUE,
-           width = "100%",
-           size = "sm"
+          inputId = "groups_by_other_group_plot_type",
+          label = NULL,
+          choices = c("Bar chart", "Sankey plot"),
+          status = "primary",
+          justified = TRUE,
+          width = "100%",
+          size = "sm"
         )
       ),
       column(
@@ -112,7 +112,7 @@ output[["groups_by_other_group_plot"]] <- plotly::renderPlotly({
       colors = reactive_colors()[[ input[[ "groups_by_other_group_second_group" ]] ]],
       percent = input[["groups_by_other_group_show_as_percent"]]
     )
-  ##
+    ##
   } else if ( input[["groups_by_other_group_plot_type"]] == "Sankey plot" ) {
     ## calculate table
     composition_df <- calculateTableAB(
@@ -165,16 +165,16 @@ output[["groups_by_other_group_table"]] <- DT::renderDataTable({
     columns_percentage <- NULL
   }
   composition_df %>%
-  dplyr::rename("# of cells" = total_cell_count) %>%
-  prettifyTable(
-    filter = "none",
-    dom = "Brtlip",
-    show_buttons = FALSE,
-    number_formatting = TRUE,
-    color_highlighting = FALSE,
-    hide_long_columns = TRUE,
-    columns_percentage = columns_percentage
-  )
+    dplyr::rename("# of cells" = total_cell_count) %>%
+    prettifyTable(
+      filter = "none",
+      dom = "Brtlip",
+      show_buttons = FALSE,
+      number_formatting = TRUE,
+      color_highlighting = FALSE,
+      hide_long_columns = TRUE,
+      columns_percentage = columns_percentage
+    )
 })
 
 ##----------------------------------------------------------------------------##
@@ -199,3 +199,6 @@ groups_by_other_group_info <- list(
   title = "Composition of group by another group",
   text = HTML("This plot allows to see how cell groups are related to each other. This can be represented as a bar char or a Sankey plot. Optionally, a table can be shown below. To highlight composition in very small cell groups, results can be shown as percentages rather than actual cell counts. Groups can be removed from the plot by clicking on them in the legend.")
 )
+
+updateSelectizeInput('excludedGroupsSankeyA', choices = data.table::as.data.table(data.frame("Groups" = getGroups())), server = TRUE)
+updateSelectizeInput('excludedGroupsSankeyB', choices = data.table::as.data.table(data.frame("Groups" = getGroups())), server = TRUE)
