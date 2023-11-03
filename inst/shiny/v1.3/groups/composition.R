@@ -199,6 +199,3 @@ groups_by_other_group_info <- list(
   title = "Composition of group by another group",
   text = HTML("This plot allows to see how cell groups are related to each other. This can be represented as a bar char or a Sankey plot. Optionally, a table can be shown below. To highlight composition in very small cell groups, results can be shown as percentages rather than actual cell counts. Groups can be removed from the plot by clicking on them in the legend.")
 )
-
-updateSelectizeInput('excludedGroupsSankeyA', choices = data.table::as.data.table(data.frame("Groups" = getGroups())), server = TRUE)
-updateSelectizeInput('excludedGroupsSankeyB', choices = data.table::as.data.table(data.frame("Groups" = getGroups())), server = TRUE)

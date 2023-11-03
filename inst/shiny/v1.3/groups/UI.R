@@ -17,7 +17,7 @@ tab_groups <- tabItem(
   selectizeInput(
     'excludedGroupsSankeyA',
     label = 'Initial Points To Remove',
-    #choices = c('poop',"yes"),
+    choices = data.table::as.data.table(data.frame("Groups" = getGroups())),
     multiple = TRUE,
     options = list(
       create = F
@@ -26,7 +26,7 @@ tab_groups <- tabItem(
   selectizeInput(
     'excludedGroupsSankeyB',
     label = 'Ending Points To Remove',
-    #choices = c('poop',"yes"),
+    choices = data.table::as.data.table(data.frame("Groups" = getGroups())),
     multiple = TRUE,
     options = list(
       create = F
