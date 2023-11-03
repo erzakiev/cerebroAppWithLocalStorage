@@ -119,6 +119,8 @@ output[["groups_by_other_group_plot"]] <- plotly::renderPlotly({
       getMetaData(),
       input[[ "groups_selected_group" ]],
       input[[ "groups_by_other_group_second_group" ]],
+      input[[ "excludedGroupsSankeyA" ]],
+      input[[ "excludedGroupsSankeyB" ]],
       mode = "long",
       percent = FALSE
     )

@@ -508,7 +508,9 @@ calculateTableAB <- function(
   groupA,
   groupB,
   mode,
-  percent
+  percent,
+  remove_A = NULL,
+  remove_B = NULL
 ) {
 
   ## TODO: more safety checks?
@@ -536,7 +538,22 @@ calculateTableAB <- function(
 
   ## subset columns
   table <- table[,c(groupA, groupB)]
+  
+  ## filter points A if requested
+  if(!is.null(remove_A)){
+    reduc <- Reduce(f = "|", lapply(X = remove_A, FUN = function(x) table==x))
+    table[t(apply(!reduc, MARGIN = 1, FUN = all)),] -> table_flt
+    table <- table_flt
+  }
+    
 
+  ## filter points B if requested
+  if(!is.null(remove_B)){
+    reduc <- Reduce(f = "|", lapply(X = remove_B, FUN = function(x) table==x))
+    table[t(apply(!reduc, MARGIN = 1, FUN = all)),] -> table_flt
+    table <- table_flt
+  }
+  
   ## factorize group columns A if not already a factor
   if ( is.character(table[[groupA]]) ) {
     levels_groupA <- table[[groupA]] %>% unique() %>% sort()
