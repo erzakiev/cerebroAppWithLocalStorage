@@ -13,16 +13,11 @@ tab_groups <- tabItem(
     "
   ),
   uiOutput("groups_select_group_UI"),
-  h5("This is a static text"),
-  uiOutput("groups_tree_UI"),
-  uiOutput("groups_composition_UI"),
-  #updateSelectizeInput('excludedGroupsSankeyA', choices = data.table::as.data.table(data.frame("Groups" = getGroups())), server = TRUE),
-  #updateSelectizeInput('excludedGroupsSankeyB', choices = data.table::as.data.table(data.frame("Groups" = getGroups())), server = TRUE),
-  h5("This is a static text"),
+  #uiOutput("groups_tree_UI"),
   selectizeInput(
     'excludedGroupsSankeyA',
     label = 'Initial Points To Remove',
-    choices = c('poop',"yes"),
+    #choices = c('poop',"yes"),
     multiple = TRUE,
     options = list(
       create = F
@@ -31,12 +26,13 @@ tab_groups <- tabItem(
   selectizeInput(
     'excludedGroupsSankeyB',
     label = 'Ending Points To Remove',
-    choices = c('poop',"yes"),
+    #choices = c('poop',"yes"),
     multiple = TRUE,
     options = list(
       create = F
     )
   ),
+  uiOutput("groups_composition_UI"),
   uiOutput("groups_expression_metrics_UI"),
   uiOutput("groups_cell_cycle_UI")
 )
