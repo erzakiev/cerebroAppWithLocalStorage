@@ -14,8 +14,10 @@ tab_groups <- tabItem(
   ),
   uiOutput("groups_select_group_UI"),
   uiOutput("groups_tree_UI"),
-  uiOutput("excludedGroupsSankeyA_UI"),
-  uiOutput("excludedGroupsSankeyB_UI"),
+  fluidRow(
+    uiOutput("excludedGroupsSankeyA_UI"),
+    uiOutput("excludedGroupsSankeyB_UI")
+  ),
   uiOutput("groups_composition_UI"),
   uiOutput("groups_expression_metrics_UI"),
   uiOutput("groups_cell_cycle_UI")
