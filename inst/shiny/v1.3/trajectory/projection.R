@@ -319,8 +319,134 @@ output[["trajectory_projection"]] <- plotly::renderPlotly({
 
   ## put rows in random order
   cells_df <- cells_df[ sample(1:nrow(cells_df)) , ]
-
-  ## convert edges of trajectory into list format to plot with plotly
+  
+  if("DR_3" %in% colnames(cells_df)) { 
+    ## 3d convert edges of trajectory into list format to plot with plotly
+    trajectory_edges <- trajectory_data[["edges"]]
+    trajectory_lines <- list()
+    for (i in 1:nrow(trajectory_edges) ) {
+      line = list(
+        type = "line",
+        line = list(color = "black"),
+        xref = "x",
+        yref = "y",
+        x0 = trajectory_edges$source_dim_1[i],
+        y0 = trajectory_edges$source_dim_2[i],
+        z0 = trajectory_edges$source_dim_3[i],
+        x1 = trajectory_edges$target_dim_1[i],
+        y1 = trajectory_edges$target_dim_2[i],
+        z1 = trajectory_edges$target_dim_3[i],
+      )
+      trajectory_lines <- c(trajectory_lines, list(line))
+    }
+    
+    ## prepare hover info
+    hover_info <- buildHoverInfoForProjections(cells_df)
+    
+    ## add expression levels to hover info
+    hover_info <- glue::glue(
+      "{hover_info}
+    <b>State</b>: {cells_df$state}
+    <b>Pseudotime</b>: {formatC(cells_df$pseudotime, format = 'f', digits = 2)}"
+    )
+    
+    ##
+    if (
+      is.factor(cells_df[[ input[["trajectory_point_color"]] ]]) ||
+      is.character(cells_df[[ input[["trajectory_point_color"]] ]])
+    ) {
+      
+      ## get colors for groups
+      colors_for_groups <- assignColorsToGroups(cells_df, input[["trajectory_point_color"]])
+      
+      ##
+      plot <- plotly::plot_ly(
+        cells_df,
+        x = ~DR_1,
+        y = ~DR_2,
+        z = ~DR_3,
+        color = ~cells_df[[ input[["trajectory_point_color"]] ]],
+        colors = colors_for_groups,
+        type = "scatter",
+        mode = "markers",
+        marker = list(
+          opacity = input[["trajectory_point_opacity"]],
+          line = list(
+            color = "rgb(196,196,196)",
+            width = 1
+          ),
+          size = input[["trajectory_point_size"]]
+        ),
+        hoverinfo = "text",
+        text = ~hover_info,
+        source = "trajectory_projection"
+      )
+      
+      ##
+    } else {
+      
+      ##
+      plot <- plotly::plot_ly(
+        data = cells_df,
+        x = ~DR_1,
+        y = ~DR_2,
+        z = ~DR_3,
+        type = "scatter",
+        mode = "markers",
+        marker = list(
+          colorbar = list(
+            title = colnames(cells_df)[which(colnames(cells_df) == input[["trajectory_point_color"]])]
+          ),
+          color = ~cells_df[[ input[["trajectory_point_color"]] ]],
+          opacity = input[["trajectory_point_opacity"]],
+          colorscale = "YlGnBu",
+          reversescale = TRUE,
+          line = list(
+            color = "rgb(196,196,196)",
+            width = 1
+          ),
+          size = input[["trajectory_point_size"]]
+        ),
+        hoverinfo = "text",
+        text = ~hover_info,
+        source = "trajectory_projection"
+      )
+    }
+    
+    ## add layout to plot
+    plot <- plot %>%
+      plotly::layout(
+        shapes = trajectory_lines,
+        xaxis = list(
+          mirror = TRUE,
+          showline = TRUE,
+          zeroline = FALSE,
+          range = range(cells_df$DR_1) * 1.1
+        ),
+        yaxis = list(
+          mirror = TRUE,
+          showline = TRUE,
+          zeroline = FALSE,
+          range = range(cells_df$DR_2) * 1.1
+        ),
+        zaxis = list(
+          mirror = TRUE,
+          showline = TRUE,
+          zeroline = FALSE,
+          range = range(cells_df$DR_3) * 1.1
+        ),
+        hoverlabel = list(
+          font = list(
+            size = 11
+          ),
+          align = 'left'
+        )
+      )
+    
+    
+    
+  } else {
+  ## 2d convert edges of trajectory into list format to plot with plotly
   trajectory_edges <- trajectory_data[["edges"]]
   trajectory_lines <- list()
   for (i in 1:nrow(trajectory_edges) ) {
@@ -431,6 +557,7 @@ output[["trajectory_projection"]] <- plotly::renderPlotly({
         align = 'left'
       )
     )
+  }
 
   ## return plot either with WebGL or without, depending on setting
   if ( preferences$use_webgl == TRUE ) {

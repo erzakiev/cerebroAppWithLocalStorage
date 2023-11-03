@@ -78,46 +78,88 @@ output[["trajectory_details_selected_cells_table"]] <- DT::renderDataTable({
 
   ## ... selection has been made and at least 1 cell is in it
   } else {
-
-    ## get info of selected cells and create identifier from X-Y coordinates
-    selected_cells <- plotly::event_data("plotly_selected", source = "trajectory_projection") %>%
-      dplyr::mutate(identifier = paste0(x, '-', y))
-
-    ## extract cells for table
-    cells_df <- cbind(trajectory_data[["meta"]], getMetaData()) %>%
-      dplyr::filter(!is.na(pseudotime))
-  
-    ## filter out non-selected cells with X-Y identifier
-    cells_df <- cells_df %>%
-      dplyr::rename(X1 = 1, X2 = 2) %>%
-      dplyr::mutate(identifier = paste0(X1, '-', X2)) %>%
-      dplyr::filter(identifier %in% selected_cells$identifier) %>%
-      dplyr::select(-c(X1, X2, identifier)) %>%
-      dplyr::select(cell_barcode, everything())
-
-    ## check how many cells are left after filtering
-    ## ... no cells are left
-    if ( nrow(cells_df) == 0 ) {
-
-      ## prepare empty table
-      getMetaData() %>%
-      dplyr::slice(0) %>%
-      prepareEmptyTable()
-
-    ## ... at least 1 cell is left
+    if('DR_3' %in% colnames(trajectory_data[["meta"]])){
+      ## get info of selected cells and create identifier from X-Y coordinates
+      selected_cells <- plotly::event_data("plotly_selected", source = "trajectory_projection") %>%
+        dplyr::mutate(identifier = paste0(x, '-', y, '-', z))
+      
+      ## extract cells for table
+      cells_df <- cbind(trajectory_data[["meta"]], getMetaData()) %>%
+        dplyr::filter(!is.na(pseudotime))
+      
+      ## filter out non-selected cells with X-Y identifier
+      cells_df <- cells_df %>%
+        dplyr::rename(X1 = 1, X2 = 2, X3 = 3) %>%
+        dplyr::mutate(identifier = paste0(X1, '-', X2, '-', X3)) %>%
+        dplyr::filter(identifier %in% selected_cells$identifier) %>%
+        dplyr::select(-c(X1, X2, X3, identifier)) %>%
+        dplyr::select(cell_barcode, everything())
+      
+      ## check how many cells are left after filtering
+      ## ... no cells are left
+      if ( nrow(cells_df) == 0 ) {
+        
+        ## prepare empty table
+        getMetaData() %>%
+          dplyr::slice(0) %>%
+          prepareEmptyTable()
+        
+        ## ... at least 1 cell is left
+      } else {
+        
+        ## prepare proper table
+        prettifyTable(
+          cells_df,
+          filter = list(position = "top", clear = TRUE),
+          dom = "Brtlip",
+          show_buttons = TRUE,
+          number_formatting = input[["trajectory_details_selected_cells_table_number_formatting"]],
+          color_highlighting = input[["trajectory_details_selected_cells_table_color_highlighting"]],
+          hide_long_columns = TRUE,
+          download_file_name = "trajectory_details_of_selected_cells"
+        )
+      }
     } else {
-
-      ## prepare proper table
-      prettifyTable(
-        cells_df,
-        filter = list(position = "top", clear = TRUE),
-        dom = "Brtlip",
-        show_buttons = TRUE,
-        number_formatting = input[["trajectory_details_selected_cells_table_number_formatting"]],
-        color_highlighting = input[["trajectory_details_selected_cells_table_color_highlighting"]],
-        hide_long_columns = TRUE,
-        download_file_name = "trajectory_details_of_selected_cells"
-      )
+      ## get info of selected cells and create identifier from X-Y coordinates
+      selected_cells <- plotly::event_data("plotly_selected", source = "trajectory_projection") %>%
+        dplyr::mutate(identifier = paste0(x, '-', y))
+      
+      ## extract cells for table
+      cells_df <- cbind(trajectory_data[["meta"]], getMetaData()) %>%
+        dplyr::filter(!is.na(pseudotime))
+      
+      ## filter out non-selected cells with X-Y identifier
+      cells_df <- cells_df %>%
+        dplyr::rename(X1 = 1, X2 = 2) %>%
+        dplyr::mutate(identifier = paste0(X1, '-', X2)) %>%
+        dplyr::filter(identifier %in% selected_cells$identifier) %>%
+        dplyr::select(-c(X1, X2, identifier)) %>%
+        dplyr::select(cell_barcode, everything())
+      
+      ## check how many cells are left after filtering
+      ## ... no cells are left
+      if ( nrow(cells_df) == 0 ) {
+        
+        ## prepare empty table
+        getMetaData() %>%
+          dplyr::slice(0) %>%
+          prepareEmptyTable()
+        
+        ## ... at least 1 cell is left
+      } else {
+        
+        ## prepare proper table
+        prettifyTable(
+          cells_df,
+          filter = list(position = "top", clear = TRUE),
+          dom = "Brtlip",
+          show_buttons = TRUE,
+          number_formatting = input[["trajectory_details_selected_cells_table_number_formatting"]],
+          color_highlighting = input[["trajectory_details_selected_cells_table_color_highlighting"]],
+          hide_long_columns = TRUE,
+          download_file_name = "trajectory_details_of_selected_cells"
+        )
+      }
     }
   }
 })

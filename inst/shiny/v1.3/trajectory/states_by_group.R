@@ -203,7 +203,12 @@ output[["states_by_group_table"]] <- DT::renderDataTable({
 
   ## get indices of columns that should be formatted as percent
   if ( input[["states_by_group_show_as_percent"]] == TRUE ) {
-    columns_percentage <- c(3:ncol(composition_df))
+    if("DR_3" %in% colnames(composition_df)){
+      columns_percentage <- c(4:ncol(composition_df))
+    } else {
+      columns_percentage <- c(3:ncol(composition_df))
+    }
+      
   } else {
     columns_percentage <- NULL
   }
