@@ -330,12 +330,13 @@ output[["trajectory_projection"]] <- plotly::renderPlotly({
         line = list(color = "black"),
         xref = "x",
         yref = "y",
+        zref = "z",
         x0 = trajectory_edges$source_dim_1[i],
         y0 = trajectory_edges$source_dim_2[i],
         z0 = trajectory_edges$source_dim_3[i],
         x1 = trajectory_edges$target_dim_1[i],
         y1 = trajectory_edges$target_dim_2[i],
-        z1 = trajectory_edges$target_dim_3[i],
+        z1 = trajectory_edges$target_dim_3[i]
       )
       trajectory_lines <- c(trajectory_lines, list(line))
     }
