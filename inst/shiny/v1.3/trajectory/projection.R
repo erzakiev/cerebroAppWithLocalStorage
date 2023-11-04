@@ -414,39 +414,19 @@ output[["trajectory_projection"]] <- plotly::renderPlotly({
       )
     }
     
-    ## add layout to plot
-    plot <- plot %>%
-      plotly::add_trace(
-        data = trajectory_lines, 
-        mode = 'lines',
-        
-        x = list(
-          mirror = TRUE,
-          showline = TRUE,
-          zeroline = FALSE,
-          range = range(cells_df$DR_1) * 1.1
-        ),
-        y = list(
-          mirror = TRUE,
-          showline = TRUE,
-          zeroline = FALSE,
-          range = range(cells_df$DR_2) * 1.1
-        ),
-        z = list(
-          mirror = TRUE,
-          showline = TRUE,
-          zeroline = FALSE,
-          range = range(cells_df$DR_3) * 1.1
-        ),
-        hoverlabel = list(
-          font = list(
-            size = 11
-          ),
-          align = 'left'
-        )
-      )
+    line_plot <- 
+      plotly::plot_ly(
+        trajectory_lines, 
+        x = ~x, 
+        y = ~y, 
+        z = ~z, 
+        type = 'scatter3d', 
+        mode = 'lines', line = list(color = 'red', width = 2), name = 'trajectory')
     
+    plot <- subplot(line_plot, additional_markers_plot, nrows = 2)
     
+    plot <- plot %>% layout(plot, scene = list(showlegend = FALSE))
+
     
   } else {
   ## 2d convert edges of trajectory into list format to plot with plotly
