@@ -418,7 +418,7 @@ output[["trajectory_projection"]] <- plotly::renderPlotly({
     plot <- plot %>%
       plotly::layout(
         shapes = trajectory_lines,
-        mode = 'lines+markers',
+        mode = 'lines',
         scene=list(xaxis = list(
           mirror = TRUE,
           showline = TRUE,
