@@ -368,7 +368,7 @@ output[["trajectory_projection"]] <- plotly::renderPlotly({
         z = ~DR_3,
         color = ~cells_df[[ input[["trajectory_point_color"]] ]],
         colors = colors_for_groups,
-        type = "scatter",
+        type = "scatter3d",
         mode = "markers",
         marker = list(
           opacity = input[["trajectory_point_opacity"]],
@@ -392,7 +392,7 @@ output[["trajectory_projection"]] <- plotly::renderPlotly({
         x = ~DR_1,
         y = ~DR_2,
         z = ~DR_3,
-        type = "scatter",
+        type = "scatter3d",
         mode = "markers",
         marker = list(
           colorbar = list(
