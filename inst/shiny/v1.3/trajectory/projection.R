@@ -416,27 +416,27 @@ output[["trajectory_projection"]] <- plotly::renderPlotly({
     
     ## add layout to plot
     plot <- plot %>%
-      plotly::layout(
-        shapes = trajectory_lines,
-        mode = 'lines',
-        scene=list(xaxis = list(
+      plotly::add_lines(
+        data = trajectory_lines,
+        #mode = 'lines',
+        x = list(
           mirror = TRUE,
           showline = TRUE,
           zeroline = FALSE,
           range = range(cells_df$DR_1) * 1.1
         ),
-        yaxis = list(
+        y = list(
           mirror = TRUE,
           showline = TRUE,
           zeroline = FALSE,
           range = range(cells_df$DR_2) * 1.1
         ),
-        zaxis = list(
+        z = list(
           mirror = TRUE,
           showline = TRUE,
           zeroline = FALSE,
           range = range(cells_df$DR_3) * 1.1
-        )),
+        ),
         hoverlabel = list(
           font = list(
             size = 11
