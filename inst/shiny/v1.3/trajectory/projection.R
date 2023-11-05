@@ -406,7 +406,7 @@ output[["trajectory_projection"]] <- plotly::renderPlotly({
           y = ~DR_2, 
           z = ~DR_3, 
           type = 'scatter3d', 
-          mode = 'lines', line = list(color = 'red', width = 2), name = paste0('trajectory_',i))
+          mode = 'lines', line = list(color = 'black', width = 8), name = paste0('trajectory_',i))
     }
     line_plot_list <- append(line_plot_list, list(plot))
     
