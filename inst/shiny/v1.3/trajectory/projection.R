@@ -307,7 +307,7 @@ trajectory_projection_group_filters_info <- list(
 ## cannot use req() because it delays initialization and plot is updated only
 ## with button press so plot doesn't initialize at all
 trajectory_selected_genes <- reactive({
-  req(input[["trajectory_selected_methods"]])
+  #req(input[["trajectory_selected_methods"]])
   # message('--> trigger "expression_selected_genes"')
   ## prepare empty list for data
   gene_sets <- list(
@@ -416,6 +416,8 @@ output[["trajectory_projection"]] <- plotly::renderPlotly({
       print('line 405 ok')
       ## get colors for groups
       if(input[["trajectory_point_color"]] == 'a certain gene'){
+        print('printing trajectory_genes_input()')
+        print(trajectory_genes_input())
         print('printing trajectory_selected_genes()')
         print(trajectory_selected_genes())
         colors_for_groups <- getMeanExpressionForGenes(trajectory_selected_genes())
