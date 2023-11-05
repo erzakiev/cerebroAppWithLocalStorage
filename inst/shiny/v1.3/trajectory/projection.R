@@ -399,7 +399,7 @@ output[["trajectory_projection"]] <- plotly::renderPlotly({
     ##
     if (
       is.factor(cells_df[[ input[["trajectory_point_color"]] ]]) ||
-      is.character(cells_df[[ input[["trajectory_point_color"]] ]])
+      is.character(cells_df[[ input[["trajectory_point_color"]] ]] || input[["trajectory_point_color"]] == 'a certain gene')
     ) {
       
       print('line 405 ok')
@@ -442,6 +442,7 @@ output[["trajectory_projection"]] <- plotly::renderPlotly({
       ##
     } else {
       
+      print('line 445 ok')
       ##
       plot <- plotly::plot_ly(
         data = cells_df,
