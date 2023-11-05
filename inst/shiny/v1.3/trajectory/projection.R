@@ -31,7 +31,7 @@ output[["trajectory_projection_UI"]] <- renderUI({
             )
           ),
           uiOutput("trajectory_projection_main_parameters_UI"),
-          uiOutput('trajectory_projection_coloring_by_gene_UI')
+          uiOutput("trajectory_projection_coloring_by_gene_UI")
         ),
         cerebroBox(
           title = tagList(
@@ -131,7 +131,6 @@ output[["trajectory_projection_coloring_by_gene_UI"]] <- renderUI({
       )
     )
   }
-  else return(NULL)
 })
 
 ##----------------------------------------------------------------------------##
