@@ -127,7 +127,7 @@ output[["trajectory_projection_coloring_by_gene_UI"]] <- renderUI({
   )
   if ( input[["trajectory_point_color"]] == 'a certain gene' ) {
     selectizeInput(
-      'expression_genes_input',
+      'trajectory_genes_input',
       label = 'Gene(s)',
       choices = data.table::as.data.table(data.frame("Genes" = getGeneNames())),
       multiple = TRUE,
@@ -301,6 +301,48 @@ trajectory_projection_group_filters_info <- list(
 ## Plot of projection.
 ##----------------------------------------------------------------------------##
 
+##----------------------------------------------------------------------------##
+## Reactive data that holds genes provided by user or in selected gene set.
+##----------------------------------------------------------------------------##
+## cannot use req() because it delays initialization and plot is updated only
+## with button press so plot doesn't initialize at all
+trajectory_selected_genes <- reactive({
+  req(input[["trajectory_selected_methods"]])
+  # message('--> trigger "expression_selected_genes"')
+  ## prepare empty list for data
+  gene_sets <- list(
+    "genes_to_display" = character(),
+    "genes_to_display_present" = character(),
+    "genes_to_display_missing" = character()
+  )
+  ## ...
+    ## check if user provided input in gene box
+    ## ... if user provided input
+    if ( !is.null(input[["expression_genes_input"]]) ) {
+      ## - grab user input
+      ## - split by comma, space, semicolon and line
+      ## - convert to vector
+      ## - remove spaces
+      ## - remove duplicated strings
+      ## - remove empty strings
+      gene_sets[["genes_to_display"]] <- input[["trajectory_genes_input"]] %>%
+        strsplit(",| |;|\n") %>%
+        unlist() %>%
+        gsub(pattern = " ", replacement = "", fixed = TRUE) %>%
+        unique() %>%
+        .[. != ""]
+    }
+    ## ...
+  ## check which are available in the data set
+  genes_to_display_here <- getGeneNames()[ match(tolower(gene_sets[["genes_to_display"]]), tolower(getGeneNames())) ]
+  ## get which genes are available in the data set
+  gene_sets[["genes_to_display_present"]] <- na.omit(genes_to_display_here)
+  ## get names of provided genes that are not in the data set
+  gene_sets[["genes_to_display_missing"]] <- gene_sets[["genes_to_display"]][ which(is.na(genes_to_display_here)) ]
+  # message(str(gene_sets))
+  return(gene_sets)
+})
+
 output[["trajectory_projection"]] <- plotly::renderPlotly({
 
   ## don't do anything before these inputs are selected
@@ -361,7 +403,11 @@ output[["trajectory_projection"]] <- plotly::renderPlotly({
     ) {
       
       ## get colors for groups
-      colors_for_groups <- assignColorsToGroups(cells_df, input[["trajectory_point_color"]])
+      if(input[["trajectory_point_color"]] == 'a certain gene'){
+        colors_for_groups <- getMeanExpressionForGenes(trajectory_selected_genes())
+      } else {
+        colors_for_groups <- assignColorsToGroups(cells_df, input[["trajectory_point_color"]])
+      }
       
       ##
       plot <- plotly::plot_ly(
