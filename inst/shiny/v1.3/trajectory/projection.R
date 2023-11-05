@@ -117,16 +117,18 @@ output[["trajectory_projection_main_parameters_UI"]] <- renderUI({
       colnames(getMetaData())[! colnames(getMetaData()) %in% c("cell_barcode")]
     )
   )
-  if ( input[["trajectory_point_color"]] == 'a certain gene' ) {
-    selectizeInput(
-      'expression_genes_input',
-      label = 'Gene(s)',
-      choices = data.table::as.data.table(data.frame("Genes" = getGeneNames())),
-      multiple = TRUE,
-      options = list(
-        create = TRUE
+  if(!is.null(input[["trajectory_point_color"]])){
+    if ( input[["trajectory_point_color"]] == 'a certain gene' ) {
+      selectizeInput(
+        'expression_genes_input',
+        label = 'Gene(s)',
+        choices = data.table::as.data.table(data.frame("Genes" = getGeneNames())),
+        multiple = TRUE,
+        options = list(
+          create = TRUE
+        )
       )
-    )
+    }
   }
 })
 
