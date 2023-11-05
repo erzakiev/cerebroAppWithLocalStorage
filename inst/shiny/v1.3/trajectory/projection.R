@@ -402,6 +402,7 @@ output[["trajectory_projection"]] <- plotly::renderPlotly({
       is.character(cells_df[[ input[["trajectory_point_color"]] ]])
     ) {
       
+      print('line 405 ok')
       ## get colors for groups
       if(input[["trajectory_point_color"]] == 'a certain gene'){
         print('printing trajectory_selected_genes()')
@@ -410,6 +411,7 @@ output[["trajectory_projection"]] <- plotly::renderPlotly({
         print('printing colors_for_groups')
         print(colors_for_groups)
       } else {
+        print('entering colors computation by assignColorsToGroups line 414')
         colors_for_groups <- assignColorsToGroups(cells_df, input[["trajectory_point_color"]])
       }
       
