@@ -113,7 +113,7 @@ output[["trajectory_projection_main_parameters_UI"]] <- renderUI({
     "trajectory_point_color",
     label = "Color cells by",
     choices = c(
-      "state", "pseudotime",'a certain gene',
+      "state", "pseudotime",'gene',
       colnames(getMetaData())[! colnames(getMetaData()) %in% c("cell_barcode")]
     )
   )
@@ -121,7 +121,7 @@ output[["trajectory_projection_main_parameters_UI"]] <- renderUI({
 
 output[["trajectory_projection_coloring_by_gene_UI"]] <- renderUI({
   req(input[["trajectory_point_color"]])
-  if ( input[["trajectory_point_color"]] == 'a certain gene' ) {
+  if ( input[["trajectory_point_color"]] == 'gene' ) {
     selectizeInput(
       'expression_genes_input',
       label = 'Gene(s)',
