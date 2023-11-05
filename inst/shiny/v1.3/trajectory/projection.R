@@ -120,6 +120,7 @@ output[["trajectory_projection_main_parameters_UI"]] <- renderUI({
 })
 
 output[["trajectory_projection_coloring_by_gene_UI"]] <- renderUI({
+  req(input[["trajectory_point_color"]])
   if ( input[["trajectory_point_color"]] == 'a certain gene' ) {
     selectizeInput(
       'expression_genes_input',
