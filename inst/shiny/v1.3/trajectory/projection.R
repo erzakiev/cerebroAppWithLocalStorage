@@ -404,10 +404,15 @@ output[["trajectory_projection"]] <- plotly::renderPlotly({
       
       ## get colors for groups
       if(input[["trajectory_point_color"]] == 'a certain gene'){
+        print('printing trajectory_selected_genes()')
+        print(trajectory_selected_genes())
         colors_for_groups <- getMeanExpressionForGenes(trajectory_selected_genes())
+        print('printing colors_for_groups')
+        print(colors_for_groups)
       } else {
         colors_for_groups <- assignColorsToGroups(cells_df, input[["trajectory_point_color"]])
       }
+      
       
       ##
       plot <- plotly::plot_ly(
