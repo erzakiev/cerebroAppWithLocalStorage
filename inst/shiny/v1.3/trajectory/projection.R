@@ -407,9 +407,10 @@ output[["trajectory_projection"]] <- plotly::renderPlotly({
     print("is.character(cells_df[[ input[['trajectory_point_color']] ]]")
     print(is.character(cells_df[[ input[["trajectory_point_color"]] ]]))
     ##
+    
     if (
       is.factor(cells_df[[ input[["trajectory_point_color"]] ]]) ||
-      is.character(cells_df[[ input[["trajectory_point_color"]] ]] || (input[["trajectory_point_color"]]=='a certain gene') )
+      is.character(cells_df[[ input[["trajectory_point_color"]] ]]) || (input[["trajectory_point_color"]]=='a certain gene')
     ) {
       
       print('line 405 ok')
