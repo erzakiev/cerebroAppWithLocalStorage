@@ -117,21 +117,26 @@ output[["trajectory_projection_main_parameters_UI"]] <- renderUI({
       colnames(getMetaData())[! colnames(getMetaData()) %in% c("cell_barcode")]
     )
   )
-  if(!is.null(input[["trajectory_point_color"]])){
-    if ( input[["trajectory_point_color"]] == 'a certain gene' ) {
-      selectizeInput(
-        'expression_genes_input',
-        label = 'Gene(s)',
-        choices = data.table::as.data.table(data.frame("Genes" = getGeneNames())),
-        multiple = TRUE,
-        options = list(
-          create = TRUE
-        )
-      )
-    }
-  }
 })
 
+output[["trajectory_projection_coloring_by_gene_UI"]] <- renderUI({
+  req(input[["trajectory_point_color"]])
+  req(
+    input[["trajectory_selected_method"]],
+    input[["trajectory_selected_name"]]
+  )
+  if ( input[["trajectory_point_color"]] == 'a certain gene' ) {
+    selectizeInput(
+      'expression_genes_input',
+      label = 'Gene(s)',
+      choices = data.table::as.data.table(data.frame("Genes" = getGeneNames())),
+      multiple = TRUE,
+      options = list(
+        create = TRUE
+      )
+    )
+  }
+})
 
 ##----------------------------------------------------------------------------##
 ## Info box that gets shown when pressing the "info" button.
