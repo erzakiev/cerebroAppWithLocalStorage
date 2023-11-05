@@ -354,6 +354,7 @@ output[["trajectory_projection"]] <- plotly::renderPlotly({
     input[["trajectory_point_size"]],
     input[["trajectory_point_opacity"]]
   )
+  colors_for_groups <- NULL
 
   ## collect trajectory data
   trajectory_data <- getTrajectory(
@@ -419,8 +420,10 @@ output[["trajectory_projection"]] <- plotly::renderPlotly({
         print("input[['trajectory_genes_input']]")
         print(input[["trajectory_genes_input"]])
         print('printing trajectory_selected_genes()')
-        print(trajectory_selected_genes())
-        colors_for_groups <- getMeanExpressionForGenes(trajectory_selected_genes())
+        if(!is.null(input[['trajectory_genes_input']])){
+          print(trajectory_selected_genes())
+          colors_for_groups <- getMeanExpressionForGenes(trajectory_selected_genes())
+        }
         print('printing colors_for_groups')
         print(colors_for_groups)
       } else {
