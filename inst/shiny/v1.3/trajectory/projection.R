@@ -414,18 +414,22 @@ output[["trajectory_projection"]] <- plotly::renderPlotly({
       )
     }
     
-    line_plot <- 
-      plotly::plot_ly(
-        trajectory_lines, 
-        x = ~x, 
-        y = ~y, 
-        z = ~z, 
-        type = 'scatter3d', 
-        mode = 'lines', line = list(color = 'red', width = 2), name = 'trajectory')
+    line_plot_list <- list()
+    for (i in 1:length(trajectory_lines)){
+      line_plot_list[[i]]<- 
+        plotly::plot_ly(
+          as.data.frame(trajectory_lines[[i]]), 
+          x = ~DR_1, 
+          y = ~DR_2, 
+          z = ~DR_3, 
+          type = 'scatter3d', 
+          mode = 'lines', line = list(color = 'red', width = 2), name = paste0('trajectory_',i))
+    }
+    line_plot_list <- append(line_plot_list, list(plot))
     
-    plot <- subplot(line_plot, additional_markers_plot, nrows = 2)
+    plot <- subplot(line_plot_list, nrows = 2)
     
-    plot <- plot %>% layout(plot, scene = list(showlegend = FALSE))
+    #plot <- plot %>% layout(plot, scene = list(showlegend = FALSE))
 
     
   } else {
