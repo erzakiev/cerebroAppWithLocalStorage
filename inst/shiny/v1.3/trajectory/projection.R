@@ -135,6 +135,7 @@ output[["trajectory_projection_coloring_by_gene_UI"]] <- renderUI({
         create = TRUE
       )
     )
+    print(input[['trajectory_genes_input']])
   }
 })
 
