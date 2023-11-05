@@ -410,7 +410,7 @@ output[["trajectory_projection"]] <- plotly::renderPlotly({
     }
     line_plot_list <- append(line_plot_list, list(plot))
     
-    plot <- subplot(line_plot_list, nrows = 2)
+    plot <- plotly::subplot(line_plot_list, nrows = 2)
     
     #plot <- plot %>% layout(plot, scene = list(showlegend = FALSE))
 
