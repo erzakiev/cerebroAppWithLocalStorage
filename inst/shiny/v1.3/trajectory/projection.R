@@ -135,7 +135,6 @@ output[["trajectory_projection_coloring_by_gene_UI"]] <- renderUI({
         create = TRUE
       )
     )
-    print(input[['trajectory_genes_input']])
   }
 })
 
@@ -319,7 +318,7 @@ trajectory_selected_genes <- reactive({
   ## ...
     ## check if user provided input in gene box
     ## ... if user provided input
-    if ( !is.null(input[["expression_genes_input"]]) ) {
+    if ( !is.null(input[["trajectory_genes_input"]]) ) {
       ## - grab user input
       ## - split by comma, space, semicolon and line
       ## - convert to vector
