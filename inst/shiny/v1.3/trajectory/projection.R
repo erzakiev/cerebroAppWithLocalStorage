@@ -30,9 +30,9 @@ output[["trajectory_projection_UI"]] <- renderUI({
               style = "margin-left: 5px"
             )
           ),
-          uiOutput("trajectory_projection_main_parameters_UI"),
-          uiOutput("trajectory_projection_coloring_by_gene_UI")
+          uiOutput("trajectory_projection_main_parameters_UI")
         ),
+        uiOutput("trajectory_projection_coloring_by_gene_UI"),
         cerebroBox(
           title = tagList(
             "Additional parameters",
@@ -117,14 +117,6 @@ output[["trajectory_projection_main_parameters_UI"]] <- renderUI({
       colnames(getMetaData())[! colnames(getMetaData()) %in% c("cell_barcode")]
     )
   )
-})
-
-output[["trajectory_projection_coloring_by_gene_UI"]] <- renderUI({
-  req(input[["trajectory_point_color"]])
-  req(
-    input[["trajectory_selected_method"]],
-    input[["trajectory_selected_name"]]
-  )
   if ( input[["trajectory_point_color"]] == 'a certain gene' ) {
     selectizeInput(
       'expression_genes_input',
@@ -137,6 +129,7 @@ output[["trajectory_projection_coloring_by_gene_UI"]] <- renderUI({
     )
   }
 })
+
 
 ##----------------------------------------------------------------------------##
 ## Info box that gets shown when pressing the "info" button.
