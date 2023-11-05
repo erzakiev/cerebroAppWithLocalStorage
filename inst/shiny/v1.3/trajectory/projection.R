@@ -322,24 +322,7 @@ output[["trajectory_projection"]] <- plotly::renderPlotly({
   
   if("DR_3" %in% colnames(cells_df)) { 
     ## 3d convert edges of trajectory into list format to plot with plotly
-    trajectory_edges <- trajectory_data[["edges"]]
-    trajectory_lines <- list()
-    for (i in 1:nrow(trajectory_edges) ) {
-      line = list(
-        type = "line",
-        line = list(color = "black"),
-        xref = "x",
-        yref = "y",
-        zref = "z",
-        x0 = trajectory_edges$source_dim_1[i],
-        y0 = trajectory_edges$source_dim_2[i],
-        z0 = trajectory_edges$source_dim_3[i],
-        x1 = trajectory_edges$target_dim_1[i],
-        y1 = trajectory_edges$target_dim_2[i],
-        z1 = trajectory_edges$target_dim_3[i]
-      )
-      trajectory_lines <- c(trajectory_lines, list(line))
-    }
+    trajectory_lines <- trajectory_data[["edges"]]
     
     ## prepare hover info
     hover_info <- buildHoverInfoForProjections(cells_df)
