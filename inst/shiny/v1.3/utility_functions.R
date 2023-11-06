@@ -868,9 +868,9 @@ getMeanExpressionForCells <- function(cells, genes) {
     return(data_set()$getMeanExpressionForCells(cells, genes))
   }
 }
-getExpressionMatrix <- function(...) {
+getExpressionMatrix <- function(cells, genes, dense = TRUE) {
   if ( 'Cerebro_v1.3' %in% class(data_set()) ) {
-    return(data_set()$getExpressionMatrix(...))
+    return(data_set()$getExpressionMatrix(cells, genes, dense))
   }
 }
 getCellNames <- function() {
