@@ -422,7 +422,7 @@ output[["trajectory_projection"]] <- plotly::renderPlotly({
         print('printing trajectory_selected_genes()')
         if(!is.null(input[['trajectory_genes_input']])){
           print(trajectory_selected_genes())
-          colors_for_groups <- getMeanExpressionForCells(genes=trajectory_selected_genes())
+          colors_for_groups <- getMeanExpressionForCells(cells=NULL, genes=trajectory_selected_genes())
         }
         print('printing colors_for_groups')
         print(colors_for_groups)
