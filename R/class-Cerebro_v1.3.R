@@ -434,7 +434,8 @@ Cerebro_v1.3 <- R6::R6Class(
     #' which will return all cells.
     #' @param genes Names of genes to extract; defaults to \code{NULL}, which
     #' will return all genes.
-    #'
+    #' @param dense defaults to \code{TRUE}, which
+    #' will return a matrix in a dense format, otherwise sparse
     #' @return
     #' Dense transcript count matrix for specified cells and genes.
     getExpressionMatrix = function(cells = NULL, genes = NULL, dense = TRUE) {
