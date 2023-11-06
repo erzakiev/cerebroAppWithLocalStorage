@@ -422,10 +422,10 @@ output[["trajectory_projection"]] <- plotly::renderPlotly({
         mode = "markers",
         marker = list(
           opacity = input[["trajectory_point_opacity"]],
-          line = list(
-            color = "rgb(196,196,196)",
-            width = 1
-          ),
+          #line = list(
+          #  color = "rgb(196,196,196)",
+          #  width = 1
+          #),
           size = input[["trajectory_point_size"]]
         ),
         hoverinfo = "text",
@@ -463,10 +463,10 @@ output[["trajectory_projection"]] <- plotly::renderPlotly({
           opacity = input[["trajectory_point_opacity"]],
           colorscale = "YlGnBu",
           reversescale = TRUE,
-          line = list(
-            color = "rgb(196,196,196)",
-            width = 1
-          ),
+          #line = list(
+          #  color = "rgb(196,196,196)",
+          #  width = 1
+          #),
           size = input[["trajectory_point_size"]]
         ),
         hoverinfo = "text",
@@ -541,10 +541,10 @@ output[["trajectory_projection"]] <- plotly::renderPlotly({
       mode = "markers",
       marker = list(
         opacity = input[["trajectory_point_opacity"]],
-        line = list(
-          color = "rgb(196,196,196)",
-          width = 1
-        ),
+        #line = list(
+        #  color = "rgb(196,196,196)",
+        #  width = 1
+        #),
         size = input[["trajectory_point_size"]]
       ),
       hoverinfo = "text",
@@ -570,10 +570,10 @@ output[["trajectory_projection"]] <- plotly::renderPlotly({
         opacity = input[["trajectory_point_opacity"]],
         colorscale = "YlGnBu",
         reversescale = TRUE,
-        line = list(
-          color = "rgb(196,196,196)",
-          width = 1
-        ),
+        #line = list(
+        #  color = "rgb(196,196,196)",
+        #  width = 1
+        #),
         size = input[["trajectory_point_size"]]
       ),
       hoverinfo = "text",
