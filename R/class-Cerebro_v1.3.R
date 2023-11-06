@@ -437,7 +437,7 @@ Cerebro_v1.3 <- R6::R6Class(
     #'
     #' @return
     #' Dense transcript count matrix for specified cells and genes.
-    getExpressionMatrix = function(cells = NULL, genes = NULL) {
+    getExpressionMatrix = function(cells = NULL, genes = NULL, dense = TRUE) {
 
       ## check what kind of matrix the transcription counts are stored as
       ## ... DelayedArray / RleMatrix
@@ -469,12 +469,21 @@ Cerebro_v1.3 <- R6::R6Class(
 
         ## extract (dense) matrix of requested cells and genes and make sure it
         ## stays in matrix format, even if it has only a single row or column
-        matrix <- as.matrix(
-          DelayedArray::extract_array(
-            self$expression,
-            list(gene_indices, cell_indices)
+        if(dense){
+          matrix <- as.matrix(
+            DelayedArray::extract_array(
+              self$expression,
+              list(gene_indices, cell_indices)
+            )
           )
-        )
+        } else {
+          matrix <- 
+            DelayedArray::extract_array(
+              self$expression,
+              list(gene_indices, cell_indices)
+            
+          )
+        }
 
         ## assign column and row names
         colnames(matrix) <- cell_names
@@ -498,11 +507,17 @@ Cerebro_v1.3 <- R6::R6Class(
 
         ## return (dense) matrix for requested cells and genes and make sure it
         ## stays in matrix format, even if it has only a single row or column
-        return(
-          as.matrix(
-            self$expression[genes, cells, drop = FALSE]
+        if(dense){
+          return(
+            as.matrix(
+              self$expression[genes, cells, drop = FALSE]
+            )
           )
-        )
+        } else {
+          return(
+              self$expression[genes, cells, drop = FALSE]
+          )
+        }
       }
     },
 
