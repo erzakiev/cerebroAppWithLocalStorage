@@ -339,15 +339,15 @@ Cerebro_v1.3 <- R6::R6Class(
 
       ## ... anything else
       } else {
-        cat('class: printing genes')
-        cat(genes)
-        cat('class: printing mean expression self$expression[genes , , drop = FALSE]')
-        cat(self$expression[genes , , drop = FALSE])
+        warning('class: printing genes')
+        warning(genes)
+        warning('class: printing mean expression self$expression[genes , , drop = FALSE]')
+        warning(self$expression[genes , , drop = FALSE])
 
         ## calculate mean expression per gene
-        cat('printing mean expression')
+        warning('printing mean expression')
         mean_expression <- Matrix::rowMeans(self$expression[genes , , drop = FALSE])
-        cat(mean_expression)
+        warning(mean_expression)
       }
 
       ##
