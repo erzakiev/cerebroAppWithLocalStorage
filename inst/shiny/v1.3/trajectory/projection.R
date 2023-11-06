@@ -440,7 +440,8 @@ output[["trajectory_projection"]] <- plotly::renderPlotly({
       
       if(input[["trajectory_point_color"]]=='a certain gene'){
         if(!is.null(input[['trajectory_genes_input']])){
-          colorz <- getMeanExpressionForCells(cells=NULL, genes=trajectory_selected_genes())
+          exprMat <- getExpressionMatrix(cells=NULL, genes=NULL)
+          colorz <- Matrix::colMeans(exprMat)
         } else colorz <- NULL
       } else {
         colorz <- cells_df[[ input[["trajectory_point_color"]] ]]
