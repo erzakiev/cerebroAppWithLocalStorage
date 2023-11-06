@@ -397,40 +397,17 @@ output[["trajectory_projection"]] <- plotly::renderPlotly({
     <b>Pseudotime</b>: {formatC(cells_df$pseudotime, format = 'f', digits = 2)}"
     )
     
-    
-    print('printing input[["trajectory_point_color"]]')
-    print(input[["trajectory_point_color"]])
-    print("printing (input[['trajectory_point_color']]=='a certain gene')")
-    print(input[["trajectory_point_color"]]=='a certain gene')
-    
-    print("is.factor(cells_df[[ input[['trajectory_point_color']] ]])")
-    print(is.factor(cells_df[[ input[["trajectory_point_color"]] ]]))
-    print("is.character(cells_df[[ input[['trajectory_point_color']] ]]")
-    print(is.character(cells_df[[ input[["trajectory_point_color"]] ]]))
     ##
     
     if (
       is.factor(cells_df[[ input[["trajectory_point_color"]] ]]) ||
-      is.character(cells_df[[ input[["trajectory_point_color"]] ]]) || (input[["trajectory_point_color"]]=='a certain gene')
+      is.character(cells_df[[ input[["trajectory_point_color"]] ]])
     ) {
       
-      print('line 405 ok')
-      ## get colors for groups
-      if(input[["trajectory_point_color"]] == 'a certain gene'){
-        print("input[['trajectory_genes_input']]")
-        print(input[["trajectory_genes_input"]])
-        print('printing trajectory_selected_genes()')
-        if(!is.null(input[['trajectory_genes_input']])){
-          print(trajectory_selected_genes())
-          colors_for_groups <- getMeanExpressionForCells(cells=NULL, genes=trajectory_selected_genes())
-        }
-        print('printing colors_for_groups')
-        print(colors_for_groups)
-      } else {
-        print('entering colors computation by assignColorsToGroups line 414')
-        colors_for_groups <- assignColorsToGroups(cells_df, input[["trajectory_point_color"]])
-      }
       
+      ## get colors for groups
+      
+      colors_for_groups <- assignColorsToGroups(cells_df, input[["trajectory_point_color"]])
       
       ##
       plot <- plotly::plot_ly(
@@ -460,6 +437,14 @@ output[["trajectory_projection"]] <- plotly::renderPlotly({
       
       print('line 445 ok')
       ##
+      
+      if(input[["trajectory_point_color"]]=='a certain gene'){
+        colorz <- getMeanExpressionForCells(cells=NULL, genes=trajectory_selected_genes())
+      } else {
+        colorz <- cells_df[[ input[["trajectory_point_color"]] ]]
+      }
+      
+      
       plot <- plotly::plot_ly(
         data = cells_df,
         x = ~DR_1,
@@ -471,7 +456,7 @@ output[["trajectory_projection"]] <- plotly::renderPlotly({
           colorbar = list(
             title = colnames(cells_df)[which(colnames(cells_df) == input[["trajectory_point_color"]])]
           ),
-          color = ~cells_df[[ input[["trajectory_point_color"]] ]],
+          color = ~colorz,
           opacity = input[["trajectory_point_opacity"]],
           colorscale = "YlGnBu",
           reversescale = TRUE,
