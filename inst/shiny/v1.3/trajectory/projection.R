@@ -336,7 +336,7 @@ trajectory_selected_genes <- reactive({
   ## check which are available in the data set
   genes_to_display_here <- getGeneNames()[ match(tolower(gene_sets[["genes_to_display"]]), tolower(getGeneNames())) ]
   ## get which genes are available in the data set
-  gene_sets[["genes_to_display_present"]] <- na.omit(genes_to_display_here)
+gene_sets[["genes_to_display_present"]] <- na.omit(genes_to_display_here)
   ## get names of provided genes that are not in the data set
   gene_sets[["genes_to_display_missing"]] <- gene_sets[["genes_to_display"]][ which(is.na(genes_to_display_here)) ]
   # message(str(gene_sets))
@@ -441,7 +441,7 @@ output[["trajectory_projection"]] <- plotly::renderPlotly({
       if(input[["trajectory_point_color"]]=='a certain gene'){
         if(!is.null(input[['trajectory_genes_input']])){
           exprMat <- getExpressionMatrix(cells=NULL, genes=NULL)
-          colorz <- Matrix::colMeans(exprMat[trajectory_selected_genes(),])
+          colorz <- Matrix::colMeans(exprMat[trajectory_selected_genes()[["genes_to_display_present"]],])
         } else colorz <- NULL
       } else {
         colorz <- cells_df[[ input[["trajectory_point_color"]] ]]
