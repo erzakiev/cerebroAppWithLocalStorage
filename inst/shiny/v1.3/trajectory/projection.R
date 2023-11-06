@@ -381,7 +381,8 @@ output[["trajectory_projection"]] <- plotly::renderPlotly({
   cells_df <- randomlySubsetCells(cells_df, input[["trajectory_percentage_cells_to_show"]])
 
   ## put rows in random order
-  cells_df <- cells_df[ sample(1:nrow(cells_df)) , ]
+  reordering <- sample(1:nrow(cells_df))
+  cells_df <- cells_df[reordering, ]
   
   if("DR_3" %in% colnames(cells_df)) { 
     ## 3d convert edges of trajectory into list format to plot with plotly
@@ -440,7 +441,7 @@ output[["trajectory_projection"]] <- plotly::renderPlotly({
       
       if(input[["trajectory_point_color"]]=='a certain gene'){
         if(!is.null(input[['trajectory_genes_input']])){
-          colorz <- getMeanExpressionForCells(cells=NULL, genes = trajectory_selected_genes()[["genes_to_display_present"]])
+          colorz <- getMeanExpressionForCells(cells=NULL, genes = trajectory_selected_genes()[["genes_to_display_present"]])[reordering]
         } else colorz <- NULL
       } else {
         colorz <- cells_df[[ input[["trajectory_point_color"]] ]]
