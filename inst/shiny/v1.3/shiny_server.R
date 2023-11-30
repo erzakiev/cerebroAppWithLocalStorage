@@ -72,7 +72,7 @@ server <- function(input, output, session) {
 
   ## reactive value holding path to file of data set to load
   data_to_load <- reactiveValues()
-  prefix <- 'D:/CerebroData/'
+  prefix <- '/media/minicluster/Data/CerebroData'
   
   files_selected <- reactive({
     shinyFileChoose(

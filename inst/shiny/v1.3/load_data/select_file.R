@@ -8,7 +8,7 @@
 ## UI element to select data to load into Cerebro.
 ##----------------------------------------------------------------------------##
 
-existing_files <- list.files(path = "D:/CerebroData", pattern = '.crb', full.names = T)
+existing_files <- list.files(path = "/media/minicluster/Data/CerebroData", pattern = '.crb', full.names = T)
 
 output[["load_data_select_file_UI"]] <- renderUI({
   if (
