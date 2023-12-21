@@ -72,6 +72,7 @@ launchCerebroV1.3 <- function(
   projections_default_point_opacity = 1.0,
   projections_default_percentage_cells_to_show = 100,
   projections_show_hover_info = TRUE,
+  launch.browser = FALSE
   ...
 ){
 
@@ -166,5 +167,5 @@ launchCerebroV1.3 <- function(
       '##---------------------------------------------------------------------------##'
     )
   )
-runApp(shiny::shinyApp(ui = ui, server = server), host='0.0.0.0',port=3839, launch.browser=FALSE)
+runApp(shiny::shinyApp(ui = ui, server = server), host='0.0.0.0',port=3839, launch.browser=launch.browser)
 }
