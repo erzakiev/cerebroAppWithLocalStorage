@@ -72,7 +72,7 @@ launchCerebroV1.3 <- function(
   projections_default_point_opacity = 1.0,
   projections_default_percentage_cells_to_show = 100,
   projections_show_hover_info = TRUE,
-  launch.browser = FALSE
+  launch.browser = FALSE,
   ...
 ){
 
