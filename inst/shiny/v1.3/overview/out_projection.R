@@ -23,7 +23,7 @@ output[["overview_projection"]] <- plotly::renderPlotly({
   yrange_abs_0.2 <- (xrange$max-xrange$min)*0.1
 
   plotly::plot_ly(type = 'scattergl', mode = 'markers', source = "overview_projection") %>%
-  plotly::layout(
+  plotly::layout(scene = list(
     xaxis = list(
       #autorange = T,
       mirror = TRUE,
@@ -38,7 +38,7 @@ output[["overview_projection"]] <- plotly::renderPlotly({
       zeroline = FALSE,
       autorange = F, range=c(yrange$min-yrange_abs_0.2, yrange$max+yrange_abs_0.2)
     )
-  )
+  ))
 })
 
 ##----------------------------------------------------------------------------##
