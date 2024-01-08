@@ -13,14 +13,14 @@ const overview_projection_layout_2D = {
     itemsizing: 'constant',
   },
   xaxis: {
-    autorange: true,
+    //autorange: true,
     mirror: true,
     showline: true,
     zeroline: false,
     range: []
   },
   yaxis: {
-    autorange: true,
+    //autorange: true,
     mirror: true,
     showline: true,
     zeroline: false,
@@ -50,21 +50,21 @@ const overview_projection_layout_3D = {
   },
   scene: {
     xaxis: {
-      autorange: true,
+      //autorange: true,
       mirror: true,
       showline: true,
       zeroline: false,
       range: []
     },
     yaxis: {
-      autorange: true,
+      //autorange: true,
       mirror: true,
       showline: true,
       zeroline: false,
       range: []
     },
     zaxis: {
-      autorange: true,
+      //autorange: true,
       mirror: true,
       showline: true,
       zeroline: false
@@ -139,8 +139,8 @@ shinyjs.updatePlot2DContinuous = function(params) {
   );
   const layout_here = Object.assign(overview_projection_layout_2D);
   if (params.data.reset_axes) {
-    layout_here.xaxis['autorange'] = true;
-    layout_here.yaxis['autorange'] = true;
+    //layout_here.xaxis['autorange'] = true;
+    //layout_here.yaxis['autorange'] = true;
   } else {
     layout_here.xaxis['autorange'] = false;
     layout_here.xaxis['range'] = params.data.x_range;
@@ -230,8 +230,8 @@ shinyjs.updatePlot2DCategorical = function(params) {
   }
   const layout_here = Object.assign(overview_projection_layout_2D);
   if (params.data.reset_axes) {
-    layout_here.xaxis['autorange'] = true;
-    layout_here.yaxis['autorange'] = true;
+    //layout_here.xaxis['autorange'] = true;
+    //layout_here.yaxis['autorange'] = true;
   } else {
     layout_here.xaxis['autorange'] = false;
     layout_here.xaxis['range'] = params.data.x_range;
