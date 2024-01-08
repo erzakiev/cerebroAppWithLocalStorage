@@ -27,6 +27,12 @@ output[["overview_projection"]] <- plotly::renderPlotly({
   xrange_abs_0.2 <- (xrange$max-xrange$min)*0.1
   yrange_abs_0.2 <- (xrange$max-xrange$min)*0.1
 
+  print('printing xrange_abs_0.2')
+  print(xrange_abs_0.2)
+  print('printing yrange_abs_0.2')
+  print(yrange_abs_0.2)
+  
+  
   plotly::plot_ly(type = 'scattergl', mode = 'markers', source = "overview_projection") %>%
   plotly::layout(scene = list(
     xaxis = list(

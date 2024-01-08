@@ -68,7 +68,7 @@ launchCerebroV1.3 <- function(
   maxFileSize = 50000,
   crb_file_to_load = NULL,
   welcome_message = NULL,
-  projections_default_point_size = 5,
+  projections_default_point_size = 3.5,
   projections_default_point_opacity = 1.0,
   projections_default_percentage_cells_to_show = 100,
   projections_show_hover_info = TRUE,
