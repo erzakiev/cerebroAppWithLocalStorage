@@ -13,14 +13,14 @@ const overview_projection_layout_2D = {
     itemsizing: 'constant',
   },
   xaxis: {
-    //autorange: true,
+    autorange: false,
     mirror: true,
     showline: true,
     zeroline: false,
     range: []
   },
   yaxis: {
-    //autorange: true,
+    autorange: false,
     mirror: true,
     showline: true,
     zeroline: false,
@@ -50,21 +50,21 @@ const overview_projection_layout_3D = {
   },
   scene: {
     xaxis: {
-      //autorange: true,
+      autorange: false,
       mirror: true,
       showline: true,
       zeroline: false,
       range: []
     },
     yaxis: {
-      //autorange: true,
+      autorange: false,
       mirror: true,
       showline: true,
       zeroline: false,
       range: []
     },
     zaxis: {
-      //autorange: true,
+      autorange: false,
       mirror: true,
       showline: true,
       zeroline: false,
