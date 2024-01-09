@@ -23,20 +23,25 @@ output[["overview_projection"]] <- plotly::renderPlotly({
   
   xrange <- XYranges$x
   yrange <- XYranges$y
-  zrange <- ifelse(ncol(getProjection(projection_to_display))>2, yes = XYranges$z, no = NA) 
+  
   
   print('printing xrange')
   print(xrange)
   print('printing yrange')
   print(yrange)
-  print('printing zrange, if applicable')
-  print(zrange)
+  
   
   xrange_abs_0.2 <- (xrange$max-xrange$min)*0.2
   yrange_abs_0.2 <- (xrange$max-xrange$min)*0.2
-  zrange_abs_0.2 <- ifelse(ncol(getProjection(projection_to_display))>2, yes = (zrange$max-zrange$min)*0.2, no = NA)
   
   if(ncol(getProjection(projection_to_display))>2){
+    
+    zrange <- XYranges$z
+    print('printing zrange, if applicable')
+    print(zrange)
+    
+    zrange_abs_0.2 <- (zrange$max-zrange$min)*0.2
+    
     plotly::plot_ly(type = 'scattergl', mode = 'markers', source = "overview_projection") %>%
       plotly::layout(scene = list(
         xaxis = list(
