@@ -16,44 +16,72 @@ output[["overview_projection"]] <- plotly::renderPlotly({
   }
    XYranges <- getXYranges(getProjection(projection_to_display))
   
-  warning('printing projection_to_display')
-  print(getProjection(projection_to_display))
-  warning('printing str of projection_to_display')
-  str(getProjection(projection_to_display))
+  #warning('printing projection_to_display')
+  #print(getProjection(projection_to_display))
+  #warning('printing str of projection_to_display')
+  #str(getProjection(projection_to_display))
   
   xrange <- XYranges$x
   yrange <- XYranges$y
-  #zrange <- ifelse(, yes = XYranges$z, no = NA) 
+  zrange <- ifelse(ncol(getProjection(projection_to_display))>2, yes = XYranges$z, no = NA) 
   
   print('printing xrange')
   print(xrange)
   print('printing yrange')
   print(yrange)
   print('printing zrange, if applicable')
-  #print(zrange)
+  print(zrange)
   
   xrange_abs_0.2 <- (xrange$max-xrange$min)*0.2
   yrange_abs_0.2 <- (xrange$max-xrange$min)*0.2
-  #zrange_abs_0.2 <- (zrange$max-zrange$min)*0.2
+  zrange_abs_0.2 <- ifelse(ncol(getProjection(projection_to_display))>2, yes = (zrange$max-zrange$min)*0.2, no = NA)
+  
+  if(ncol(getProjection(projection_to_display))>2){
+    plotly::plot_ly(type = 'scattergl', mode = 'markers', source = "overview_projection") %>%
+      plotly::layout(scene = list(
+        xaxis = list(
+          #autorange = T,
+          mirror = TRUE,
+          showline = F,
+          zeroline = FALSE,
+          autorange = F, range=c(xrange$min-xrange_abs_0.2, xrange$max+xrange_abs_0.2)
+        ),
+        yaxis = list(
+          #autorange = T,
+          mirror = TRUE,
+          showline = F,
+          zeroline = FALSE,
+          autorange = F, range=c(yrange$min-yrange_abs_0.2, yrange$max+yrange_abs_0.2)
+        ),
+        zaxis = list(
+          #autorange = T,
+          mirror = TRUE,
+          showline = F,
+          zeroline = FALSE,
+          autorange = F, range=c(zrange$min-zrange_abs_0.2, zrange$max+zrange_abs_0.2)
+        )
+      ))
+  } else {
+    plotly::plot_ly(type = 'scattergl', mode = 'markers', source = "overview_projection") %>%
+      plotly::layout(scene = list(
+        xaxis = list(
+          #autorange = T,
+          mirror = TRUE,
+          showline = F,
+          zeroline = FALSE,
+          autorange = F, range=c(xrange$min-xrange_abs_0.2, xrange$max+xrange_abs_0.2)
+        ),
+        yaxis = list(
+          #autorange = T,
+          mirror = TRUE,
+          showline = F,
+          zeroline = FALSE,
+          autorange = F, range=c(yrange$min-yrange_abs_0.2, yrange$max+yrange_abs_0.2)
+        )
+      ))
+  }
   
   
-  plotly::plot_ly(type = 'scattergl', mode = 'markers', source = "overview_projection") %>%
-  plotly::layout(scene = list(
-    xaxis = list(
-      #autorange = T,
-      mirror = TRUE,
-      showline = F,
-      zeroline = FALSE,
-      autorange = F, range=c(xrange$min-xrange_abs_0.2, xrange$max+xrange_abs_0.2)
-    ),
-    yaxis = list(
-      #autorange = T,
-      mirror = TRUE,
-      showline = F,
-      zeroline = FALSE,
-      autorange = F, range=c(yrange$min-yrange_abs_0.2, yrange$max+yrange_abs_0.2)
-    )
-  ))
   
   
 })
