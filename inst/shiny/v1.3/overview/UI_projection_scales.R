@@ -14,6 +14,7 @@ output[["overview_projection_scales_UI"]] <- renderUI({
   ##
   XYranges <- getXYranges(getProjection(projection_to_display))
   ##
+  
   tagList(
     sliderInput(
       "overview_projection_scale_x_manual_range",
@@ -28,6 +29,13 @@ output[["overview_projection_scales_UI"]] <- renderUI({
       min = XYranges$y$min,
       max = XYranges$y$max,
       value = c(XYranges$y$min, XYranges$y$max)
+    ),
+    sliderInput(
+      "overview_projection_scale_z_manual_range",
+      label = "Range of Z axis",
+      min = XYranges$z$min,
+      max = XYranges$z$max,
+      value = c(XYranges$z$min, XYranges$z$max)
     )
   )
 })

@@ -26,6 +26,7 @@ overview_projection_parameters_plot_raw <- reactive({
     group_labels = input[["overview_projection_show_group_label"]],
     x_range = input[["overview_projection_scale_x_manual_range"]],
     y_range = input[["overview_projection_scale_y_manual_range"]],
+    z_range = input[["overview_projection_scale_z_manual_range"]],
     webgl = preferences[["use_webgl"]],
     hover_info = preferences[["show_hover_info_in_projections"]]
   )

@@ -87,15 +87,8 @@ server <- function(input, output, session) {
   ## listen to selected 'input_file', initialize before UI element is loaded
   observeEvent(c(input[['input_file']], input[['input_file2']]), ignoreNULL = FALSE, {
     path_to_load <- ''
-    #print(input[['input_file2']])
-    print('line 92 ok')
-    print("printing files_selected()")
-    print(files_selected())
-    print("printing file.exists(files_selected())")
-    print(file.exists(files_selected()))
-    print('line 97 ok')
     
-    ## grab path from 'input_file' if one is specified
+      ## grab path from 'input_file' if one is specified
     if (
       !is.null(input[["input_file"]]) &&
       !is.na(input[["input_file"]]$datapath) &&
