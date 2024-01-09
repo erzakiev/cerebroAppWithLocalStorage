@@ -67,7 +67,8 @@ const overview_projection_layout_3D = {
       //autorange: true,
       mirror: true,
       showline: true,
-      zeroline: false
+      zeroline: false,
+      range: []
     },
   },
   hoverlabel: {
@@ -95,6 +96,7 @@ const overview_projection_default_params = {
     line: {},
     x_range: [],
     y_range: [],
+    z_range: [],
     reset_axes: false
   },
   hover: {
