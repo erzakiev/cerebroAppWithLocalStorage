@@ -28,9 +28,14 @@ overview_projection_update_plot <- function(input) {
       point_line = list(),
       x_range = plot_parameters[["x_range"]],
       y_range = plot_parameters[["y_range"]],
-      z_range = plot_parameters[["z_range"]],
       reset_axes = reset_axes
     )
+    
+    print('printing numerical xrange from overview_projection_update_plot')
+    print(xrange)
+    print('printing numerical yrange from overview_projection_update_plot')
+    print(yrange)
+    
     if ( plot_parameters[["draw_border"]] ) {
       output_data[['point_line']] <- list(
         color = "rgb(196,196,196)",
@@ -54,6 +59,9 @@ overview_projection_update_plot <- function(input) {
       )
     } else if ( plot_parameters[['n_dimensions']] == 3 ) {
       output_data[['z']] <- coordinates[[3]]
+      z_range = plot_parameters[["z_range"]]
+      print('printing numerical zrange from overview_projection_update_plot')
+      print(zrange)
       shinyjs::js$updatePlot3DContinuous(
         output_meta,
         output_data,
@@ -82,6 +90,14 @@ overview_projection_update_plot <- function(input) {
       z_range = plot_parameters[["z_range"]],
       reset_axes = reset_axes
     )
+    
+    print('printing categorical xrange from overview_projection_update_plot')
+    print(xrange)
+    print('printing categorical yrange from overview_projection_update_plot')
+    print(yrange)
+    print('printing categorical zrange from overview_projection_update_plot')
+    print(zrange)
+    
     if ( plot_parameters[["draw_border"]] ) {
       output_data[['point_line']] <- list(
         color = "rgb(196,196,196)",
@@ -93,7 +109,7 @@ overview_projection_update_plot <- function(input) {
       hoverinfo = ifelse(plot_parameters[["hover_info"]], 'text', 'skip'),
       text = ifelse(plot_parameters[["hover_info"]], list(), 'test')
     )
-    ## prepare trace for each group of the catergorical coloring variable and
+    ## prepare trace for each group of the categorical coloring variable and
     ## send request to update projection to JavaScript function (2D/3D)
     if ( plot_parameters[['n_dimensions']] == 2 ) {
       i <- 1
