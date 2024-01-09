@@ -17,9 +17,9 @@ output[["overview_projection"]] <- plotly::renderPlotly({
    XYranges <- getXYranges(getProjection(projection_to_display))
   
   warning('printing projection_to_display')
-  print(projection_to_display)
+  print(getProjection(projection_to_display))
   warning('printing str of projection_to_display')
-  str(projection_to_display)
+  str(getProjection(projection_to_display))
   
   xrange <- XYranges$x
   yrange <- XYranges$y
