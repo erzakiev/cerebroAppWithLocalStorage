@@ -148,6 +148,9 @@ shinyjs.updatePlot2DContinuous = function(params) {
     layout_here.xaxis['range'] = params.data.x_range;
     layout_here.yaxis['autorange'] = false;
     layout_here.yaxis['range'] = params.data.y_range;
+    console.log('printing x_range from JS')
+    console.log(params.data.x_range);
+    console.log(params.data.y_range);
   }
   Plotly.react('overview_projection', data, layout_here);
 }
