@@ -48,6 +48,15 @@ overview_projection_update_plot <- function(input) {
     if ( plot_parameters[["hover_info"]] ) {
       output_hover[['text']] <- unname(hover_info)
     }
+    
+    
+    print('printing final before pushing to the updating function continious output_meta from overview_projection_update_plot')
+    print(output_meta)
+    print('printing final before pushing to the updating function continious output_data from overview_projection_update_plot')
+    print(output_data)
+    print('printing final before pushing to the updating function continious output_hover from overview_projection_update_plot')
+    print(output_hover)
+    
     ## send request to update projection to JavaScript functions (2D / 3D)
     if ( plot_parameters[['n_dimensions']] == 2 ) {
       shinyjs::js$updatePlot2DContinuous(
@@ -128,6 +137,16 @@ overview_projection_update_plot <- function(input) {
         x = group_centers_df[['x_median']],
         y = group_centers_df[['y_median']]
       )
+      
+      print('printing final before pushing to the updating function categorical output_meta from overview_projection_update_plot')
+      print(output_meta)
+      print('printing final before pushing to the updating function categorical output_data from overview_projection_update_plot')
+      print(output_data)
+      print('printing final before pushing to the updating function categorical output_hover from overview_projection_update_plot')
+      print(output_hover)
+      print('printing final before pushing to the updating function categorical output_group_centers from overview_projection_update_plot')
+      print(output_group_centers)
+      
       shinyjs::js$updatePlot2DCategorical(
         output_meta,
         output_data,
@@ -159,6 +178,17 @@ overview_projection_update_plot <- function(input) {
         y = group_centers_df[['y_median']],
         z = group_centers_df[['z_median']]
       )
+      
+      
+      print('printing final before pushing to the updating function categorical output_meta from overview_projection_update_plot')
+      print(output_meta)
+      print('printing final before pushing to the updating function categorical output_data from overview_projection_update_plot')
+      print(output_data)
+      print('printing final before pushing to the updating function categorical output_hover from overview_projection_update_plot')
+      print(output_hover)
+      print('printing final before pushing to the updating function categorical output_group_centers from overview_projection_update_plot')
+      print(output_group_centers)
+      
       shinyjs::js$updatePlot3DCategorical(
         output_meta,
         output_data,
