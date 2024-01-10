@@ -16,14 +16,14 @@ const overview_projection_layout_2D = {
     autorange: false,
     mirror: true,
     showline: true,
-    zeroline: false,
+    zeroline: false
     //range: []
   },
   yaxis: {
     autorange: false,
     mirror: true,
     showline: true,
-    zeroline: false,
+    zeroline: false
     //range: []
   },
   hoverlabel: {
@@ -53,21 +53,21 @@ const overview_projection_layout_3D = {
       autorange: false,
       mirror: true,
       showline: true,
-      zeroline: false,
+      zeroline: false
       //range: []
     },
     yaxis: {
       autorange: false,
       mirror: true,
       showline: true,
-      zeroline: false,
+      zeroline: false
       //range: []
     },
     zaxis: {
       autorange: false,
       mirror: true,
       showline: true,
-      zeroline: false,
+      zeroline: false
       //range: []
     },
   },
