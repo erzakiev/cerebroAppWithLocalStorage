@@ -44,5 +44,5 @@ overview_projection_parameters_other <- reactiveValues(
 ##
 observeEvent(input[['overview_projection_to_display']], {
   # message('--> set "overview: reset_axes"')
-  overview_projection_parameters_other[['reset_axes']] <- T
+  overview_projection_parameters_other[['reset_axes']] <- F
 })
