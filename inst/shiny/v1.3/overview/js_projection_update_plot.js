@@ -184,6 +184,12 @@ shinyjs.updatePlot3DContinuous = function(params) {
       showlegend: false
     }
   );
+  console.log('printing x_range from JS')
+  console.log(params.data.x_range);
+  console.log('printing y_range from JS')
+  console.log(params.data.y_range);
+  console.log('printing z_range from JS')
+  console.log(params.data.z_range);
   Plotly.react('overview_projection', data, overview_projection_layout_3D);
 }
 
@@ -243,6 +249,12 @@ shinyjs.updatePlot2DCategorical = function(params) {
     layout_here.yaxis['autorange'] = false;
     layout_here.yaxis['range'] = params.data.y_range;
   }
+  
+  console.log('printing x_range from JS')
+  console.log(params.data.x_range);
+  console.log('printing y_range from JS')
+  console.log(params.data.y_range);
+  
   Plotly.react('overview_projection', data, layout_here);
 }
 
@@ -294,5 +306,11 @@ shinyjs.updatePlot3DCategorical = function(params) {
       }
     );
   }
+  console.log('printing x_range from JS')
+  console.log(params.data.x_range);
+  console.log('printing y_range from JS')
+  console.log(params.data.y_range);
+  console.log('printing z_range from JS')
+  console.log(params.data.z_range);
   Plotly.react('overview_projection', data, overview_projection_layout_3D);
 }
