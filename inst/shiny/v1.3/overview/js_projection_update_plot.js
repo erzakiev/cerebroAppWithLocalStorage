@@ -113,7 +113,11 @@ const overview_projection_default_params = {
 
 // update 2D projection with continuous coloring
 shinyjs.updatePlot2DContinuous = function(params) {
+  console.log('printing initial params from JS');
+  console.log(params);
   params = shinyjs.getParams(params, overview_projection_default_params);
+  console.log('printing secondary params from JS');
+  console.log(params);
   const data = [];
   data.push(
     {
@@ -157,7 +161,12 @@ shinyjs.updatePlot2DContinuous = function(params) {
 
 // update 3D projection with continuous coloring
 shinyjs.updatePlot3DContinuous = function(params) {
+  console.log('printing initial params from JS');
+  console.log(params);
   params = shinyjs.getParams(params, overview_projection_default_params);
+  console.log('printing secondary params from JS');
+  console.log(params);
+  
   const data = [];
   data.push(
     {
@@ -184,18 +193,23 @@ shinyjs.updatePlot3DContinuous = function(params) {
       showlegend: false
     }
   );
-  console.log('printing x_range from JS')
+  console.log('printing x_range from JS');
   console.log(params.data.x_range);
-  console.log('printing y_range from JS')
+  console.log('printing y_range from JS');
   console.log(params.data.y_range);
-  console.log('printing z_range from JS')
+  console.log('printing z_range from JS');
   console.log(params.data.z_range);
   Plotly.react('overview_projection', data, overview_projection_layout_3D);
 }
 
 // update 2D projection with categorical coloring
 shinyjs.updatePlot2DCategorical = function(params) {
+  console.log('printing initial params from JS');
+  console.log(params);
   params = shinyjs.getParams(params, overview_projection_default_params);
+  console.log('printing secondary params from JS');
+  console.log(params);
+  
   const data = [];
   for (let i = 0; i < params.data.x.length; i++) {
     data.push(
@@ -250,9 +264,9 @@ shinyjs.updatePlot2DCategorical = function(params) {
     layout_here.yaxis['range'] = params.data.y_range;
   }
   
-  console.log('printing x_range from JS')
+  console.log('printing x_range from JS');
   console.log(params.data.x_range);
-  console.log('printing y_range from JS')
+  console.log('printing y_range from JS');
   console.log(params.data.y_range);
   
   Plotly.react('overview_projection', data, layout_here);
@@ -260,7 +274,12 @@ shinyjs.updatePlot2DCategorical = function(params) {
 
 // update 3D projection with categorical coloring
 shinyjs.updatePlot3DCategorical = function(params) {
+  console.log('printing initial params from JS');
+  console.log(params);
   params = shinyjs.getParams(params, overview_projection_default_params);
+  console.log('printing secondary params from JS');
+  console.log(params);
+  
   const data = [];
   for (let i = 0; i < params.data.x.length; i++) {
     data.push(
@@ -306,11 +325,11 @@ shinyjs.updatePlot3DCategorical = function(params) {
       }
     );
   }
-  console.log('printing x_range from JS')
+  console.log('printing x_range from JS');
   console.log(params.data.x_range);
-  console.log('printing y_range from JS')
+  console.log('printing y_range from JS');
   console.log(params.data.y_range);
-  console.log('printing z_range from JS')
+  console.log('printing z_range from JS');
   console.log(params.data.z_range);
   Plotly.react('overview_projection', data, overview_projection_layout_3D);
 }
