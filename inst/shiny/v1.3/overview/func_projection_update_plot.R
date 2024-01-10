@@ -31,8 +31,8 @@ overview_projection_update_plot <- function(input) {
       reset_axes = reset_axes
     )
     
-    print('printing numerical categorical output_data from overview_projection_update_plot')
-    print(output_data)
+    #print('#printing numerical categorical output_data from overview_projection_update_plot')
+    #print(output_data)
     
     if ( plot_parameters[["draw_border"]] ) {
       output_data[['point_line']] <- list(
@@ -50,12 +50,12 @@ overview_projection_update_plot <- function(input) {
     }
     
     
-    print('printing final before pushing to the updating function continious output_meta from overview_projection_update_plot')
-    print(output_meta)
-    print('printing final before pushing to the updating function continious output_data from overview_projection_update_plot')
-    print(output_data)
-    print('printing final before pushing to the updating function continious output_hover from overview_projection_update_plot')
-    print(output_hover)
+    #print('printing final before pushing to the updating function continious output_meta from overview_projection_update_plot')
+    #print(output_meta)
+    #print('printing final before pushing to the updating function continious output_data from overview_projection_update_plot')
+    #print(output_data)
+    #print('printing final before pushing to the updating function continious output_hover from overview_projection_update_plot')
+    #print(output_hover)
     
     ## send request to update projection to JavaScript functions (2D / 3D)
     if ( plot_parameters[['n_dimensions']] == 2 ) {
@@ -67,8 +67,8 @@ overview_projection_update_plot <- function(input) {
     } else if ( plot_parameters[['n_dimensions']] == 3 ) {
       output_data[['z']] <- coordinates[[3]]
       z_range = plot_parameters[["z_range"]]
-      print('printing numerical zrange from overview_projection_update_plot')
-      print(zrange)
+      #print('#printing numerical zrange from overview_projection_update_plot')
+      #print(zrange)
       shinyjs::js$updatePlot3DContinuous(
         output_meta,
         output_data,
@@ -98,8 +98,8 @@ overview_projection_update_plot <- function(input) {
       reset_axes = reset_axes
     )
     
-    print('printing current categorical output_data from overview_projection_update_plot')
-    print(output_data)
+    #print('#printing current categorical output_data from overview_projection_update_plot')
+    #print(output_data)
     
     if ( plot_parameters[["draw_border"]] ) {
       output_data[['point_line']] <- list(
@@ -138,14 +138,14 @@ overview_projection_update_plot <- function(input) {
         y = group_centers_df[['y_median']]
       )
       
-      print('printing final before pushing to the updating function categorical output_meta from overview_projection_update_plot')
-      print(output_meta)
-      print('printing final before pushing to the updating function categorical output_data from overview_projection_update_plot')
-      print(output_data)
-      print('printing final before pushing to the updating function categorical output_hover from overview_projection_update_plot')
-      print(output_hover)
-      print('printing final before pushing to the updating function categorical output_group_centers from overview_projection_update_plot')
-      print(output_group_centers)
+      #print('#printing final before pushing to the updating function categorical output_meta from overview_projection_update_plot')
+      #print(output_meta)
+      #print('#printing final before pushing to the updating function categorical output_data from overview_projection_update_plot')
+      #print(output_data)
+      #print('#printing final before pushing to the updating function categorical output_hover from overview_projection_update_plot')
+      #print(output_hover)
+      #print('#printing final before pushing to the updating function categorical output_group_centers from overview_projection_update_plot')
+      #print(output_group_centers)
       
       shinyjs::js$updatePlot2DCategorical(
         output_meta,
@@ -180,14 +180,14 @@ overview_projection_update_plot <- function(input) {
       )
       
       
-      print('printing final before pushing to the updating function categorical output_meta from overview_projection_update_plot')
-      print(output_meta)
-      print('printing final before pushing to the updating function categorical output_data from overview_projection_update_plot')
-      print(output_data)
-      print('printing final before pushing to the updating function categorical output_hover from overview_projection_update_plot')
-      print(output_hover)
-      print('printing final before pushing to the updating function categorical output_group_centers from overview_projection_update_plot')
-      print(output_group_centers)
+      #print('#printing final before pushing to the updating function categorical output_meta from overview_projection_update_plot')
+      #print(output_meta)
+      #print('#printing final before pushing to the updating function categorical output_data from overview_projection_update_plot')
+      #print(output_data)
+      #print('#printing final before pushing to the updating function categorical output_hover from overview_projection_update_plot')
+      #print(output_hover)
+      #print('#printing final before pushing to the updating function categorical output_group_centers from overview_projection_update_plot')
+      #print(output_group_centers)
       
       shinyjs::js$updatePlot3DCategorical(
         output_meta,
