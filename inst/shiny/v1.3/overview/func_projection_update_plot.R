@@ -31,10 +31,8 @@ overview_projection_update_plot <- function(input) {
       reset_axes = reset_axes
     )
     
-    print('printing numerical xrange from overview_projection_update_plot')
-    print(xrange)
-    print('printing numerical yrange from overview_projection_update_plot')
-    print(yrange)
+    print('printing numerical categorical output_data from overview_projection_update_plot')
+    print(output_data)
     
     if ( plot_parameters[["draw_border"]] ) {
       output_data[['point_line']] <- list(
@@ -91,12 +89,8 @@ overview_projection_update_plot <- function(input) {
       reset_axes = reset_axes
     )
     
-    print('printing categorical xrange from overview_projection_update_plot')
-    print(xrange)
-    print('printing categorical yrange from overview_projection_update_plot')
-    print(yrange)
-    print('printing categorical zrange from overview_projection_update_plot')
-    print(zrange)
+    print('printing current categorical output_data from overview_projection_update_plot')
+    print(output_data)
     
     if ( plot_parameters[["draw_border"]] ) {
       output_data[['point_line']] <- list(
