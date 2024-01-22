@@ -23,7 +23,7 @@ output[["expression_mww_test_result"]] <- renderUI({
         #  status = "primary",
         #  inline = TRUE
         #),
-        DT::dataTableOutput("expression_mww_test_result")
+        DT::dataTableOutput("expression_mww_test_result_table")
       )
     )
   )
@@ -32,7 +32,7 @@ output[["expression_mww_test_result"]] <- renderUI({
 ##----------------------------------------------------------------------------##
 ## Table with results.
 ##----------------------------------------------------------------------------##
-output[["expression_mww_test_result"]] <- DT::renderDataTable({
+output[["expression_mww_test_result_table"]] <- DT::renderDataTable({
   req(
     expression_projection_data(),
     expression_projection_coordinates(),
