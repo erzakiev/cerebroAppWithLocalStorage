@@ -51,7 +51,7 @@ output[["expression_mww_test_result"]] <- DT::renderDataTable({
   )
   print('diag: head(expression_matrix)')
   print(head(expression_matrix))
-  
+  expression_matrix
 })
 
 ###----------------------------------------------------------------------------##
