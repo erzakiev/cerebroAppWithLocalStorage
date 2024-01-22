@@ -57,9 +57,9 @@ output[["expression_mww_test_result"]] <- DT::renderDataTable({
                         dom = 'Bfrtip',
                         buttons = c('copy', 'csv', 'excel', 'pdf', 'print')))
   return(d1)
-  },
-server=FALSE, 
-rownames=FALSE
+}
+#server=FALSE, 
+#rownames=FALSE
 )
 
 ###----------------------------------------------------------------------------##
