@@ -42,7 +42,11 @@ output[["expression_mww_test_result_table"]] <- DT::renderDataTable({
   
   print('diag line 43 ok')
   
-  expression_matrix <- getExpressionMatrix(dense=F)
+  expression_matrix <- getExpressionMatrix(
+    cells = NULL, 
+    genes = NULL, 
+    dense = FALSE
+  )
   
   print('diag line 49 ok')
   selection_status <- rep('not_selected', ncol(expression_matrix))
