@@ -40,13 +40,20 @@ output[["expression_mww_test_result_table"]] <- DT::renderDataTable({
   )
   selected_cells <- expression_projection_selected_cells()
   
-  expression_matrix <- as(getExpressionMatrix(
+  print('diag line 43 ok')
+  
+  expression_matrix <- getExpressionMatrix(
     cells = expression_projection_data()$cell_barcode
-  ), 'dgCMatrix')
+  )
+  
+  print('diag line 49 ok')
   selection_status <- rep('not_selected', ncol(expression_matrix))
+  print('diag line 51 ok')
   names(selection_status) <- colnames(expression_matrix)
+  print('diag line 53 ok')
   
   selection_status[selected_cells$pointNumber] <- 'selected'
+  print('diag line 56 ok')
     
   output_table <- presto::wilcoxauc(expression_matrix, 
                             selection_status) %>% 
@@ -54,12 +61,14 @@ output[["expression_mww_test_result_table"]] <- DT::renderDataTable({
     dplyr::select(-5:-7) %>% 
     group_by(group) %>% 
     arrange(desc(logFC), .by_group = T)
+  print('diag line 64 ok')
   
   d1 <- DT::datatable(output_table,
                       extensions = 'Buttons', 
                       options = list(
                         dom = 'Bfrtip',
                         buttons = c('copy', 'csv', 'excel', 'pdf', 'print')))
+  print('diag line 71 ok')
   return(d1)
 }
 #server=FALSE, 
