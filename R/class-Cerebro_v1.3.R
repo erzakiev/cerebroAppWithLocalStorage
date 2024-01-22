@@ -438,7 +438,7 @@ Cerebro_v1.3 <- R6::R6Class(
     #' will return a matrix in a dense format, otherwise sparse
     #' @return
     #' Dense transcript count matrix for specified cells and genes.
-    getExpressionMatrix = function(cells = NULL, genes = NULL, dense = TRUE) {
+    getExpressionMatrix = function(cells = NULL, genes = NULL, dense = NULL) {
       warning('diag line 442 ok from the Class def file!')
       
       warning('printing the current DENSE variable value')
