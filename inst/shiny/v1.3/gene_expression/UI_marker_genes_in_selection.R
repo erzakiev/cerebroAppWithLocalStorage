@@ -55,10 +55,9 @@ output[["expression_mww_test_result"]] <- DT::renderDataTable({
                       extensions = 'Buttons', 
                       options = list(
                         dom = 'Bfrtip',
-                        buttons = c('copy', 'csv', 'excel', 'pdf', 'print')),
-                      server=FALSE, rownames=FALSE)
-  return(d1)
-})
+                        buttons = c('copy', 'csv', 'excel', 'pdf', 'print'))},
+                      server=FALSE, rownames=FALSE
+)
 
 ###----------------------------------------------------------------------------##
 ### Info box that gets shown when pressing the "info" button.
