@@ -49,14 +49,17 @@ output[["expression_mww_test_result"]] <- DT::renderDataTable({
   expression_matrix <- getExpressionMatrix(
     cells = expression_projection_data()$cell_barcode
   )
-  print('diag: head(expression_matrix)')
-  print(head(expression_matrix))
+  print('diag: head(expression_matrix[,1:100])')
+  print(head(expression_matrix[,1:100]))
   d1 <- DT::datatable(expression_matrix,
                       extensions = 'Buttons', 
                       options = list(
                         dom = 'Bfrtip',
-                        buttons = c('copy', 'csv', 'excel', 'pdf', 'print')))},
-                      server=FALSE, rownames=FALSE
+                        buttons = c('copy', 'csv', 'excel', 'pdf', 'print')))
+  return(d1)
+  },
+server=FALSE, 
+rownames=FALSE
 )
 
 ###----------------------------------------------------------------------------##
