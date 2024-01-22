@@ -904,7 +904,7 @@ getExpressionMatrix <- function(cells, genes, dense) {
   if ( 'Cerebro_v1.3' %in% class(data_set()) ) {
     warning('passed the check in utility functions.R')
     warning('Cerebro_v1.3' %in% class(data_set()))
-    return(data_set()$getExpressionMatrix())
+    return(data_set()$getExpressionMatrix(cells, genes, dense))
   }
 }
 getCellNames <- function() {
