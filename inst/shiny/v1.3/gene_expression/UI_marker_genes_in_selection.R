@@ -69,7 +69,7 @@ output[["expression_mww_test_result_table"]] <- DT::renderDataTable({
                         buttons = c('copy', 'csv', 'excel', 'pdf', 'print')))
   print('diag line 71 ok')
   return(d1)
-}
+},
 server=FALSE, 
 rownames=FALSE
 )
