@@ -39,7 +39,7 @@ output[["expression_mww_test_result_table"]] <- DT::renderDataTable({
     expression_projection_selected_cells()
   )
   selected_cells <- expression_projection_selected_cells()
-  
+  saveRDS(selected_cells, file = '~/Downloads/selected_cells.RDS', compress=T)
   
   expression_matrix <- getExpressionMatrix(
     cells = NULL, 
