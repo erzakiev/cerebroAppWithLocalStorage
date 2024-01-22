@@ -6,7 +6,7 @@ output[["expression_mww_test_result"]] <- renderUI({
     cerebroBox(
       title = tagList(
         boxTitle("Marker genes of selected cells")#,
-        cerebroInfoButton("expression_details_selected_cells_info")
+        #cerebroInfoButton("expression_details_selected_cells_info")
       ),
       tagList(
         #shinyWidgets::materialSwitch(
