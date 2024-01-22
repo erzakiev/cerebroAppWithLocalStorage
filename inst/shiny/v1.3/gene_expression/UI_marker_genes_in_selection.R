@@ -50,6 +50,7 @@ output[["expression_mww_test_result_table"]] <- DT::renderDataTable({
   selection_status <- rep('not_selected', ncol(expression_matrix))
   names(selection_status) <- colnames(expression_matrix)
   selection_status[selected_cells$pointNumber] <- 'selected'
+  saveRDS(selected_cells$pointNumber, '~/Downloads/selected_cells.RDS', compress = T)
   
   print('table(selection_status)')
   print(table(selection_status))
