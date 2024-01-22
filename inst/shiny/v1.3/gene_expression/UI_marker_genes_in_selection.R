@@ -36,31 +36,21 @@ output[["expression_mww_test_result_table"]] <- DT::renderDataTable({
   req(
     expression_projection_data(),
     expression_projection_coordinates(),
-    expression_projection_expression_levels(),
     expression_projection_selected_cells()
   )
   selected_cells <- expression_projection_selected_cells()
   
-  selected_cells <- expression_projection_selected_cells()
-  cells_df <- bind_cols(
-    expression_projection_coordinates(),
-    expression_projection_data()
-  )
-  
-  expression_matrix <- getExpressionMatrix(
+  expression_matrix <- as(getExpressionMatrix(
     cells = expression_projection_data()$cell_barcode
-  )
+  ), 'dgCMatrix')
   selection_status <- rep('not_selected', ncol(expression_matrix))
   names(selection_status) <- colnames(expression_matrix)
-  
-  print('diag expression_projection_selected_cells()')
-  print(expression_projection_selected_cells())
   
   selection_status[selected_cells$pointNumber] <- 'selected'
     
   output_table <- presto::wilcoxauc(expression_matrix, 
                             selection_status) %>% 
-    filter(padj < 0.05 & (pct_in > 25 | pct_out > 25 ) & (logFC > 0.5 | logFC < -0.5)) %>% 
+    filter(padj < 0.05 & (pct_in > 10 | pct_out > 10 ) & (logFC > 0.25 | logFC < -0.25)) %>% 
     dplyr::select(-5:-7) %>% 
     group_by(group) %>% 
     arrange(desc(logFC), .by_group = T)
