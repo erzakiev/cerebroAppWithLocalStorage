@@ -51,7 +51,6 @@ output[["expression_mww_test_result_table"]] <- DT::renderDataTable({
   names(selection_status) <- colnames(expression_matrix)
   selection_status[selected_cells$pointNumber] <- 'selected'
   
-  saveRDS(selected_cells$pointNumber, '~/Downloads/selected_cells.RDS', compress = T)
   saveRDS(selection_status, '~/Downloads/selection_status.RDS', compress = T)
   prest <- presto::wilcoxauc(expression_matrix, 
                              selection_status)
