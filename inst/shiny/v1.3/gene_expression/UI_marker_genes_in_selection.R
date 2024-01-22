@@ -36,7 +36,8 @@ output[["expression_mww_test_result_table"]] <- DT::renderDataTable({
   req(
     expression_projection_data(),
     expression_projection_coordinates(),
-    expression_projection_expression_levels()
+    expression_projection_expression_levels(),
+    expression_projection_selected_cells()
   )
   selected_cells <- expression_projection_selected_cells()
   
@@ -51,6 +52,9 @@ output[["expression_mww_test_result_table"]] <- DT::renderDataTable({
   )
   selection_status <- rep('not_selected', ncol(expression_matrix))
   names(selection_status) <- colnames(expression_matrix)
+  
+  print('diag expression_projection_selected_cells()')
+  print(expression_projection_selected_cells())
   
   selection_status[selected_cells] <- 'selected'
     
