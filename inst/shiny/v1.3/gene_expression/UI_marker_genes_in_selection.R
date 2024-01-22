@@ -40,7 +40,6 @@ output[["expression_mww_test_result_table"]] <- DT::renderDataTable({
   )
   selected_cells <- expression_projection_selected_cells()
   
-  print('diag line 43 ok')
   
   expression_matrix <- getExpressionMatrix(
     cells = NULL, 
@@ -48,17 +47,19 @@ output[["expression_mww_test_result_table"]] <- DT::renderDataTable({
     dense = FALSE
   )
   
-  print('diag line 49 ok')
   selection_status <- rep('not_selected', ncol(expression_matrix))
-  print('diag line 51 ok')
   names(selection_status) <- colnames(expression_matrix)
-  print('diag line 53 ok')
-  
   selection_status[selected_cells$pointNumber] <- 'selected'
-  print('diag line 56 ok')
-    
-  output_table <- presto::wilcoxauc(expression_matrix, 
-                            selection_status) %>% 
+  
+  print('table(selection_status)')
+  print(table(selection_status))
+  
+  print('printing prest')
+  prest <- presto::wilcoxauc(expression_matrix, 
+                             selection_status)
+  print(head(prest))
+  
+  output_table <- prest %>% 
     filter(padj < 0.05 & (pct_in > 10 | pct_out > 10 ) & (logFC > 0.25 | logFC < -0.25)) %>% 
     filter(group=='selected') %>%
     dplyr::select(-5:-7) %>% 
