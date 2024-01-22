@@ -56,7 +56,7 @@ output[["expression_mww_test_result_table"]] <- DT::renderDataTable({
   print('diag expression_projection_selected_cells()')
   print(expression_projection_selected_cells())
   
-  selection_status[selected_cells] <- 'selected'
+  selection_status[selected_cells$pointNumber] <- 'selected'
     
   output_table <- presto::wilcoxauc(expression_matrix, 
                             selection_status) %>% 
