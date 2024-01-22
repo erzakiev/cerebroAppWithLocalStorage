@@ -49,9 +49,19 @@ output[["expression_mww_test_result_table"]] <- DT::renderDataTable({
   expression_matrix <- getExpressionMatrix(
     cells = expression_projection_data()$cell_barcode
   )
-  print('diag: head(expression_matrix[,1:100])')
-  print(head(expression_matrix[,1:100]))
-  d1 <- DT::datatable(expression_matrix,
+  selection_status <- rep('not_selected', ncol(expression_matrix))
+  names(selection_status) <- colnames(expression_matrix)
+  
+  selection_status[selected_cells] <- 'selected'
+    
+  output_table <- presto::wilcoxauc(expression_matrix, 
+                            selection_status) %>% 
+    filter(padj < 0.05 & (pct_in > 25 | pct_out > 25 ) & (logFC > 0.5 | logFC < -0.5)) %>% 
+    dplyr::select(-5:-7) %>% 
+    group_by(group) %>% 
+    arrange(desc(logFC), .by_group = T)
+  
+  d1 <- DT::datatable(output_table,
                       extensions = 'Buttons', 
                       options = list(
                         dom = 'Bfrtip',
