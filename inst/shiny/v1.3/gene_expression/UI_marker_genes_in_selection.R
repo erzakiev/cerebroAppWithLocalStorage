@@ -6,7 +6,7 @@ output[["expression_mww_test_result"]] <- renderUI({
     cerebroBox(
       title = tagList(
         boxTitle("Marker genes of selected cells")#,
-        #cerebroInfoButton("expression_details_selected_cells_info")
+        cerebroInfoButton("expression_details_selected_cells_info")
       ),
       tagList(
         #shinyWidgets::materialSwitch(
@@ -51,7 +51,13 @@ output[["expression_mww_test_result"]] <- DT::renderDataTable({
   )
   print('diag: head(expression_matrix)')
   print(head(expression_matrix))
-  expression_matrix
+  d1 <- DT::datatable(expression_matrix,
+                      extensions = 'Buttons', 
+                      options = list(
+                        dom = 'Bfrtip',
+                        buttons = c('copy', 'csv', 'excel', 'pdf', 'print')),
+                      server=FALSE, rownames=FALSE)
+  return(d1)
 })
 
 ###----------------------------------------------------------------------------##
