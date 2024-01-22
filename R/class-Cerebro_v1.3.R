@@ -440,6 +440,10 @@ Cerebro_v1.3 <- R6::R6Class(
     #' Dense transcript count matrix for specified cells and genes.
     getExpressionMatrix = function(cells = NULL, genes = NULL, dense = TRUE) {
       warning('diag line 442 ok from the Class def file!')
+      
+      warning('printing the current DENSE variable value')
+      warning(dense)
+      
       ## check what kind of matrix the transcription counts are stored as
       ## ... DelayedArray / RleMatrix
       if ( class(self$expression) == 'RleMatrix' ) {
