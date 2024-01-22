@@ -42,7 +42,7 @@ output[["expression_mww_test_result_table"]] <- DT::renderDataTable({
   
   print('diag line 43 ok')
   
-  expression_matrix <- getExpressionMatrix()
+  expression_matrix <- getExpressionMatrix(dense=F)
   
   print('diag line 49 ok')
   selection_status <- rep('not_selected', ncol(expression_matrix))
@@ -57,7 +57,7 @@ output[["expression_mww_test_result_table"]] <- DT::renderDataTable({
                             selection_status) %>% 
     filter(padj < 0.05 & (pct_in > 10 | pct_out > 10 ) & (logFC > 0.25 | logFC < -0.25)) %>% 
     filter(group='selected')
-    dplyr::select(-5:-7) %>% 
+    dplyr::select(-2, -5:-7) %>% 
     group_by(group) %>% 
     arrange(desc(logFC), .by_group = T)
   print('diag line 64 ok')
@@ -70,8 +70,8 @@ output[["expression_mww_test_result_table"]] <- DT::renderDataTable({
   print('diag line 71 ok')
   return(d1)
 }
-#server=FALSE, 
-#rownames=FALSE
+server=FALSE, 
+rownames=FALSE
 )
 
 ###----------------------------------------------------------------------------##
