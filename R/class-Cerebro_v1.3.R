@@ -515,8 +515,9 @@ Cerebro_v1.3 <- R6::R6Class(
             )
           )
         } else {
+          print('diag line 518 class assignment ok!')
           return(
-              self$expression[genes, cells, drop = FALSE]
+              self$expression[genes, cells]
           )
         }
       }
