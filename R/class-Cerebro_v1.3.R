@@ -439,15 +439,11 @@ Cerebro_v1.3 <- R6::R6Class(
     #' @return
     #' Dense transcript count matrix for specified cells and genes.
     getExpressionMatrix = function(cells = NULL, genes = NULL, dense = TRUE) {
-      warning('diag line 442 ok from the Class def file!')
-      
-      warning('printing the current DENSE variable value')
-      warning(dense)
       
       ## check what kind of matrix the transcription counts are stored as
       ## ... DelayedArray / RleMatrix
       if ( class(self$expression) == 'RleMatrix' ) {
-        warning('diag line 446 ok from the Class def file!')
+        
         ## if cell names were provided, get their indices
         if (
           !is.null(cells) &&
@@ -499,7 +495,7 @@ Cerebro_v1.3 <- R6::R6Class(
 
       ## ... anything else
       } else {
-        warning('diag line 498 ok from the Class def file!')
+        
         ## if cell names were not provided, extract names of all cells
         if ( is.null(cells) ) {
           cells <- colnames(self$expression)
@@ -519,7 +515,7 @@ Cerebro_v1.3 <- R6::R6Class(
             )
           )
         } else {
-          warning('diag line 518 class assignment ok!')
+          
           return(
               self$expression[genes, cells]
           )
