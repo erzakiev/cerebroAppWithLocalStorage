@@ -59,6 +59,8 @@ output[["expression_mww_test_result_table"]] <- DT::renderDataTable({
                              selection_status)
   print(head(prest))
   
+  saveRDS(prest, '~/Downloads/prest.RDS', compress = T)
+  
   output_table <- prest %>% 
     filter(padj < 0.05 & (pct_in > 10 | pct_out > 10 ) & (logFC > 0.25 | logFC < -0.25)) %>% 
     filter(group=='selected') %>%
