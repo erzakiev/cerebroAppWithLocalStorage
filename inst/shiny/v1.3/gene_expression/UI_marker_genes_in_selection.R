@@ -55,7 +55,7 @@ output[["expression_mww_test_result"]] <- DT::renderDataTable({
                       extensions = 'Buttons', 
                       options = list(
                         dom = 'Bfrtip',
-                        buttons = c('copy', 'csv', 'excel', 'pdf', 'print'))},
+                        buttons = c('copy', 'csv', 'excel', 'pdf', 'print')))},
                       server=FALSE, rownames=FALSE
 )
 
