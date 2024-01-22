@@ -57,9 +57,9 @@ output[["expression_mww_test_result_table"]] <- DT::renderDataTable({
                             selection_status) %>% 
     filter(padj < 0.05 & (pct_in > 10 | pct_out > 10 ) & (logFC > 0.25 | logFC < -0.25)) %>% 
     filter(group=='selected') %>%
-    dplyr::select(-2, -5:-7) %>% 
-    group_by(group) %>% 
-    arrange(desc(logFC), .by_group = T)
+    dplyr::select(-5:-7) %>% 
+    dplyr::select(-2) %>%
+    arrange(desc(logFC))
   print('diag line 64 ok')
   
   d1 <- DT::datatable(output_table,
