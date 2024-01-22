@@ -56,7 +56,7 @@ output[["expression_mww_test_result_table"]] <- DT::renderDataTable({
   output_table <- presto::wilcoxauc(expression_matrix, 
                             selection_status) %>% 
     filter(padj < 0.05 & (pct_in > 10 | pct_out > 10 ) & (logFC > 0.25 | logFC < -0.25)) %>% 
-    filter(group='selected')
+    filter(group=='selected')
     dplyr::select(-2, -5:-7) %>% 
     group_by(group) %>% 
     arrange(desc(logFC), .by_group = T)
