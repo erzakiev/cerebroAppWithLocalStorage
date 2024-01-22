@@ -526,7 +526,7 @@ each specified cell.
 \subsection{Method \code{getExpressionMatrix()}}{
 Retrieve transcript count matrix.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Cerebro_v1.3$getExpressionMatrix(cells = NULL, genes = NULL)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Cerebro_v1.3$getExpressionMatrix(cells = NULL, genes = NULL, dense = TRUE)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
