@@ -34,8 +34,6 @@ output[["expression_mww_test_result"]] <- renderUI({
 ##----------------------------------------------------------------------------##
 output[["expression_mww_test_result_table"]] <- DT::renderDataTable({
   req(
-    expression_projection_data(),
-    expression_projection_coordinates(),
     expression_projection_selected_cells()
   )
   selected_cells <- expression_projection_selected_cells()
