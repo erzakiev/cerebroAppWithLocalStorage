@@ -37,7 +37,7 @@ output[["expression_mww_test_result_table"]] <- DT::renderDataTable({
     expression_projection_selected_cells()
   )
   selected_cells <- expression_projection_selected_cells()
-  saveRDS(selected_cells, file = '~/Downloads/selected_cells.RDS', compress=T)
+  #saveRDS(selected_cells, file = '~/Downloads/selected_cells.RDS', compress=T)
   
   #coords <- expression_projection_coordinates()
   #dat <- expression_projection_data()

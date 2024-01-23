@@ -679,8 +679,8 @@ assignColorsToGroups <- function(table, grouping_variable) {
 ##----------------------------------------------------------------------------##
 buildHoverInfoForProjections <- function(table) {
   ## diag message : head(table) ##
-  print('printing head of the input table from the buildHoverInfoForProjections')
-  print(head(table))
+  #print('printing head of the input table from the buildHoverInfoForProjections')
+  #print(head(table))
   ## put together cell ID, number of transcripts and number of expressed genes
   hover_info <- glue::glue(
     "<b>Cell</b>: {table[[ 'cell_barcode' ]]}<br>",
