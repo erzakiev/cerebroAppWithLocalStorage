@@ -65,6 +65,7 @@ output[["expression_details_selected_cells"]] <- DT::renderDataTable({
     }
     ## filter out non-selected cells with X-Y identifier and select some meta
     ## data
+    saveRDS(expression_projection_coordinates(), file='~/Downloads/expression_projection_coordinates.RDS')
     saveRDS(cells_df, file = '~/Downloads/cells_df_before_flt.RDS', compress = T)
     cells_df <- cells_df %>%
       dplyr::rename(X1 = 1, X2 = 2) %>%
