@@ -39,7 +39,7 @@ expression_projection_update_plot <- function(input) {
     x_range = plot_parameters[["x_range"]],
     y_range = plot_parameters[["y_range"]],
     reset_axes = reset_axes,
-    cell_barcode = rownames(coordinates)
+    identifier = rownames(coordinates)
   )
   
   if ( plot_parameters[["draw_border"]] ) {

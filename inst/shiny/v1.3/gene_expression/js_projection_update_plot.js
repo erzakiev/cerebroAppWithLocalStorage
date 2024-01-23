@@ -107,6 +107,7 @@ const expression_projection_default_params = {
     x: [],
     y: [],
     z: [],
+    customdata: [],
     color: [],
     size: '',
     opacity: '',
@@ -134,6 +135,7 @@ shinyjs.expressionProjectionUpdatePlot2D = function(params) {
     {
       x: params.data.x,
       y: params.data.y,
+      customdata: params.data.identifier,
       mode: 'markers',
       type: 'scattergl',
       marker: {
@@ -211,6 +213,7 @@ shinyjs.expressionProjectionUpdatePlot2DMultiPanel = function(params) {
       {
         x: params.data.x,
         y: params.data.y,
+        customdata: params.data.identifier,
         xaxis: x_anchor,
         yaxis: y_anchor,
         mode: 'markers',
@@ -287,6 +290,7 @@ shinyjs.expressionProjectionUpdatePlot3D = function(params) {
       x: params.data.x,
       y: params.data.y,
       z: params.data.z,
+      customdata: params.data.identifier,
       mode: 'markers',
       type: 'scatter3d',
       marker: {
