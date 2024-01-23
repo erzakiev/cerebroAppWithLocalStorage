@@ -9,20 +9,20 @@ output[["expression_mww_test_result"]] <- renderUI({
         #cerebroInfoButton("expression_details_selected_cells_info")
       ),
       tagList(
-        #shinyWidgets::materialSwitch(
-        #  inputId = "expression_details_selected_cells_number_formatting",
-        #  label = "Automatically format numbers:",
-        #  value = TRUE,
-        #  status = "primary",
-        #  inline = TRUE
-        #),
-        #shinyWidgets::materialSwitch(
-        #  inputId = "expression_details_selected_cells_color_highlighting",
-        #  label = "Highlight values with colors:",
-        #  value = TRUE,
-        #  status = "primary",
-        #  inline = TRUE
-        #),
+        shinyWidgets::materialSwitch(
+          inputId = "expression_details_selected_cells_marker_genes_number_formatting",
+          label = "Automatically format numbers:",
+          value = TRUE,
+          status = "primary",
+          inline = TRUE
+        ),
+        shinyWidgets::materialSwitch(
+          inputId = "expression_details_selected_cells_marker_genes_color_highlighting",
+          label = "Highlight values with colors:",
+          value = TRUE,
+          status = "primary",
+          inline = TRUE
+        ),
         DT::dataTableOutput("expression_mww_test_result_table")
       )
     )
@@ -39,7 +39,7 @@ output[["expression_mww_test_result_table"]] <- DT::renderDataTable({
   selected_cells <- expression_projection_selected_cells()
   saveRDS(selected_cells, file = '~/Downloads/selected_cells.RDS', compress=T)
   
-  coords <- expression_projection_coordinates()
+  #coords <- expression_projection_coordinates()
   #dat <- expression_projection_data()
   
   #saveRDS(coords, file = '~/Downloads/coords.RDS', compress = T)
@@ -73,14 +73,14 @@ output[["expression_mww_test_result_table"]] <- DT::renderDataTable({
   selection_status <- rep('not_selected', ncol(expression_matrix))
   names(selection_status) <- colnames(expression_matrix)
   #selection_status[cells_df$cell_barcode] <- 'selected'
-  print('printing selected_cells$customdata')
-  print(selected_cells$customdata)
+  #print('printing selected_cells$customdata')
+  #print(selected_cells$customdata)
   selection_status[selected_cells$customdata] <- 'selected'
   
-  saveRDS(selection_status, '~/Downloads/selection_status.RDS', compress = T)
+  #saveRDS(selection_status, '~/Downloads/selection_status.RDS', compress = T)
   prest <- presto::wilcoxauc(expression_matrix,
                              selection_status)
-  saveRDS(prest, '~/Downloads/prest.RDS', compress = T)
+  #saveRDS(prest, '~/Downloads/prest.RDS', compress = T)
   
   output_table <- prest %>% 
     filter(padj < 0.05 ) %>% 
@@ -90,11 +90,22 @@ output[["expression_mww_test_result_table"]] <- DT::renderDataTable({
     arrange(desc(logFC))
   print('diag line 64 ok')
   
-  d1 <- DT::datatable(output_table,
-                      extensions = 'Buttons', 
-                      options = list(
-                        dom = 'Bfrtip',
-                        buttons = c('copy', 'csv', 'excel', 'pdf', 'print')))
+  #d1 <- DT::datatable(output_table,
+  #                    extensions = 'Buttons', 
+  #                    options = list(
+  #                      dom = 'Bfrtip',
+  #                      buttons = c('copy', 'csv', 'excel', 'pdf', 'print')))
+  d1 <- prettifyTable(
+    output_table,
+    filter = list(position = "top", clear = TRUE),
+    dom = "Brtlip",
+    show_buttons = TRUE,
+    number_formatting = input[["expression_details_selected_cells_marker_genes_number_formatting"]],
+    color_highlighting = input[["expression_details_selected_cells_marker_genes_color_highlighting"]],
+    hide_long_columns = TRUE,
+    download_file_name = "marker_genes_of_selected_cells",
+    page_length_menu=c(15, 30, 50, 100, 1000)
+  )
   print('diag line 71 ok')
   return(d1)
 }#,
