@@ -12,8 +12,6 @@ expression_projection_update_plot <- function(input) {
   separate_panels <- input[['separate_panels']]
   ## sort cells based on expression (if applicable)
   
-  print('printing head(coordinates) from func_projection_update_plot.R')
-  print(head(coordinates))
   
   if (
     plot_parameters[['plot_order']]=='Highest expression on top' &&
@@ -129,6 +127,11 @@ expression_projection_update_plot <- function(input) {
   #   }
   # }
   ## call JavaScript functions to update plot
+  
+  print('printing head(output_data) from func_projection_update_plot.R')
+  print(head(output_data))
+  
+  
   if (
     plot_parameters[['n_dimensions']] == 2 &&
     is.list(input[['expression_levels']]) == FALSE
