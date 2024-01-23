@@ -73,7 +73,7 @@ output[["expression_details_selected_cells"]] <- DT::renderDataTable({
       dplyr::rename(expression_level = level) %>%
       dplyr::select(cell_barcode, expression_level, everything())
     
-    saveRDS(cells_df, file = '~/Downloads/cells_df_as_presented_in_DT.RDS', compress = T)
+    #saveRDS(cells_df, file = '~/Downloads/cells_df_as_presented_in_DT.RDS', compress = T)
     ## check how many cells are left after filtering
     ## ... no cells are left
     if ( nrow(cells_df) == 0 ) {
