@@ -14,6 +14,7 @@ const expression_projection_layout_2D = {
     mirror: true,
     showline: true,
     zeroline: false,
+    showgrid: false,
     range: []
   },
   yaxis: {
@@ -21,6 +22,7 @@ const expression_projection_layout_2D = {
     mirror: true,
     showline: true,
     zeroline: false,
+    showgrid: false,
     range: []
   },
   hoverlabel: {
@@ -71,6 +73,7 @@ const expression_projection_layout_3D = {
       mirror: true,
       showline: true,
       zeroline: false,
+      showgrid: false,
       range: []
     },
     yaxis: {
@@ -78,13 +81,15 @@ const expression_projection_layout_3D = {
       mirror: true,
       showline: true,
       zeroline: false,
+      showgrid: false,
       range: []
     },
     zaxis: {
       autorange: true,
       mirror: true,
       showline: true,
-      zeroline: false
+      zeroline: false,
+      showgrid: false,
     },
   },
   hoverlabel: {
@@ -246,6 +251,7 @@ shinyjs.expressionProjectionUpdatePlot2DMultiPanel = function(params) {
       mirror: true,
       showline: true,
       zeroline: false,
+      showgrid: false,
       range: [],
       anchor: x_anchor
     }
@@ -254,6 +260,7 @@ shinyjs.expressionProjectionUpdatePlot2DMultiPanel = function(params) {
       mirror: true,
       showline: true,
       zeroline: false,
+      showgrid: false,
       range: [],
       anchor: y_anchor
     }

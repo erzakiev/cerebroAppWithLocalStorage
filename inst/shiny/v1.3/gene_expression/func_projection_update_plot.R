@@ -11,6 +11,10 @@ expression_projection_update_plot <- function(input) {
   trajectory <- input[['trajectory']]
   separate_panels <- input[['separate_panels']]
   ## sort cells based on expression (if applicable)
+  
+  print('printing head(coordinates) from func_projection_update_plot.R')
+  print(head(coordinates))
+  
   if (
     plot_parameters[['plot_order']]=='Highest expression on top' &&
     separate_panels == FALSE
