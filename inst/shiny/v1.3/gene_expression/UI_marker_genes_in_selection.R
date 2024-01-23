@@ -41,6 +41,31 @@ output[["expression_mww_test_result_table"]] <- DT::renderDataTable({
   selected_cells <- expression_projection_selected_cells()
   saveRDS(selected_cells, file = '~/Downloads/selected_cells.RDS', compress=T)
   
+  coords <- expression_projection_coordinates()
+  dat <- expression_projection_data()
+  
+  saveRDS(coords, file = '~/Downloads/coords.RDS', compress = T)
+  saveRDS(dat, file = '~/Downloads/dat.RDS', compress = T)
+  
+  cells_df <- bind_cols(
+    coords,
+    dat
+  )
+  
+  cells_df$level <- expression_projection_expression_levels()
+  
+  saveRDS(cells_df, file = '~/Downloads/cells_df.RDS', compress = T)
+  
+  cells_df <- cells_df %>%
+    dplyr::rename(X1 = 1, X2 = 2) %>%
+    dplyr::mutate(identifier = paste0(X1, '-', X2)) %>%
+    dplyr::filter(identifier %in% selected_cells$identifier) %>%
+    dplyr::select(-c(X1, X2, identifier)) %>%
+    dplyr::rename(expression_level = level) %>%
+    dplyr::select(cell_barcode, expression_level, everything())
+  
+  saveRDS(cells_df, file = '~/Downloads/cells_df_filtered.RDS', compress = T)
+  
   expression_matrix <- getExpressionMatrix(
     cells = NULL, 
     genes = NULL, 
@@ -49,15 +74,15 @@ output[["expression_mww_test_result_table"]] <- DT::renderDataTable({
   
   selection_status <- rep('not_selected', ncol(expression_matrix))
   names(selection_status) <- colnames(expression_matrix)
-  selection_status[selected_cells$pointNumber] <- 'selected'
+  selection_status[cells_df$cell_barcode] <- 'selected'
   
   saveRDS(selection_status, '~/Downloads/selection_status.RDS', compress = T)
-  prest <- presto::wilcoxauc(expression_matrix, 
+  prest <- presto::wilcoxauc(expression_matrix,
                              selection_status)
   saveRDS(prest, '~/Downloads/prest.RDS', compress = T)
   
   output_table <- prest %>% 
-    filter(padj < 0.05 & (pct_in > 10 | pct_out > 10 ) & (logFC > 0.25 | logFC < -0.25)) %>% 
+    filter(padj < 0.05 ) %>% 
     filter(group=='selected') %>%
     dplyr::select(-5:-7) %>% 
     dplyr::select(-2) %>%
