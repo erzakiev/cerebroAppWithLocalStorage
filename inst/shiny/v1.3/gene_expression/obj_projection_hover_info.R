@@ -14,6 +14,8 @@ expression_projection_hover_info <- reactive({
     !is.null(preferences[["show_hover_info_in_projections"]]) &&
     preferences[['show_hover_info_in_projections']] == TRUE
   ) {
+    print('printing again head(expression_projection_cells_to_show())')
+    print(head(expression_projection_cells_to_show()))
     exprsns <- exprsns[expression_projection_cells_to_show()]
     print('printing again head(exprsns)')
     print(head(exprsns))
