@@ -44,7 +44,7 @@ output[["expression_details_selected_cells"]] <- DT::renderDataTable({
     expression_projection_expression_levels()
   )
   selected_cells <- expression_projection_selected_cells()
-  saveRDS(selected_cells, file = '~/Downloads/selected_cells.RDS')
+  #saveRDS(selected_cells, file = '~/Downloads/selected_cells.RDS')
   ## check selection
   ## ... selection has not been made or there is no cell in it
   if ( is.null(selected_cells) ) {
@@ -66,17 +66,17 @@ output[["expression_details_selected_cells"]] <- DT::renderDataTable({
     }
     ## filter out non-selected cells with X-Y identifier and select some meta
     ## data
-    saveRDS(expression_projection_coordinates(), file='~/Downloads/expression_projection_coordinates.RDS')
-    saveRDS(cells_df, file = '~/Downloads/cells_df_before_flt.RDS', compress = T)
+    #saveRDS(expression_projection_coordinates(), file='~/Downloads/expression_projection_coordinates.RDS')
+    #saveRDS(cells_df, file = '~/Downloads/cells_df_before_flt.RDS', compress = T)
     cells_df <- cells_df %>%
       dplyr::rename(X1 = 1, X2 = 2) %>%
       dplyr::mutate(identifier = rownames(expression_projection_coordinates())) %>%
-      dplyr::filter(identifier %in% selected_cells$identifier) %>%
+      dplyr::filter(identifier %in% selected_cells$customdata) %>%
       dplyr::select(-identifier) %>%
       dplyr::rename(expression_level = level) %>%
       dplyr::select(cell_barcode, expression_level, everything())
     
-    saveRDS(cells_df, file = '~/Downloads/cells_df_as_presented_in_DT.RDS', compress = T)
+    #saveRDS(cells_df, file = '~/Downloads/cells_df_as_presented_in_DT.RDS', compress = T)
     ## check how many cells are left after filtering
     ## ... no cells are left
     if ( nrow(cells_df) == 0 ) {
