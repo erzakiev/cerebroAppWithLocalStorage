@@ -39,7 +39,7 @@ output[["expression_mww_test_result_table"]] <- DT::renderDataTable({
   selected_cells <- expression_projection_selected_cells()
   saveRDS(selected_cells, file = '~/Downloads/selected_cells.RDS', compress=T)
   
-  #coords <- expression_projection_coordinates()
+  coords <- expression_projection_coordinates()
   #dat <- expression_projection_data()
   
   #saveRDS(coords, file = '~/Downloads/coords.RDS', compress = T)
@@ -73,7 +73,7 @@ output[["expression_mww_test_result_table"]] <- DT::renderDataTable({
   selection_status <- rep('not_selected', ncol(expression_matrix))
   names(selection_status) <- colnames(expression_matrix)
   #selection_status[cells_df$cell_barcode] <- 'selected'
-  selection_status[selected_cells$pointNumber] <- 'selected'
+  selection_status[rownames(coords)[selected_cells$pointNumber]] <- 'selected'
   
   saveRDS(selection_status, '~/Downloads/selection_status.RDS', compress = T)
   prest <- presto::wilcoxauc(expression_matrix,

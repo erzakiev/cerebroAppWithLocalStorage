@@ -136,6 +136,8 @@ output[["expression_projection_UI"]] <- renderUI({
           tags$br(),
           htmlOutput("expression_number_of_selected_cells"),
           tags$br(),
+          htmlOutput("expression_coords_of_selected_cells"),
+          tags$br(),
           htmlOutput("expression_genes_displayed")
         )
       )
