@@ -17,6 +17,7 @@ const overview_projection_layout_2D = {
     mirror: true,
     showline: true,
     zeroline: false,
+    showgrid: false,
     range: []
   },
   yaxis: {
@@ -24,6 +25,7 @@ const overview_projection_layout_2D = {
     mirror: true,
     showline: true,
     zeroline: false,
+    showgrid: false,
     range: []
   },
   hoverlabel: {
@@ -54,6 +56,7 @@ const overview_projection_layout_3D = {
       mirror: true,
       showline: true,
       zeroline: false,
+      showgrid: false,
       range: []
     },
     yaxis: {
@@ -61,6 +64,7 @@ const overview_projection_layout_3D = {
       mirror: true,
       showline: true,
       zeroline: false,
+      showgrid: false,
       range: []
     },
     zaxis: {
@@ -68,6 +72,7 @@ const overview_projection_layout_3D = {
       mirror: true,
       showline: true,
       zeroline: false,
+      showgrid: false,
       range: []
     },
   },
