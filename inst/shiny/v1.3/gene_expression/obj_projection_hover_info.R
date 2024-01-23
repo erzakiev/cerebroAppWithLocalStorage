@@ -14,12 +14,13 @@ expression_projection_hover_info <- reactive({
     !is.null(preferences[["show_hover_info_in_projections"]]) &&
     preferences[['show_hover_info_in_projections']] == TRUE
   ) {
-    print('printing again head(expression_projection_cells_to_show())')
-    print(head(expression_projection_cells_to_show()))
-    exprsns <- exprsns[expression_projection_cells_to_show()]
+    toShow <- expression_projection_cells_to_show()
+    print('printing again head(toShow)')
+    print(head(toShow))
+    exprsns <- exprsns[toShow]
     print('printing again head(exprsns)')
     print(head(exprsns))
-    hover_info <- hover_info_projections()[expression_projection_cells_to_show()]
+    hover_info <- hover_info_projections()[toShow]
     hover_info <- glue::glue(
       "{hover_info}<br>",
       "<b>Expression level</b>: {formatC(exprsns, format = 'f', big.mark = ',', digits = 3)}"
