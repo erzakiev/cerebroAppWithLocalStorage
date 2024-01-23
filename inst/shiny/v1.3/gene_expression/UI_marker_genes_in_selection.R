@@ -39,30 +39,30 @@ output[["expression_mww_test_result_table"]] <- DT::renderDataTable({
   selected_cells <- expression_projection_selected_cells()
   saveRDS(selected_cells, file = '~/Downloads/selected_cells.RDS', compress=T)
   
-  coords <- expression_projection_coordinates()
-  dat <- expression_projection_data()
+  #coords <- expression_projection_coordinates()
+  #dat <- expression_projection_data()
   
-  saveRDS(coords, file = '~/Downloads/coords.RDS', compress = T)
-  saveRDS(dat, file = '~/Downloads/dat.RDS', compress = T)
+  #saveRDS(coords, file = '~/Downloads/coords.RDS', compress = T)
+  #saveRDS(dat, file = '~/Downloads/dat.RDS', compress = T)
   
-  cells_df <- bind_cols(
-    coords,
-    dat
-  )
+  #cells_df <- bind_cols(
+  #  coords,
+  #  dat
+  #)
   
-  cells_df$level <- expression_projection_expression_levels()
+  #cells_df$level <- expression_projection_expression_levels()
   
-  saveRDS(cells_df, file = '~/Downloads/cells_df.RDS', compress = T)
+  #saveRDS(cells_df, file = '~/Downloads/cells_df.RDS', compress = T)
   
-  cells_df <- cells_df %>%
-    dplyr::rename(X1 = 1, X2 = 2) %>%
-    dplyr::mutate(identifier = paste0(X1, '-', X2)) %>%
-    dplyr::filter(identifier %in% selected_cells$identifier) %>%
-    dplyr::select(-c(X1, X2, identifier)) %>%
-    dplyr::rename(expression_level = level) %>%
-    dplyr::select(cell_barcode, expression_level, everything())
+  #cells_df <- cells_df %>%
+  #  dplyr::rename(X1 = 1, X2 = 2) %>%
+  #  dplyr::mutate(identifier = paste0(X1, '-', X2)) %>%
+  #  dplyr::filter(identifier %in% selected_cells$identifier) %>%
+  #  dplyr::select(-c(X1, X2, identifier)) %>%
+  #  dplyr::rename(expression_level = level) %>%
+  #  dplyr::select(cell_barcode, expression_level, everything())
   
-  saveRDS(cells_df, file = '~/Downloads/cells_df_filtered.RDS', compress = T)
+  #saveRDS(cells_df, file = '~/Downloads/cells_df_filtered.RDS', compress = T)
   
   expression_matrix <- getExpressionMatrix(
     cells = NULL, 
@@ -72,7 +72,8 @@ output[["expression_mww_test_result_table"]] <- DT::renderDataTable({
   
   selection_status <- rep('not_selected', ncol(expression_matrix))
   names(selection_status) <- colnames(expression_matrix)
-  selection_status[cells_df$cell_barcode] <- 'selected'
+  #selection_status[cells_df$cell_barcode] <- 'selected'
+  selection_status[selected_cells$pointNumber] <- 'selected'
   
   saveRDS(selection_status, '~/Downloads/selection_status.RDS', compress = T)
   prest <- presto::wilcoxauc(expression_matrix,
