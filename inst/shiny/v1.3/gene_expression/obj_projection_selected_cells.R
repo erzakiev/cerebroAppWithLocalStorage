@@ -22,6 +22,8 @@ expression_projection_selected_cells <- reactive({
     ## get number of selected cells
     selected_cells <- plotly::event_data("plotly_selected", source = "expression_projection") #%>%
       #dplyr::mutate(identifier = paste0(x, '-', y))
+    print('printing head(selected_cells) from obj_projection_selected-cells.R')
+    print(head(selected_cells))
     selected_cells <- selected_cells %>% dplyr::mutate(identifier = rownames(selected_cells))
     # message(str(selected_cells))
     return(selected_cells)
