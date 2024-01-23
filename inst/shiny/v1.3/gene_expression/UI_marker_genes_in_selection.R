@@ -88,7 +88,7 @@ output[["expression_mww_test_result_table"]] <- DT::renderDataTable({
     dplyr::select(-5:-7) %>% 
     dplyr::select(-2) %>%
     dplyr::mutate(abs_logFC=abs(logFC)) %>% 
-    arrange(desc(abs_logFC))
+    arrange(desc(logFC))
   print('diag line 64 ok')
   
   #d1 <- DT::datatable(output_table,

@@ -44,6 +44,7 @@ output[["expression_details_selected_cells"]] <- DT::renderDataTable({
     expression_projection_expression_levels()
   )
   selected_cells <- expression_projection_selected_cells()
+  saveRDS(selected_cells, file = '~/Downloads/selected_cells.RDS')
   ## check selection
   ## ... selection has not been made or there is no cell in it
   if ( is.null(selected_cells) ) {
