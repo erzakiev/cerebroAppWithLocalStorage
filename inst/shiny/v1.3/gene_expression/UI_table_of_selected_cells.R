@@ -67,7 +67,7 @@ output[["expression_details_selected_cells"]] <- DT::renderDataTable({
     ## data
     cells_df <- cells_df %>%
       dplyr::rename(X1 = 1, X2 = 2) %>%
-      dplyr::mutate(identifier = paste0(X1, '-', X2)) %>%
+      dplyr::mutate(identifier = rownames(expression_projection_coordinates())) %>%
       dplyr::filter(identifier %in% selected_cells$identifier) %>%
       dplyr::select(-identifier) %>%
       dplyr::rename(expression_level = level) %>%

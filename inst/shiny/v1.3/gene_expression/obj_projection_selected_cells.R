@@ -20,8 +20,9 @@ expression_projection_selected_cells <- reactive({
   ## ... selection has been made and at least 1 cell is in it
   } else {
     ## get number of selected cells
-    selected_cells <- plotly::event_data("plotly_selected", source = "expression_projection") %>%
-      dplyr::mutate(identifier = paste0(x, '-', y))
+    selected_cells <- plotly::event_data("plotly_selected", source = "expression_projection") #%>%
+      #dplyr::mutate(identifier = paste0(x, '-', y))
+    selected_cells <- selected_cells %>% dplyr::mutate(identifier = rownames(selected_cells))
     # message(str(selected_cells))
     return(selected_cells)
   }

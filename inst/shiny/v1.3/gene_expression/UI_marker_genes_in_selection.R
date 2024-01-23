@@ -73,7 +73,9 @@ output[["expression_mww_test_result_table"]] <- DT::renderDataTable({
   selection_status <- rep('not_selected', ncol(expression_matrix))
   names(selection_status) <- colnames(expression_matrix)
   #selection_status[cells_df$cell_barcode] <- 'selected'
-  selection_status[rownames(coords)[selected_cells$pointNumber]] <- 'selected'
+  print('printing selected_cells$identifier')
+  print(selected_cells$identifier)
+  selection_status[selected_cells$identifier] <- 'selected'
   
   saveRDS(selection_status, '~/Downloads/selection_status.RDS', compress = T)
   prest <- presto::wilcoxauc(expression_matrix,
