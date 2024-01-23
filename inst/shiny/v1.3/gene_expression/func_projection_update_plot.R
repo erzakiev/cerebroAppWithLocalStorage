@@ -38,9 +38,10 @@ expression_projection_update_plot <- function(input) {
     point_line = list(),
     x_range = plot_parameters[["x_range"]],
     y_range = plot_parameters[["y_range"]],
-    reset_axes = reset_axes
+    reset_axes = reset_axes,
+    cell_barcode = rownames(coordinates)
   )
-  output_data[['cell_barcode']] <- rownames(coordinates)
+  
   if ( plot_parameters[["draw_border"]] ) {
     output_data[['point_line']] <- list(
       color = "rgb(196,196,196)",
