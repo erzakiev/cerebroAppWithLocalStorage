@@ -69,7 +69,7 @@ output[["expression_details_selected_cells"]] <- DT::renderDataTable({
       dplyr::rename(X1 = 1, X2 = 2) %>%
       dplyr::mutate(identifier = paste0(X1, '-', X2)) %>%
       dplyr::filter(identifier %in% selected_cells$identifier) %>%
-      dplyr::select(-c(X1, X2, identifier)) %>%
+      dplyr::select(-identifier) %>%
       dplyr::rename(expression_level = level) %>%
       dplyr::select(cell_barcode, expression_level, everything())
     
