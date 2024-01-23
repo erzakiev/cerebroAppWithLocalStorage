@@ -65,6 +65,7 @@ output[["expression_details_selected_cells"]] <- DT::renderDataTable({
     }
     ## filter out non-selected cells with X-Y identifier and select some meta
     ## data
+    saveRDS(cells_df, file = '~/Downloads/cells_df_before_flt.RDS', compress = T)
     cells_df <- cells_df %>%
       dplyr::rename(X1 = 1, X2 = 2) %>%
       dplyr::mutate(identifier = rownames(expression_projection_coordinates())) %>%
@@ -73,7 +74,7 @@ output[["expression_details_selected_cells"]] <- DT::renderDataTable({
       dplyr::rename(expression_level = level) %>%
       dplyr::select(cell_barcode, expression_level, everything())
     
-    #saveRDS(cells_df, file = '~/Downloads/cells_df_as_presented_in_DT.RDS', compress = T)
+    saveRDS(cells_df, file = '~/Downloads/cells_df_as_presented_in_DT.RDS', compress = T)
     ## check how many cells are left after filtering
     ## ... no cells are left
     if ( nrow(cells_df) == 0 ) {
