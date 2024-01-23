@@ -16,5 +16,7 @@ output[["expression_projection_selected_cells_coords"]] <- renderText({
   ## prepare string to show
   
   
-  paste0("<b>Coordinates of the current selection</b>: ", coords_of_selected_cells)
+  p1 <- paste0("<b>Margins of the current selection</b>: <br>x: ", paste0(round(coords_of_selected_cells$x, 3), collapse = ' '))
+  p2 <- paste0("<br>y: ", paste0(round(coords_of_selected_cells$y, 3), collapse = ' '))
+  return(paste0(p1, p2))
 })
