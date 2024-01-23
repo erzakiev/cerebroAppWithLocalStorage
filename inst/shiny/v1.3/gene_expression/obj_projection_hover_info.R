@@ -17,7 +17,7 @@ expression_projection_hover_info <- reactive({
     toShow <- expression_projection_cells_to_show()
     print('printing again head(toShow)')
     print(head(toShow))
-    exprsns <- exprsns[toShow]
+    #exprsns <- exprsns[toShow]
     print('printing again head(exprsns)')
     print(head(exprsns))
     hover_info <- hover_info_projections()[toShow]
