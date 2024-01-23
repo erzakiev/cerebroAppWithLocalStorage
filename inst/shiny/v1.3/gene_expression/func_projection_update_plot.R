@@ -131,7 +131,7 @@ expression_projection_update_plot <- function(input) {
   ## call JavaScript functions to update plot
   
   print('printing head(output_data) from func_projection_update_plot.R')
-  print(head(output_data))
+  print(output_data)
   
   
   if (
