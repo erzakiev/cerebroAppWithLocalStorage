@@ -51,6 +51,10 @@ const overview_projection_layout_3D = {
     itemsizing: 'constant',
   },
   scene: {
+    aspectmode: "manual",
+    aspectratio: {
+     x: 1, y: 1, z: 1,
+    },
     xaxis: {
       autorange: false,
       mirror: true,
@@ -186,7 +190,21 @@ shinyjs.updatePlot3DContinuous = function(params) {
       showlegend: false
     }
   );
-  Plotly.react('overview_projection', data, overview_projection_layout_3D);
+  
+  const layout_here = Object.assign(overview_projection_layout_3D);
+  if (params.data.reset_axes) {
+    layout_here.xaxis['autorange'] = true;
+    layout_here.yaxis['autorange'] = true;
+    layout_here.zaxis['autorange'] = true;
+  } else {
+    layout_here.xaxis['autorange'] = false;
+    layout_here.xaxis['range'] = params.data.x_range;
+    layout_here.yaxis['autorange'] = false;
+    layout_here.yaxis['range'] = params.data.y_range;
+    layout_here.zaxis['autorange'] = false;
+    layout_here.zaxis['range'] = params.data.z_range;
+  }
+  Plotly.react('overview_projection', data, layout_here);
 }
 
 // update 2D projection with categorical coloring
@@ -296,5 +314,18 @@ shinyjs.updatePlot3DCategorical = function(params) {
       }
     );
   }
-  Plotly.react('overview_projection', data, overview_projection_layout_3D);
+  const layout_here = Object.assign(overview_projection_layout_3D);
+  if (params.data.reset_axes) {
+    layout_here.xaxis['autorange'] = true;
+    layout_here.yaxis['autorange'] = true;
+    layout_here.zaxis['autorange'] = true;
+  } else {
+    layout_here.xaxis['autorange'] = false;
+    layout_here.xaxis['range'] = params.data.x_range;
+    layout_here.yaxis['autorange'] = false;
+    layout_here.yaxis['range'] = params.data.y_range;
+    layout_here.zaxis['autorange'] = false;
+    layout_here.zaxis['range'] = params.data.z_range;
+  }
+  Plotly.react('overview_projection', data, layout_here);
 }
