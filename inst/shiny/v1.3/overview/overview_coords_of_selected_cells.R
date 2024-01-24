@@ -6,7 +6,7 @@ output[["overview_coords_of_selected_cells"]] <- renderText({
   ## ... selection has not been made or there is no cell in it
   if ( is.null(overview_projection_selected_cells()) ) {
     ## manually set counter to 0
-    number_of_selected_cells <- 0
+    return('kek')
     ## ... selection has been made and at least 1 cell is in it
   } else {
     ## get number of selected cells
