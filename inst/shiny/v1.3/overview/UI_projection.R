@@ -97,6 +97,8 @@ output[["overview_projection_UI"]] <- renderUI({
           ),
           tags$br(),
           htmlOutput("overview_number_of_selected_cells"),
+          tags$br(),
+          htmlOutput("overview_coords_of_selected_cells"),
         )
       )
     )

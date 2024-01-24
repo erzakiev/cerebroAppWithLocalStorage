@@ -15,6 +15,12 @@ tab_overview <- tabItem(
     #overview_details_selected_cells_table .dt-middle {
       vertical-align: middle;
     }
+    #overview_selected_cells_marker_genes_table .table th {
+      text-align: center;
+    }
+    #overview_selected_cells_marker_genes_table .dt-middle {
+      vertical-align: middle;
+    }
     "
   ),
   shinyjs::extendShinyjs(
@@ -28,5 +34,6 @@ tab_overview <- tabItem(
   ),
   uiOutput("overview_projection_UI"),
   uiOutput("overview_selected_cells_plot_UI"),
-  uiOutput("overview_selected_cells_table_UI")
+  uiOutput("overview_selected_cells_table_UI"),
+  uiOutput("overview_selected_cells_marker_genes_table_UI")
 )
