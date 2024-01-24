@@ -89,6 +89,7 @@ overview_projection_update_plot <- function(input) {
       x = list(),
       y = list(),
       z = list(),
+      identifier = list(),
       color = list(),
       point_size = plot_parameters[["point_size"]],
       point_opacity = plot_parameters[["point_opacity"]],
@@ -96,8 +97,7 @@ overview_projection_update_plot <- function(input) {
       x_range = plot_parameters[["x_range"]],
       y_range = plot_parameters[["y_range"]],
       z_range = plot_parameters[["z_range"]],
-      reset_axes = reset_axes,
-      identifier = rownames(coordinates)
+      reset_axes = reset_axes
     )
     
     #print('printing current categorical output_data from overview_projection_update_plot')
@@ -123,6 +123,7 @@ overview_projection_update_plot <- function(input) {
         cells_to_extract <- which(color_input==j)
         output_data[['x']][[i]] <- coordinates[[1]][cells_to_extract]
         output_data[['y']][[i]] <- coordinates[[2]][cells_to_extract]
+        output_data[['identifier']][[i]] <- rownames(coordinates)[cells_to_extract]
         output_data[['color']][[i]] <- unname(color_assignments[which(names(color_assignments)==j)])
         if ( plot_parameters[["hover_info"]] ) {
           hover_info_matched <- match(
@@ -163,6 +164,7 @@ overview_projection_update_plot <- function(input) {
         output_data[['x']][[i]] <- coordinates[[1]][cells_to_extract]
         output_data[['y']][[i]] <- coordinates[[2]][cells_to_extract]
         output_data[['z']][[i]] <- coordinates[[3]][cells_to_extract]
+        output_data[['identifier']][[i]] <- rownames(coordinates)[cells_to_extract]
         output_data[['color']][[i]] <- unname(color_assignments[which(names(color_assignments)==j)])
         if ( plot_parameters[["hover_info"]] ) {
           hover_info_matched <- match(
