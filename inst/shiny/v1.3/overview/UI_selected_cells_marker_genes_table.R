@@ -73,7 +73,7 @@ output[["overview_selected_cells_marker_genes_table"]] <- DT::renderDataTable({
   #print('printing selected_cells$customdata')
   #print(selected_cells$customdata)
   selection_status[selected_cells$customdata] <- 'selected'
-  print('printing table(selection_status)')
+  #print('printing table(selection_status)')
   
   #saveRDS(selection_status, '~/Downloads/selection_status.RDS', compress = T)
   prest <- presto::wilcoxauc(expression_matrix,
@@ -87,7 +87,7 @@ output[["overview_selected_cells_marker_genes_table"]] <- DT::renderDataTable({
     dplyr::select(-2) %>%
     dplyr::mutate(abs_logFC=abs(logFC)) %>% 
     arrange(desc(logFC))
-  print('diag line 64 prime ok')
+  #print('diag line 64 prime ok')
   
   #d1 <- DT::datatable(output_table,
   #                    extensions = 'Buttons', 
@@ -105,7 +105,7 @@ output[["overview_selected_cells_marker_genes_table"]] <- DT::renderDataTable({
     download_file_name = "marker_genes_of_selected_cells_from_overview_pane",
     page_length_menu=c(15, 30, 50, 100, 1000)
   )
-  print('diag line 71 ok')
+  #print('diag line 71 ok')
   return(d1)
 }#,
 #server=FALSE, 

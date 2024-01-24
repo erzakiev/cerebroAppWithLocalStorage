@@ -68,8 +68,8 @@ overview_projection_update_plot <- function(input) {
     } else if ( plot_parameters[['n_dimensions']] == 3 ) {
       output_data[['z']] <- coordinates[[3]]
       output_data[['z_range']] <- plot_parameters[["z_range"]]
-      print('printing numerical z_range from overview_projection_update_plot')
-      print(output_data[['z_range']])
+      #print('printing numerical z_range from overview_projection_update_plot')
+      #print(output_data[['z_range']])
       shinyjs::js$updatePlot3DContinuous(
         output_meta,
         output_data,
