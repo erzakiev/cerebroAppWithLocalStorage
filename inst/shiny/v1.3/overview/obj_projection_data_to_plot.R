@@ -46,8 +46,7 @@ overview_projection_data_to_plot_raw <- reactive({
   to_return <- list(
     cells_df = overview_projection_data(),
     coordinates = overview_projection_coordinates(),
-    #reset_axes = isolate(overview_projection_parameters_other[['reset_axes']]),
-    reset_axes = (overview_projection_parameters_other[['reset_axes']]),
+    reset_axes = isolate(overview_projection_parameters_other[['reset_axes']]),
     plot_parameters = overview_projection_parameters_plot(),
     color_assignments = color_assignments,
     hover_info = overview_projection_hover_info()

@@ -66,7 +66,7 @@ overview_projection_update_plot <- function(input) {
       )
     } else if ( plot_parameters[['n_dimensions']] == 3 ) {
       output_data[['z']] <- coordinates[[3]]
-      z_range = plot_parameters[["z_range"]]
+      output_data[['zrange']] <- plot_parameters[["z_range"]]
       #print('printing numerical zrange from overview_projection_update_plot')
       #print(zrange)
       shinyjs::js$updatePlot3DContinuous(
@@ -189,12 +189,12 @@ overview_projection_update_plot <- function(input) {
       #print('printing final before pushing to the updating function categorical output_group_centers from overview_projection_update_plot')
       #print(output_group_centers)
       
-      shinyjs::js$updatePlot3DCategorical(
-        output_meta,
-        output_data,
-        output_hover,
-        output_group_centers
-      )
+      #shinyjs::js$updatePlot3DCategorical(
+      #  output_meta,
+      #  output_data,
+      #  output_hover,
+      #  output_group_centers
+      #)
     }
   }
 }

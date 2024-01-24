@@ -42,7 +42,7 @@ output[["overview_projection"]] <- plotly::renderPlotly({
     
     print('drawing 3d scatter overview')
     
-    plotly::plot_ly(type = 'scatter3d', mode = 'markers', source = "overview_projection") %>%
+    plotly::plot_ly(type = 'scattergl', mode = 'markers', source = "overview_projection") %>%
       plotly::layout(scene = list(
         xaxis = list(
           #autorange = T,
