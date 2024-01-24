@@ -218,7 +218,6 @@ shinyjs.updatePlot2DCategorical = function(params) {
       {
         x: params.data.x[i],
         y: params.data.y[i],
-        customdata: params.data.identifier[i],
         name: params.meta.traces[i],
         mode: 'markers',
         type: 'scattergl',
@@ -240,7 +239,7 @@ shinyjs.updatePlot2DCategorical = function(params) {
   data.push({
       xrange: params.data.xrange,
       yrange: params.data.yrange
-      
+      customdata: params.data.identifier
   })
   if (params.group_centers.group.length >= 1) {
     data.push(
@@ -303,11 +302,6 @@ shinyjs.updatePlot3DCategorical = function(params) {
     );
   }
   
-  data.push({
-      customdata: params.data.identifier
-  })
-  
-  
   if (params.group_centers.group.length >= 1) {
     data.push(
       {
@@ -344,7 +338,6 @@ shinyjs.updatePlot3DCategorical = function(params) {
     layout_here_3d.scene.yaxis['range'] = params.data.y_range;
     layout_here_3d.scene.zaxis['autorange'] = false;
     layout_here_3d.scene.zaxis['range'] = params.data.z_range;
-    
   //}
   Plotly.react('overview_projection', data, layout_here_3d);
 }
