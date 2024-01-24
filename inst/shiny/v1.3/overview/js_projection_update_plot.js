@@ -96,6 +96,7 @@ const overview_projection_default_params = {
     x: [],
     y: [],
     z: [],
+    customdata: [],
     color: [],
     size: '',
     opacity: '',
@@ -127,6 +128,7 @@ shinyjs.updatePlot2DContinuous = function(params) {
       y: params.data.y,
       xrange: params.data.xrange,
       yrange: params.data.yrange,
+      customdata: params.data.identifier,
       mode: 'markers',
       type: 'scattergl',
       marker: {
@@ -169,6 +171,7 @@ shinyjs.updatePlot3DContinuous = function(params) {
       x: params.data.x,
       y: params.data.y,
       z: params.data.z,
+      customdata: params.data.identifier,
       mode: 'markers',
       type: 'scatter3d',
       marker: {
@@ -215,6 +218,7 @@ shinyjs.updatePlot2DCategorical = function(params) {
       {
         x: params.data.x[i],
         y: params.data.y[i],
+        customdata: params.data.identifier[i],
         name: params.meta.traces[i],
         mode: 'markers',
         type: 'scattergl',
@@ -236,6 +240,7 @@ shinyjs.updatePlot2DCategorical = function(params) {
   data.push({
       xrange: params.data.xrange,
       yrange: params.data.yrange
+      
   })
   if (params.group_centers.group.length >= 1) {
     data.push(
@@ -279,6 +284,7 @@ shinyjs.updatePlot3DCategorical = function(params) {
         x: params.data.x[i],
         y: params.data.y[i],
         z: params.data.z[i],
+        customdata: params.data.identifier[i],
         name: params.meta.traces[i],
         mode: 'markers',
         type: 'scatter3d',
