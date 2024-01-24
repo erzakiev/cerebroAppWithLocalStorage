@@ -38,6 +38,9 @@ output[["overview_projection"]] <- plotly::renderPlotly({
   yrange_abs_0.2 <- (xrange$max-xrange$min)*0.5
   zrange_abs_0.2 <- (zrange$max-zrange$min)*0.5
   
+  print('printing c(xrange$min-xrange_abs_0.2, xrange$max+xrange_abs_0.2)')
+  print(c(xrange$min-xrange_abs_0.2, xrange$max+xrange_abs_0.2))
+  
   if(ncol(getProjection(projection_to_display))>2){
     
     print('drawing 3d scatter overview')
