@@ -282,6 +282,9 @@ shinyjs.updatePlot3DCategorical = function(params) {
         x: params.data.x[i],
         y: params.data.y[i],
         z: params.data.z[i],
+        xrange: params.data.xrange,
+        yrange: params.data.yrange,
+        zrange: params.data.zrange
         name: params.meta.traces[i],
         mode: 'markers',
         type: 'scatter3d',
