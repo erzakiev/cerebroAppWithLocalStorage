@@ -237,6 +237,9 @@ shinyjs.updatePlot2DCategorical = function(params) {
     );
   }
   
+  console.log('printing params.data');
+  console.log(params.data);
+  
   console.log('printing params.data.identifier');
   console.log(params.data.identifier);
   
