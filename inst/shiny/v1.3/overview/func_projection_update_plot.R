@@ -69,11 +69,11 @@ overview_projection_update_plot <- function(input) {
       output_data[['zrange']] <- plot_parameters[["z_range"]]
       #print('printing numerical zrange from overview_projection_update_plot')
       #print(zrange)
-      #shinyjs::js$updatePlot3DContinuous(
-      #  output_meta,
-      #  output_data,
-      #  output_hover
-      #)
+      shinyjs::js$updatePlot3DContinuous(
+        output_meta,
+        output_data,
+        output_hover
+      )
     }
   ## follow this procedure when coloring variable is not numeric
   } else {

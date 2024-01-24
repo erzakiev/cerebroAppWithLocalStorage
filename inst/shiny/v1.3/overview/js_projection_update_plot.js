@@ -301,11 +301,11 @@ shinyjs.updatePlot3DCategorical = function(params) {
     );
   }
   
-  data.push({
-      xrange: params.data.xrange,
-      yrange: params.data.yrange,
-      zrange: params.data.zrange
-  })
+  //data.push({
+  //    xrange: params.data.xrange,
+  //    yrange: params.data.yrange,
+  //    zrange: params.data.zrange
+  //})
   
   
   if (params.group_centers.group.length >= 1) {
