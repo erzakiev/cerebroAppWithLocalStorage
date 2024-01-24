@@ -11,7 +11,7 @@ output[["overview_projection_main_parameters_UI"]] <- renderUI({
     selectInput(
       "overview_projection_point_color",
       label = "Color cells by",
-      choices = sort(colnames(getMetaData())[! colnames(getMetaData()) %in% c("cell_barcode")])
+      choices = colnames(getMetaData())[! colnames(getMetaData()) %in% c("cell_barcode")]
     )
   )
 })
