@@ -69,11 +69,11 @@ overview_projection_update_plot <- function(input) {
       output_data[['zrange']] <- plot_parameters[["z_range"]]
       #print('printing numerical zrange from overview_projection_update_plot')
       #print(zrange)
-      shinyjs::js$updatePlot3DContinuous(
-        output_meta,
-        output_data,
-        output_hover
-      )
+      #shinyjs::js$updatePlot3DContinuous(
+      #  output_meta,
+      #  output_data,
+      #  output_hover
+      #)
     }
   ## follow this procedure when coloring variable is not numeric
   } else {
@@ -171,6 +171,7 @@ overview_projection_update_plot <- function(input) {
         }
         i <- i + 1
       }
+      output_data[['zrange']] <- plot_parameters[["z_range"]]
       group_centers_df <- centerOfGroups(coordinates, cells_df, 3, plot_parameters[['color_variable']])
       output_group_centers <- list(
         group = group_centers_df[['group']],
@@ -189,12 +190,12 @@ overview_projection_update_plot <- function(input) {
       #print('printing final before pushing to the updating function categorical output_group_centers from overview_projection_update_plot')
       #print(output_group_centers)
       
-      #shinyjs::js$updatePlot3DCategorical(
-      #  output_meta,
-      #  output_data,
-      #  output_hover,
-      #  output_group_centers
-      #)
+      shinyjs::js$updatePlot3DCategorical(
+        output_meta,
+        output_data,
+        output_hover,
+        output_group_centers
+      )
     }
   }
 }
