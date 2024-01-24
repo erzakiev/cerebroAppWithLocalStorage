@@ -3,6 +3,7 @@
 ##----------------------------------------------------------------------------##
 output[["overview_coords_of_selected_cells"]] <- renderText({
   ## check selection
+  print('entered the overview_coords_of_selected_cells calculation')
   ## ... selection has not been made or there is no cell in it
   if ( is.null(overview_projection_selected_cells()) ) {
     ## manually set counter to 0
