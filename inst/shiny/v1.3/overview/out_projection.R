@@ -26,17 +26,17 @@ output[["overview_projection"]] <- plotly::renderPlotly({
   zrange <- XYranges$z
   
   
-  print('printing xrange')
-  print(xrange)
-  print('printing yrange')
-  print(yrange)
-  print('printing zrange, if applicable')
-  print(zrange)
+  #print('printing xrange')
+  #print(xrange)
+  #print('printing yrange')
+  #print(yrange)
+  #print('printing zrange, if applicable')
+  #print(zrange)
   
   
-  xrange_abs_0.2 <- (xrange$max-xrange$min)*0.2
-  yrange_abs_0.2 <- (xrange$max-xrange$min)*0.2
-  zrange_abs_0.2 <- (zrange$max-zrange$min)*0.2
+  xrange_abs_0.2 <- (xrange$max-xrange$min)*0.5
+  yrange_abs_0.2 <- (xrange$max-xrange$min)*0.5
+  zrange_abs_0.2 <- (zrange$max-zrange$min)*0.5
   
   if(ncol(getProjection(projection_to_display))>2){
     
