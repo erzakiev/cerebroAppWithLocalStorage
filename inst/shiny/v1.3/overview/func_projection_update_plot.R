@@ -28,7 +28,8 @@ overview_projection_update_plot <- function(input) {
       point_line = list(),
       x_range = plot_parameters[["x_range"]],
       y_range = plot_parameters[["y_range"]],
-      reset_axes = reset_axes
+      reset_axes = reset_axes,
+      identifier = rownames(coordinates)
     )
     
     #print('printing numerical categorical output_data from overview_projection_update_plot')
