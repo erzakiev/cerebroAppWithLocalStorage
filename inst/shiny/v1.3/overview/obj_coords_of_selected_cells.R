@@ -11,7 +11,7 @@ output[["overview_coords_of_selected_cells"]] <- renderText({
     ## ... selection has been made and at least 1 cell is in it
   } else {
     ## get number of selected cells
-    coords_of_selected_cells <- overview_projection_selected_cells()# %>%
+    coords_of_selected_cells <- overview_projection_selected_cells_coords()# %>%
     #  nrow() %>%
     #  formatC(format = "f", big.mark = ",", digits = 0)
   }
