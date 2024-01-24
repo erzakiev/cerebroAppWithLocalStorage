@@ -205,7 +205,7 @@ shinyjs.updatePlot3DContinuous = function(params) {
     layout_here_3d.scene.yaxis['range'] = params.data.y_range;
     layout_here_3d.scene.zaxis['autorange'] = false;
     layout_here_3d.scene.zaxis['range'] = params.data.z_range;
-  }
+  //}
   Plotly.react('overview_projection', data, layout_here_3d);
 }
 
