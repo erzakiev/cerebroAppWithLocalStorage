@@ -68,7 +68,7 @@ overview_projection_update_plot <- function(input) {
       output_data[['z']] <- coordinates[[3]]
       output_data[['zrange']] <- plot_parameters[["z_range"]]
       print('printing numerical zrange from overview_projection_update_plot')
-      print(zrange)
+      print(output_data[['zrange']])
       shinyjs::js$updatePlot3DContinuous(
         output_meta,
         output_data,
