@@ -96,7 +96,8 @@ overview_projection_update_plot <- function(input) {
       x_range = plot_parameters[["x_range"]],
       y_range = plot_parameters[["y_range"]],
       z_range = plot_parameters[["z_range"]],
-      reset_axes = reset_axes
+      reset_axes = reset_axes,
+      identifier = rownames(coordinates)
     )
     
     #print('printing current categorical output_data from overview_projection_update_plot')
