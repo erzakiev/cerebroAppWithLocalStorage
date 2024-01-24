@@ -236,12 +236,14 @@ shinyjs.updatePlot2DCategorical = function(params) {
       }
     );
   }
+  
+  console.log('printing params.data.identifier');
+  console.log(params.data.identifier);
+  
   data.push({
       xrange: params.data.xrange,
-      yrange: params.data.yrange
+      yrange: params.data.yrange,
       customdata: params.data.identifier
-      console.log('printing params.data.identifier');
-      console.log(params.data.identifier);
   })
   if (params.group_centers.group.length >= 1) {
     data.push(
