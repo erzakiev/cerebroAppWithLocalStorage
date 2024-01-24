@@ -148,15 +148,15 @@ shinyjs.updatePlot2DContinuous = function(params) {
     }
   );
   const layout_here = Object.assign(overview_projection_layout_2D);
-  if (params.data.reset_axes) {
-    layout_here.xaxis['autorange'] = true;
-    layout_here.yaxis['autorange'] = true;
-  } else {
+  //if (params.data.reset_axes) {
+  //  layout_here.xaxis['autorange'] = true;
+  //  layout_here.yaxis['autorange'] = true;
+  //} else {
     layout_here.xaxis['autorange'] = false;
     layout_here.xaxis['range'] = params.data.x_range;
     layout_here.yaxis['autorange'] = false;
     layout_here.yaxis['range'] = params.data.y_range;
-  }
+  //}
   Plotly.react('overview_projection', data, layout_here);
 }
 
@@ -194,11 +194,11 @@ shinyjs.updatePlot3DContinuous = function(params) {
   );
   
   const layout_here_3d = Object.assign(overview_projection_layout_3D);
-  if (params.data.reset_axes) {
-    layout_here_3d.scene.xaxis['autorange'] = true;
-    layout_here_3d.scene.yaxis['autorange'] = true;
-    layout_here_3d.scene.zaxis['autorange'] = true;
-  } else {
+  //if (params.data.reset_axes) {
+  //  layout_here_3d.scene.xaxis['autorange'] = true;
+  //  layout_here_3d.scene.yaxis['autorange'] = true;
+  //  layout_here_3d.scene.zaxis['autorange'] = true;
+  //} else {
     layout_here_3d.scene.xaxis['autorange'] = false;
     layout_here_3d.scene.xaxis['range'] = params.data.x_range;
     layout_here_3d.scene.yaxis['autorange'] = false;
@@ -260,15 +260,15 @@ shinyjs.updatePlot2DCategorical = function(params) {
     );
   }
   const layout_here = Object.assign(overview_projection_layout_2D);
-  if (params.data.reset_axes) {
-    layout_here.xaxis['autorange'] = true;
-    layout_here.yaxis['autorange'] = true;
-  } else {
+  //if (params.data.reset_axes) {
+  //  layout_here.xaxis['autorange'] = true;
+  //  layout_here.yaxis['autorange'] = true;
+  //} else {
     layout_here.xaxis['autorange'] = false;
     layout_here.xaxis['range'] = params.data.x_range;
     layout_here.yaxis['autorange'] = false;
     layout_here.yaxis['range'] = params.data.y_range;
-  }
+  //}
   Plotly.react('overview_projection', data, layout_here);
 }
 
