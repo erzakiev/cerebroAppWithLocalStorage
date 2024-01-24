@@ -219,6 +219,7 @@ shinyjs.updatePlot2DCategorical = function(params) {
         x: params.data.x[i],
         y: params.data.y[i],
         name: params.meta.traces[i],
+        customdata: params.data.identifier[i],
         mode: 'markers',
         type: 'scattergl',
         marker: {
