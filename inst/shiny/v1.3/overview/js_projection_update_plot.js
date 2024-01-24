@@ -60,24 +60,21 @@ const overview_projection_layout_3D = {
       mirror: true,
       showline: true,
       zeroline: false,
-      showgrid: false,
-      range: []
+      showgrid: false
     },
     yaxis: {
       autorange: false,
       mirror: true,
       showline: true,
       zeroline: false,
-      showgrid: false,
-      range: []
+      showgrid: false
     },
     zaxis: {
       autorange: false,
       mirror: true,
       showline: true,
       zeroline: false,
-      showgrid: false,
-      range: []
+      showgrid: false
     },
   },
   hoverlabel: {
@@ -128,6 +125,8 @@ shinyjs.updatePlot2DContinuous = function(params) {
     {
       x: params.data.x,
       y: params.data.y,
+      xrange: params.data.xrange,
+      yrange: params.data.yrange,
       mode: 'markers',
       type: 'scattergl',
       marker: {
@@ -170,6 +169,9 @@ shinyjs.updatePlot3DContinuous = function(params) {
       x: params.data.x,
       y: params.data.y,
       z: params.data.z,
+      xrange: params.data.xrange,
+      yrange: params.data.yrange,
+      zrange: params.data.zrange,
       mode: 'markers',
       type: 'scatter3d',
       marker: {
@@ -191,20 +193,20 @@ shinyjs.updatePlot3DContinuous = function(params) {
     }
   );
   
-  const layout_here = Object.assign(overview_projection_layout_3D);
+  const layout_here_3d = Object.assign(overview_projection_layout_3D);
   if (params.data.reset_axes) {
-    layout_here.xaxis['autorange'] = true;
-    layout_here.yaxis['autorange'] = true;
-    layout_here.zaxis['autorange'] = true;
+    layout_here_3d.xaxis['autorange'] = true;
+    layout_here_3d.yaxis['autorange'] = true;
+    layout_here_3d.zaxis['autorange'] = true;
   } else {
-    layout_here.xaxis['autorange'] = false;
-    layout_here.xaxis['range'] = params.data.x_range;
-    layout_here.yaxis['autorange'] = false;
-    layout_here.yaxis['range'] = params.data.y_range;
-    layout_here.zaxis['autorange'] = false;
-    layout_here.zaxis['range'] = params.data.z_range;
+    layout_here_3d.xaxis['autorange'] = false;
+    layout_here_3d.xaxis['range'] = params.data.x_range;
+    layout_here_3d.yaxis['autorange'] = false;
+    layout_here_3d.yaxis['range'] = params.data.y_range;
+    layout_here_3d.zaxis['autorange'] = false;
+    layout_here_3d.zaxis['range'] = params.data.z_range;
   }
-  Plotly.react('overview_projection', data, layout_here);
+  Plotly.react('overview_projection', data, layout_here_3d);
 }
 
 // update 2D projection with categorical coloring
@@ -234,6 +236,10 @@ shinyjs.updatePlot2DCategorical = function(params) {
       }
     );
   }
+  data.push({
+      xrange: params.data.xrange,
+      yrange: params.data.yrange
+  })
   if (params.group_centers.group.length >= 1) {
     data.push(
       {
@@ -294,6 +300,14 @@ shinyjs.updatePlot3DCategorical = function(params) {
       }
     );
   }
+  
+  data.push({
+      xrange: params.data.xrange,
+      yrange: params.data.yrange,
+      zrange: params.data.zrange
+  })
+  
+  
   if (params.group_centers.group.length >= 1) {
     data.push(
       {
@@ -314,18 +328,20 @@ shinyjs.updatePlot3DCategorical = function(params) {
       }
     );
   }
-  const layout_here = Object.assign(overview_projection_layout_3D);
+  
+  
+  const layout_here_3d = Object.assign(overview_projection_layout_3D);
   if (params.data.reset_axes) {
-    layout_here.xaxis['autorange'] = true;
-    layout_here.yaxis['autorange'] = true;
-    layout_here.zaxis['autorange'] = true;
+    layout_here_3d.xaxis['autorange'] = true;
+    layout_here_3d.yaxis['autorange'] = true;
+    layout_here_3d.zaxis['autorange'] = true;
   } else {
-    layout_here.xaxis['autorange'] = false;
-    layout_here.xaxis['range'] = params.data.x_range;
-    layout_here.yaxis['autorange'] = false;
-    layout_here.yaxis['range'] = params.data.y_range;
-    layout_here.zaxis['autorange'] = false;
-    layout_here.zaxis['range'] = params.data.z_range;
+    layout_here_3d.xaxis['autorange'] = false;
+    layout_here_3d.xaxis['range'] = params.data.x_range;
+    layout_here_3d.yaxis['autorange'] = false;
+    layout_here_3d.yaxis['range'] = params.data.y_range;
+    layout_here_3d.zaxis['autorange'] = false;
+    layout_here_3d.zaxis['range'] = params.data.z_range;
   }
-  Plotly.react('overview_projection', data, layout_here);
+  Plotly.react('overview_projection', data, layout_here_3d);
 }
