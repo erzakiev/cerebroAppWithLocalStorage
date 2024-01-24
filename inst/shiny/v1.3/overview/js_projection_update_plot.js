@@ -324,7 +324,8 @@ shinyjs.updatePlot3DCategorical = function(params) {
           size: 16
         },
         hoverinfo: 'skip',
-        inherit: false
+        inherit: false,
+        reset_axes: false
       }
     );
   }
