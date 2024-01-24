@@ -103,7 +103,7 @@ const overview_projection_default_params = {
     x_range: [],
     y_range: [],
     z_range: [],
-    reset_axes: false
+    reset_axes: true
   },
   hover: {
     hoverinfo: '',
@@ -324,27 +324,26 @@ shinyjs.updatePlot3DCategorical = function(params) {
           size: 16
         },
         hoverinfo: 'skip',
-        inherit: false,
-        reset_axes: false
+        inherit: false
       }
     );
   }
   
   
   const layout_here_3d = Object.assign(overview_projection_layout_3D);
-  if (params.data.reset_axes) {
-    console.log('params.data.reset_axes was true!!!!!!!!')
-    layout_here_3d.scene.xaxis['autorange'] = true;
-    layout_here_3d.scene.yaxis['autorange'] = true;
-    layout_here_3d.scene.zaxis['autorange'] = true;
-  } else {
-    console.log('params.data.reset_axes wasnt true!!!!!!!!')
+  //if (params.data.reset_axes) {
+  //  console.log('params.data.reset_axes was true!!!!!!!!')
+  //  layout_here_3d.scene.xaxis['autorange'] = true;
+  //  layout_here_3d.scene.yaxis['autorange'] = true;
+  //  layout_here_3d.scene.zaxis['autorange'] = true;
+  //} else {
+    console.log('params.data.reset_axes wasn true!!!!!!!!')
     layout_here_3d.scene.xaxis['autorange'] = false;
     layout_here_3d.scene.xaxis['range'] = params.data.x_range;
     layout_here_3d.scene.yaxis['autorange'] = false;
     layout_here_3d.scene.yaxis['range'] = params.data.y_range;
     layout_here_3d.scene.zaxis['autorange'] = false;
     layout_here_3d.scene.zaxis['range'] = params.data.z_range;
-  }
+  //}
   Plotly.react('overview_projection', data, layout_here_3d);
 }
