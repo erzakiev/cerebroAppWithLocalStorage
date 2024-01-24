@@ -282,9 +282,6 @@ shinyjs.updatePlot3DCategorical = function(params) {
         x: params.data.x[i],
         y: params.data.y[i],
         z: params.data.z[i],
-        xrange: params.data.xrange,
-        yrange: params.data.yrange,
-        zrange: params.data.zrange
         name: params.meta.traces[i],
         mode: 'markers',
         type: 'scatter3d',
@@ -335,6 +332,7 @@ shinyjs.updatePlot3DCategorical = function(params) {
   
   const layout_here_3d = Object.assign(overview_projection_layout_3D);
   if (params.data.reset_axes) {
+    console.log('params.data.reset_axes was true!!!!!!!!')
     layout_here_3d.scene.xaxis['autorange'] = true;
     layout_here_3d.scene.yaxis['autorange'] = true;
     layout_here_3d.scene.zaxis['autorange'] = true;
