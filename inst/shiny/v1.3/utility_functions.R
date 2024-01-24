@@ -726,12 +726,12 @@ getXYranges <- function(table) {
   if (ncol(table) < 3){
     ranges <- list(
       x = list(
-        min = table[,1] %>% min(na.rm=TRUE) %>% "*"(ifelse(.<0, 1.1, 0.9)) %>% round(),
-        max = table[,1] %>% max(na.rm=TRUE) %>% "*"(ifelse(.<0, 0.9, 1.1)) %>% round()
+        min = table[,1] %>% min(na.rm=TRUE) %>% "*"(ifelse(.<0, 1.1, 0.9)) %>% round(digits = 2),
+        max = table[,1] %>% max(na.rm=TRUE) %>% "*"(ifelse(.<0, 0.9, 1.1)) %>% round(digits = 2)
       ),
       y = list(
-        min = table[,2] %>% min(na.rm=TRUE) %>% "*"(ifelse(.<0, 1.1, 0.9)) %>% round(),
-        max = table[,2] %>% max(na.rm=TRUE) %>% "*"(ifelse(.<0, 0.9, 1.1)) %>% round()
+        min = table[,2] %>% min(na.rm=TRUE) %>% "*"(ifelse(.<0, 1.1, 0.9)) %>% round(digits = 2),
+        max = table[,2] %>% max(na.rm=TRUE) %>% "*"(ifelse(.<0, 0.9, 1.1)) %>% round(digits = 2)
       ),
       z = list(
         min = -0.5,
@@ -741,16 +741,16 @@ getXYranges <- function(table) {
   } else {
     ranges <- list(
       x = list(
-        min = table[,1] %>% min(na.rm=TRUE) %>% "*"(ifelse(.<0, 1.1, 0.9)) %>% round(),
-        max = table[,1] %>% max(na.rm=TRUE) %>% "*"(ifelse(.<0, 0.9, 1.1)) %>% round()
+        min = table[,1] %>% min(na.rm=TRUE) %>% "*"(ifelse(.<0, 1.1, 0.9)) %>% round(digits = 2),
+        max = table[,1] %>% max(na.rm=TRUE) %>% "*"(ifelse(.<0, 0.9, 1.1)) %>% round(digits = 2)
       ),
       y = list(
-        min = table[,2] %>% min(na.rm=TRUE) %>% "*"(ifelse(.<0, 1.1, 0.9)) %>% round(),
-        max = table[,2] %>% max(na.rm=TRUE) %>% "*"(ifelse(.<0, 0.9, 1.1)) %>% round()
+        min = table[,2] %>% min(na.rm=TRUE) %>% "*"(ifelse(.<0, 1.1, 0.9)) %>% round(digits = 2),
+        max = table[,2] %>% max(na.rm=TRUE) %>% "*"(ifelse(.<0, 0.9, 1.1)) %>% round(digits = 2)
       ),
       z = list(
-        min = table[,3] %>% min(na.rm=TRUE) %>% "*"(ifelse(.<0, 1.1, 0.9)) %>% round(),
-        max = table[,3] %>% max(na.rm=TRUE) %>% "*"(ifelse(.<0, 0.9, 1.1)) %>% round()
+        min = table[,3] %>% min(na.rm=TRUE) %>% "*"(ifelse(.<0, 1.1, 0.9)) %>% round(digits = 2),
+        max = table[,3] %>% max(na.rm=TRUE) %>% "*"(ifelse(.<0, 0.9, 1.1)) %>% round(digits = 2)
       )
     )
   }
