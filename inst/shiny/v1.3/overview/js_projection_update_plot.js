@@ -169,9 +169,6 @@ shinyjs.updatePlot3DContinuous = function(params) {
       x: params.data.x,
       y: params.data.y,
       z: params.data.z,
-      xrange: params.data.xrange,
-      yrange: params.data.yrange,
-      zrange: params.data.zrange,
       mode: 'markers',
       type: 'scatter3d',
       marker: {
