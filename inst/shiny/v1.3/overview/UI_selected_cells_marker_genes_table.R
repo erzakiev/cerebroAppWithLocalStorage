@@ -73,6 +73,8 @@ output[["overview_selected_cells_marker_genes_table"]] <- DT::renderDataTable({
   #print('printing selected_cells$customdata')
   #print(selected_cells$customdata)
   selection_status[selected_cells$customdata] <- 'selected'
+  print('printing table(selection_status)')
+  print(table(selection_status))
   
   #saveRDS(selection_status, '~/Downloads/selection_status.RDS', compress = T)
   prest <- presto::wilcoxauc(expression_matrix,
