@@ -337,6 +337,7 @@ shinyjs.updatePlot3DCategorical = function(params) {
     layout_here_3d.scene.yaxis['autorange'] = true;
     layout_here_3d.scene.zaxis['autorange'] = true;
   } else {
+    console.log('params.data.reset_axes wasnt true!!!!!!!!')
     layout_here_3d.scene.xaxis['autorange'] = false;
     layout_here_3d.scene.xaxis['range'] = params.data.x_range;
     layout_here_3d.scene.yaxis['autorange'] = false;
