@@ -13,6 +13,7 @@ output[["overview_coords_of_selected_cells"]] <- renderText({
     coords_of_selected_cells <- overview_projection_selected_cells()# %>%
     #  nrow() %>%
     #  formatC(format = "f", big.mark = ",", digits = 0)
+    return('pek')
   }
   ## prepare string to show
   
