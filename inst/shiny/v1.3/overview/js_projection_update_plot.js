@@ -103,7 +103,7 @@ const overview_projection_default_params = {
     x_range: [],
     y_range: [],
     z_range: [],
-    reset_axes: false
+    reset_axes: true
   },
   hover: {
     hoverinfo: '',
