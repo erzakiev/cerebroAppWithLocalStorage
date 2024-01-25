@@ -490,7 +490,7 @@ exportFromSeurat <- function(
         )
       )
     }
-    for ( projection in projections_available_non_pca ) {
+    for ( projection in projections_available ) {
       # SingleCellExperiment::reducedDims(export$expression)[[projection]] <- as.data.frame(
       #   object@reductions[[projection]]@cell.embeddings
       # )
