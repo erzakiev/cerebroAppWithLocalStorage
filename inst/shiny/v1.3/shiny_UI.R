@@ -79,6 +79,11 @@ ui <- dashboardPage(
   ),
   dashboardBody(
     shinyjs::useShinyjs(),
+    tags$script(HTML('
+      $(document).ready(function() {
+        $("header").find("nav").append(\'<span class="myClass"> Text Here </span>\');
+      })
+     ')),
     tags$script(HTML('$("body").addClass("fixed");')),
     tabItems(
       tab_load_data,
