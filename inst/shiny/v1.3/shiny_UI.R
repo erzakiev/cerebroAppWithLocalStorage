@@ -53,6 +53,28 @@ source(paste0(Cerebro.options[["cerebro_root"]], "/shiny/v1.3/about/UI.R"), loca
 ##----------------------------------------------------------------------------##
 ## Create dashboard with different tabs.
 ##----------------------------------------------------------------------------##
+
+checkShinyOutput <- function(){
+  tryCatch({
+    parsed <- getParseData(parse(file = rstudioapi::getSourceEditorContext()$path))
+    shinyOutput <- parsed[parsed$token=='SYMBOL_FUNCTION_CALL'& grepl("^[a-z]+[A-z]+Output$",parsed$text),]
+    shinyOutput <- merge(shinyOutput,parsed,by='line1')
+    shinyOutput <- shinyOutput[shinyOutput$token.y == "STR_CONST",]
+    warn <- table(shinyOutput$text.y)
+    warn <- warn[warn>=2]
+    warnname <- names(warn)
+    if (length(warn>1)) {
+      warning(mapply(function(warn,nb){paste("Output",warn,"is used",nb,"times")},warnname,warn))
+    }
+  },
+  error = function(){},
+  warning = function(cond) {
+    message("Shiny UI : check following warnings to avoid unexpected UI behaviour")
+    message(cond)
+  } 
+  )
+} 
+
 ui <- dashboardPage(
   title = "Cerebro",
   dashboardHeader(
