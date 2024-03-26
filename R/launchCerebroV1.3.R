@@ -53,6 +53,7 @@
 #' @importFrom tidyr pivot_longer pivot_wider
 #' @import scales
 #' @import shiny
+#' @import shinyjs
 #' @importFrom shinycssloaders withSpinner
 #' @import shinydashboard
 #' @importFrom shinyFiles getVolumes parseSavePath shinyFileSave shinySaveButton
