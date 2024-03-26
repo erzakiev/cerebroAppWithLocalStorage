@@ -132,9 +132,9 @@ server <- function(input, output, session) {
   
   observeEvent(c(input[['input_file']], input[['input_file2']]), {
     header <- basename(data_to_load$path)
-    print('printing header')
-    print(header)
-    #shinyjs::html("pageHeader", header)
+    #print('printing header')
+    #print(header)
+    shinyjs::html("pageHeader", header)
   })
   
   ## create reactive value holding the current data set
