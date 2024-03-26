@@ -90,11 +90,16 @@ ui <- dashboardPage(
         color: white;
       }
     '))),
+    #tags$script(HTML('
+    #  $(document).ready(function() {
+    #    $("header").find("nav").append(\'<span class="myClass"> Text Here </span>\');
+    #  })
+    # ')),
     tags$script(HTML('
-      $(document).ready(function() {
-        $("header").find("nav").append(\'<span class="myClass"> Text Here </span>\');
-      })
-     ')),
+                           $(document).ready(function() {
+                           $("header").find("nav").append(\'<div id="pageHeader" class="myClass"></div>\');
+                           })
+                           ')),
     tags$script(HTML('$("body").addClass("fixed");')),
     tabItems(
       tab_load_data,

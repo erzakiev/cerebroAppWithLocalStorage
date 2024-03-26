@@ -129,7 +129,12 @@ server <- function(input, output, session) {
     ## set reactive value to new file path
     data_to_load$path <- path_to_load
   })
-
+  
+  observeEvent(c(input[['input_file']], input[['input_file2']]), {
+    header <- input[["input_file"]]$name
+    shinyjs::html("pageHeader", header)
+  })
+  
   ## create reactive value holding the current data set
   data_set <- reactive({
     dataset_to_load <- data_to_load$path
