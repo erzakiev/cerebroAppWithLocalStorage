@@ -25,12 +25,12 @@ output[["load_data_select_file_UI"]] <- renderUI({
           titlePanel("Load data"),
           fileInput(
             inputId = "input_file",
-            label = "Select input data (.crb or .rds file)",
+            label = "Select input data (.crb file)",
             multiple = FALSE,
-            accept = c(".rds",".crb",".cerebro"),
+            accept = c(".crb",".cerebro"),
             width = '350px',
-            buttonLabel = "Browse...",
-            placeholder = "No file selected"
+            buttonLabel = "Browse your local system...",
+            placeholder = ""
           )
         ),
         column(6, 

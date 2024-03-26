@@ -40,6 +40,7 @@ output[["load_data_experiment_name"]] <- renderValueBox({
       getExperiment()$experiment_name,
       'not available'
     ),
+    width = 10,
     subtitle = "Experiment",
     color = "light-blue"
   )
