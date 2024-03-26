@@ -131,7 +131,7 @@ server <- function(input, output, session) {
   })
   
   observeEvent(c(input[['input_file']], input[['input_file2']]), {
-    header <- input[["input_file"]]
+    header <- basename(data_to_load$path)
     print('printing header')
     print(header)
     #shinyjs::html("pageHeader", header)
