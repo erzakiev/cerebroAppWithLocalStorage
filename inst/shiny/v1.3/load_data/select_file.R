@@ -30,7 +30,7 @@ output[["load_data_select_file_UI"]] <- renderUI({
             accept = c(".crb",".cerebro"),
             width = '350px',
             buttonLabel = "Browse your local system...",
-            placeholder = ""
+            placeholder = "(Doesn't work in Chrome)"
           )
         ),
         column(6, 
