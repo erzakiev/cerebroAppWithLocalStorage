@@ -33,9 +33,7 @@ output[["overview_selected_cells_marker_genes_table"]] <- DT::renderDataTable({
   req(
     overview_projection_selected_cells()
   )
-  selected_cells <- observe(
-    req(overview_projection_selected_cells(),plotly::event_data("plotly_brushing", source = "overview_projection")),
-    overview_projection_selected_cells())
+  selected_cells <- overview_projection_selected_cells()
   #saveRDS(selected_cells, file = '~/Downloads/selected_cells.RDS', compress=T)
   
   #coords <- expression_projection_coordinates()
