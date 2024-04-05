@@ -4,3 +4,5 @@
 .Rhistory
 LICENSE
 TODO.md
+^.*\.Rproj$
+^\.Rproj\.user$
