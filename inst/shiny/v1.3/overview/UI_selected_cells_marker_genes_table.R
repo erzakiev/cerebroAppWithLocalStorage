@@ -31,7 +31,7 @@ output[["overview_selected_cells_marker_genes_table_UI"]] <- renderUI({
 
 output[["overview_selected_cells_marker_genes_table"]] <- DT::renderDataTable({
   req(
-    overview_projection_selected_cells()
+    overview_projection_selected_cells(), cancelOutput = T
   )
   selected_cells <- overview_projection_selected_cells()
   #saveRDS(selected_cells, file = '~/Downloads/selected_cells.RDS', compress=T)
