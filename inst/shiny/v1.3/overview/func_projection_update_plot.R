@@ -130,16 +130,6 @@ overview_projection_update_plot <- function(input) {
         output_data[['y']][[i]] <- coordinates[[2]][cells_to_extract]
         output_data[['identifier']][[i]] <- rownames(coordinates)[cells_to_extract]
         output_data[['color']][[i]] <- unname(color_assignments[which(names(color_assignments)==j)])
-        cells_to_extract_selected <- selected_cells[selected_cells %in% cells_to_extract]
-        
-        print('printing head of cells_to_extract_selected')
-        print(head(cells_to_extract_selected))
-        
-        if(length(cells_to_extract_selected)==0 | is.null(cells_to_extract_selected)){
-          #output_data[['selectedpoints']][[i]] <- NULL
-        } else {
-          output_data[['selectedpoints']][[i]] <- cells_to_extract_selected
-        }
         
         if ( plot_parameters[["hover_info"]] ) {
           hover_info_matched <- match(
