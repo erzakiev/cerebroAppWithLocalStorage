@@ -172,6 +172,10 @@ overview_projection_update_plot <- function(input) {
         output_data[['y']][[i]] <- coordinates[[2]][cells_to_extract]
         output_data[['identifier']][[i]] <- rownames(coordinates)[cells_to_extract]
         output_data[['color']][[i]] <- unname(color_assignments[which(names(color_assignments)==j)])
+        print('printing head(cells_to_extract)')
+        print(head(cells_to_extract))
+        print('printing selected_cells_barcode')
+        print(head(selected_cells_barcode))
         intersection <- (which(cells_to_extract %in% selected_cells_barcode)-1)
         print('printing intersection')
         print(intersection)
