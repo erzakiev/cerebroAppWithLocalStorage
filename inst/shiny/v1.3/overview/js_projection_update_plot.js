@@ -224,7 +224,7 @@ shinyjs.updatePlot2DCategorical = function(params) {
         customdata: params.data.identifier[i],
         mode: 'markers',
         type: 'scattergl',
-        selectedpoints: params.data.selectedpoints[i]
+        selectedpoints: params.data.selectedpoints[i],
         marker: {
           size: params.data.point_size,
           opacity: params.data.point_opacity,
