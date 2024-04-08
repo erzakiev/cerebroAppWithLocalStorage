@@ -251,9 +251,7 @@ shinyjs.updatePlot2DCategorical = function(params) {
       yrange: params.data.yrange,
       customdata: params.data.identifier
   })
-  data.push({
-    selectedpoints: params.data.selectedpoints,
-  })
+  
   if (params.group_centers.group.length >= 1) {
     data.push(
       {
@@ -273,6 +271,9 @@ shinyjs.updatePlot2DCategorical = function(params) {
       }
     );
   }
+  data.push({
+    selectedpoints: params.data.selectedpoints,
+  })
   const layout_here = Object.assign(overview_projection_layout_2D);
   //if (params.data.reset_axes) {
   //  layout_here.xaxis['autorange'] = true;
