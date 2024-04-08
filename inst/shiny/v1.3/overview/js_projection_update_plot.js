@@ -104,6 +104,7 @@ const overview_projection_default_params = {
     x_range: [],
     y_range: [],
     z_range: [],
+    selectedpoints: [],
     reset_axes: true
   },
   hover: {
@@ -131,7 +132,7 @@ shinyjs.updatePlot2DContinuous = function(params) {
       customdata: params.data.identifier,
       mode: 'markers',
       type: 'scattergl',
-      selectedpoints: Array(50).fill().map((element, index) => index),
+      selectedpoints: params.data.selectedpoints,
       marker: {
         size: params.data.point_size,
         opacity: params.data.point_opacity,
@@ -229,7 +230,7 @@ shinyjs.updatePlot2DCategorical = function(params) {
           line: params.data.point_line,
           color: params.data.color[i]
         },
-        selectedpoints: Array(50).fill().map((element, index) => index),
+        selectedpoints: params.data.selectedpoints,
         hoverinfo: params.hover.hoverinfo,
         text: params.hover.text[i],
         hoverlabel: {
