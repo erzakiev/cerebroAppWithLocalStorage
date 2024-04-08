@@ -5,7 +5,7 @@
 overview_projection_selected_cells <- reactive({
   ## make sure plot parameters are set because it means that the plot can be
   ## generated
-  req(overview_projection_data_to_plot())
+  #req(overview_projection_data_to_plot())
   ## check selection
   if(is.null(plotly::event_data("plotly_brushing", source = "overview_projection")) ||
      length(plotly::event_data("plotly_brushing", source = "overview_projection")) == 0){
