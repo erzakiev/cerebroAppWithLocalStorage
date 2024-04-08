@@ -252,7 +252,7 @@ shinyjs.updatePlot2DCategorical = function(params) {
       customdata: params.data.identifier
   })
   
-  if (params.group_centers.group.length >= 1) {
+/*  if (params.group_centers.group.length >= 1) {
     data.push(
       {
         x: params.group_centers.x,
@@ -270,7 +270,7 @@ shinyjs.updatePlot2DCategorical = function(params) {
         inherit: false
       }
     );
-  }
+  } */
   data.push({
     selectedpoints: params.data.selectedpoints,
   })
