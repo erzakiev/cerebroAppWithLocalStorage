@@ -128,7 +128,7 @@ overview_projection_update_plot <- function(input) {
         output_data[['y']][[i]] <- coordinates[[2]][cells_to_extract]
         output_data[['identifier']][[i]] <- rownames(coordinates)[cells_to_extract]
         output_data[['color']][[i]] <- unname(color_assignments[which(names(color_assignments)==j)])
-        
+        output_data[['selectedpoints']][[i]] <- selected_cells[selected_cells %in% cells_to_extract]
         if ( plot_parameters[["hover_info"]] ) {
           hover_info_matched <- match(
             cells_df[['cell_barcode']][cells_to_extract],
