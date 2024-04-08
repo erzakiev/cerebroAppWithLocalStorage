@@ -99,7 +99,7 @@ overview_projection_update_plot <- function(input) {
       x_range = plot_parameters[["x_range"]],
       y_range = plot_parameters[["y_range"]],
       z_range = plot_parameters[["z_range"]],
-      selectedpoints = selected_cells,
+      #selectedpoints = selected_cells,
       reset_axes = reset_axes
     )
     
