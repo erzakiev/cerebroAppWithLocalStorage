@@ -270,10 +270,7 @@ shinyjs.updatePlot2DCategorical = function(params) {
       }
     );
   }
-  
-  //data.push({
-  //  selectedpoints: params.data.selectedpoints,
-  //})
+
   console.log('printing params.data.selectedpoints');
   console.log(params.data.selectedpoints);
   
