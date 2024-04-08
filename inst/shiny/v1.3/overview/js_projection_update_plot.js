@@ -104,7 +104,7 @@ const overview_projection_default_params = {
     x_range: [],
     y_range: [],
     z_range: [],
-    selectedpoints: [],
+    selectedpoints: true,
     reset_axes: true
   },
   hover: {
@@ -247,8 +247,7 @@ shinyjs.updatePlot2DCategorical = function(params) {
   data.push({
       xrange: params.data.xrange,
       yrange: params.data.yrange,
-      customdata: params.data.identifier,
-      selectedpoints: params.data.selectedpoints
+      customdata: params.data.identifier
   })
   
   if (params.group_centers.group.length >= 1) {
@@ -270,6 +269,11 @@ shinyjs.updatePlot2DCategorical = function(params) {
       }
     );
   }
+  
+  data.push({
+    selectedpoints: params.data.selectedpoints
+  }
+  )
 
   console.log('printing params.data.selectedpoints');
   console.log(params.data.selectedpoints);
