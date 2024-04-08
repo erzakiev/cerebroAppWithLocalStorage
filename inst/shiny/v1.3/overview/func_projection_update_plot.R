@@ -167,6 +167,8 @@ overview_projection_update_plot <- function(input) {
       i <- 1
       for ( j in names(color_assignments) ) {
         output_meta[['traces']][[i]] <- j
+        print('printing head(color_input)')
+        print(head(color_input))
         cells_to_extract <- which(color_input==j)
         output_data[['x']][[i]] <- coordinates[[1]][cells_to_extract]
         output_data[['y']][[i]] <- coordinates[[2]][cells_to_extract]
