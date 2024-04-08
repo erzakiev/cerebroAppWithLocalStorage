@@ -10,7 +10,7 @@ overview_projection_update_plot <- function(input) {
   color_assignments <- input[['color_assignments']]
   hover_info <- input[['hover_info']]
   color_input <- cells_df[[ plot_parameters[['color_variable']] ]]
-  selected_cells <- overview_projection_selected_cells()
+  selected_cells <- overview_projection_selected_cells()$pointNumber
   print('printing selected_cells')
   print(selected_cells)
   ## follow this when the coloring variable is numeric
