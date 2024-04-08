@@ -156,6 +156,9 @@ overview_projection_update_plot <- function(input) {
       #print(output_group_centers)
       output_data[['selectedpoints']] <- selected_cells
       
+      print('printing output_data for diags')
+      print(output_data)
+      
       shinyjs::js$updatePlot2DCategorical(
         output_meta,
         output_data,

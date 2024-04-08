@@ -230,7 +230,6 @@ shinyjs.updatePlot2DCategorical = function(params) {
           line: params.data.point_line,
           color: params.data.color[i]
         },
-        selectedpoints: params.data.selectedpoints,
         hoverinfo: params.hover.hoverinfo,
         text: params.hover.text[i],
         hoverlabel: {
@@ -251,6 +250,9 @@ shinyjs.updatePlot2DCategorical = function(params) {
       xrange: params.data.xrange,
       yrange: params.data.yrange,
       customdata: params.data.identifier
+  })
+  data.push({
+    selectedpoints: params.data.selectedpoints,
   })
   if (params.group_centers.group.length >= 1) {
     data.push(
