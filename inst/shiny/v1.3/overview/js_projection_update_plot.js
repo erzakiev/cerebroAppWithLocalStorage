@@ -278,6 +278,10 @@ shinyjs.updatePlot2DCategorical = function(params) {
   console.log('printing params.data.selectedpoints');
   console.log(params.data.selectedpoints);
   
+  
+  console.log('printing data.selectedpoints');
+  console.log(data.selectedpoints);
+  
   const layout_here = Object.assign(overview_projection_layout_2D);
   //if (params.data.reset_axes) {
   //  layout_here.xaxis['autorange'] = true;
