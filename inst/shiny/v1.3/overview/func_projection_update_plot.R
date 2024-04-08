@@ -10,7 +10,8 @@ overview_projection_update_plot <- function(input) {
   color_assignments <- input[['color_assignments']]
   hover_info <- input[['hover_info']]
   color_input <- cells_df[[ plot_parameters[['color_variable']] ]]
-  selected_cells <- overview_projection_selected_cells()$pointNumber
+  #selected_cells <- overview_projection_selected_cells()$pointNumber
+  selected_cells_barcode <- overview_projection_selected_cells()$customdata
   saveRDS(overview_projection_selected_cells(), file = 'overview_projection_selected_cells().RDS', compress = T)
   ## follow this when the coloring variable is numeric
   if ( is.numeric(color_input) ) {
@@ -20,21 +21,39 @@ overview_projection_update_plot <- function(input) {
       traces = plot_parameters[['color_variable']],
       color_variable = plot_parameters[['color_variable']]
     )
-    if(length(selected_cells)==0 | is.null(selected_cells))selected_cells <- list()
+    if(length(selected_cells)==0 | is.null(selected_cells)){
+      # do not pass selectedpoints
+      output_data <- list(
+        x = coordinates[[1]],
+        y = coordinates[[2]],
+        color = color_input,
+        point_size = plot_parameters[["point_size"]],
+        point_opacity = plot_parameters[["point_opacity"]],
+        point_line = list(),
+        x_range = plot_parameters[["x_range"]],
+        y_range = plot_parameters[["y_range"]],
+        reset_axes = reset_axes,
+        identifier = rownames(coordinates)
+      )
+      
+    } else {
+      # DO pass selectedpoints
+      output_data <- list(
+        x = coordinates[[1]],
+        y = coordinates[[2]],
+        color = color_input,
+        point_size = plot_parameters[["point_size"]],
+        point_opacity = plot_parameters[["point_opacity"]],
+        point_line = list(),
+        x_range = plot_parameters[["x_range"]],
+        y_range = plot_parameters[["y_range"]],
+        reset_axes = reset_axes,
+        identifier = rownames(coordinates),
+        selectedpoints = selected_cells
+      )
+    }
     ## put together data
-    output_data <- list(
-      x = coordinates[[1]],
-      y = coordinates[[2]],
-      color = color_input,
-      point_size = plot_parameters[["point_size"]],
-      point_opacity = plot_parameters[["point_opacity"]],
-      point_line = list(),
-      x_range = plot_parameters[["x_range"]],
-      y_range = plot_parameters[["y_range"]],
-      reset_axes = reset_axes,
-      identifier = rownames(coordinates),
-      selectedpoints = selected_cells
-    )
+    
     
     #print('printing numerical categorical output_data from overview_projection_update_plot')
     #print(output_data)
