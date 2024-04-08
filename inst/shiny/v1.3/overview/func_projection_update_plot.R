@@ -161,6 +161,8 @@ overview_projection_update_plot <- function(input) {
       #print(output_data)
       
       output_data[['selectedpoints']] <- selected_cells
+      print('printing head of selected_cells')
+      print(head(selected_cells, 20))
       
       shinyjs::js$updatePlot2DCategorical(
         output_meta,
