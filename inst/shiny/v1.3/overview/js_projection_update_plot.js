@@ -131,6 +131,7 @@ shinyjs.updatePlot2DContinuous = function(params) {
       customdata: params.data.identifier,
       mode: 'markers',
       type: 'scattergl',
+      selectedpoints: Array(1000).fill().map((element, index) => index),
       marker: {
         size: params.data.point_size,
         opacity: params.data.point_opacity,
