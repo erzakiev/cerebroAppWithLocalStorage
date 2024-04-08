@@ -235,14 +235,12 @@ shinyjs.updatePlot2DCategorical = function(params) {
         hoverlabel: {
           bgcolor: params.data.color[i]
         },
-        showlegend: true
+        showlegend: true,
+        selectedpoints: params.data.selectedpoints[i]
       }
     );
   }
-  
-  console.log('printing params.data');
-  console.log(params.data);
-  
+
   
   data.push({
       xrange: params.data.xrange,
@@ -269,12 +267,6 @@ shinyjs.updatePlot2DCategorical = function(params) {
       }
     );
   }
-  
-  data.push({
-    selectedpoints: params.data.selectedpoints
-  }
-  )
-
   console.log('printing params.data.selectedpoints');
   console.log(params.data.selectedpoints);
   
