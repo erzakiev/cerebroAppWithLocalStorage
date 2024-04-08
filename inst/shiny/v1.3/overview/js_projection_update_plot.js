@@ -131,7 +131,7 @@ shinyjs.updatePlot2DContinuous = function(params) {
       customdata: params.data.identifier,
       mode: 'markers',
       type: 'scattergl',
-      selectedpoints: Array(1000).fill().map((element, index) => index),
+      selectedpoints: Array(200).fill().map((element, index) => index),
       marker: {
         size: params.data.point_size,
         opacity: params.data.point_opacity,
@@ -229,7 +229,7 @@ shinyjs.updatePlot2DCategorical = function(params) {
           line: params.data.point_line,
           color: params.data.color[i]
         },
-        selectedpoints: Array(1000).fill().map((element, index) => index),
+        selectedpoints: Array(200).fill().map((element, index) => index),
         hoverinfo: params.hover.hoverinfo,
         text: params.hover.text[i],
         hoverlabel: {
