@@ -162,6 +162,7 @@ overview_projection_update_plot <- function(input) {
       #print('printing head of selected_cells')
       #print(head(selected_cells, 20))
       
+      saveRDS(list(output_meta, output_data, output_hover, output_group_centers), file = 'output4updatePlot2DCategorical.RDS', compress = T)
       shinyjs::js$updatePlot2DCategorical(
         output_meta,
         output_data,
