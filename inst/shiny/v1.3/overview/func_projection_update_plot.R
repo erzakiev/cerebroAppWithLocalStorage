@@ -109,22 +109,44 @@ overview_projection_update_plot <- function(input) {
       color_variable = plot_parameters[['color_variable']]
     )
     ## put together data
-    output_data <- list(
-      x = list(),
-      y = list(),
-      z = list(),
-      identifier = list(),
-      color = list(),
-      point_size = plot_parameters[["point_size"]],
-      point_opacity = plot_parameters[["point_opacity"]],
-      point_line = list(),
-      x_range = plot_parameters[["x_range"]],
-      y_range = plot_parameters[["y_range"]],
-      z_range = plot_parameters[["z_range"]],
-      #selectedpoints = selected_cells,
-      reset_axes = reset_axes
-    )
     
+    if(length(selected_cells)==0 | is.null(selected_cells)){
+      output_data <- list(
+        x = list(),
+        y = list(),
+        z = list(),
+        identifier = list(),
+        color = list(),
+        point_size = plot_parameters[["point_size"]],
+        point_opacity = plot_parameters[["point_opacity"]],
+        point_line = list(),
+        x_range = plot_parameters[["x_range"]],
+        y_range = plot_parameters[["y_range"]],
+        z_range = plot_parameters[["z_range"]],
+        #selectedpoints = selected_cells,
+        reset_axes = reset_axes
+      )
+      
+    } else {
+      output_data <- list(
+        x = list(),
+        y = list(),
+        z = list(),
+        identifier = list(),
+        color = list(),
+        point_size = plot_parameters[["point_size"]],
+        point_opacity = plot_parameters[["point_opacity"]],
+        point_line = list(),
+        x_range = plot_parameters[["x_range"]],
+        y_range = plot_parameters[["y_range"]],
+        z_range = plot_parameters[["z_range"]],
+        selectedpoints = selected_cells,
+        reset_axes = reset_axes
+      )
+      
+    }
+    
+        
     #print('printing current categorical output_data from overview_projection_update_plot')
     #print(output_data)
     
