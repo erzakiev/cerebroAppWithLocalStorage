@@ -61,6 +61,7 @@ overview_projection_update_plot <- function(input) {
     #print(output_hover)
     
     ## send request to update projection to JavaScript functions (2D / 3D)
+    saveRDS(list(output_meta, output_data, output_hover), file = 'output4updatePlot2DContinious.RDS', compress = T)
     if ( plot_parameters[['n_dimensions']] == 2 ) {
       shinyjs::js$updatePlot2DContinuous(
         output_meta,
