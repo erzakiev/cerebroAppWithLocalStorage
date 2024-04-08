@@ -11,6 +11,7 @@ overview_projection_update_plot <- function(input) {
   hover_info <- input[['hover_info']]
   color_input <- cells_df[[ plot_parameters[['color_variable']] ]]
   selected_cells <- overview_projection_selected_cells()$pointNumber
+  saveRDS(overview_projection_selected_cells(), file = 'overview_projection_selected_cells().RDS', compress = T)
   ## follow this when the coloring variable is numeric
   if ( is.numeric(color_input) ) {
     ## put together meta data
