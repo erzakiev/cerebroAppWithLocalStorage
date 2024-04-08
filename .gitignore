@@ -8,3 +8,4 @@ tests
 .Rproj.user
 *.Rproj
 .Rbuildignore
+output4updatePlot2DCategorical.RDS

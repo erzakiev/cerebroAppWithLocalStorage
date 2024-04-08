@@ -19,6 +19,7 @@ overview_projection_update_plot <- function(input) {
       traces = plot_parameters[['color_variable']],
       color_variable = plot_parameters[['color_variable']]
     )
+    if(length(selected_cells) | is.null(selected_cells)) selected_cells <- list()
     ## put together data
     output_data <- list(
       x = coordinates[[1]],
