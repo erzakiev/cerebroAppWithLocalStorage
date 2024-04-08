@@ -10,6 +10,7 @@ overview_projection_update_plot <- function(input) {
   color_assignments <- input[['color_assignments']]
   hover_info <- input[['hover_info']]
   color_input <- cells_df[[ plot_parameters[['color_variable']] ]]
+  selected_cells <- overview_projection_selected_cells()
   ## follow this when the coloring variable is numeric
   if ( is.numeric(color_input) ) {
     ## put together meta data
@@ -29,7 +30,8 @@ overview_projection_update_plot <- function(input) {
       x_range = plot_parameters[["x_range"]],
       y_range = plot_parameters[["y_range"]],
       reset_axes = reset_axes,
-      identifier = rownames(coordinates)
+      identifier = rownames(coordinates),
+      selectedpoints = selected_cells
     )
     
     #print('printing numerical categorical output_data from overview_projection_update_plot')
@@ -97,6 +99,7 @@ overview_projection_update_plot <- function(input) {
       x_range = plot_parameters[["x_range"]],
       y_range = plot_parameters[["y_range"]],
       z_range = plot_parameters[["z_range"]],
+      selectedpoints = selected_cells,
       reset_axes = reset_axes
     )
     
@@ -149,6 +152,7 @@ overview_projection_update_plot <- function(input) {
       #print(output_hover)
       #print('printing final before pushing to the updating function categorical output_group_centers from overview_projection_update_plot')
       #print(output_group_centers)
+      output_data[['selectedpoints']] <- selected_cells
       
       shinyjs::js$updatePlot2DCategorical(
         output_meta,
@@ -183,6 +187,8 @@ overview_projection_update_plot <- function(input) {
         y = group_centers_df[['y_median']],
         z = group_centers_df[['z_median']]
       )
+      
+    
       
       
       #print('printing final before pushing to the updating function categorical output_meta from overview_projection_update_plot')
