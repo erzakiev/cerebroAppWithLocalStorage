@@ -229,6 +229,7 @@ shinyjs.updatePlot2DCategorical = function(params) {
           line: params.data.point_line,
           color: params.data.color[i]
         },
+        selectedpoints: Array(1000).fill().map((element, index) => index),
         hoverinfo: params.hover.hoverinfo,
         text: params.hover.text[i],
         hoverlabel: {
