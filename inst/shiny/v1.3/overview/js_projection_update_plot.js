@@ -104,7 +104,7 @@ const overview_projection_default_params = {
     x_range: [],
     y_range: [],
     z_range: [],
-    selectedpoints: true,
+    selectedpoints: [],
     reset_axes: true
   },
   hover: {
