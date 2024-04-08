@@ -135,10 +135,8 @@ overview_projection_update_plot <- function(input) {
         print('printing head of cells_to_extract_selected')
         print(head(cells_to_extract_selected))
         
-        print('printing head of cells_to_extract_selected')
-        print(head(cells_to_extract_selected))
-        if(length(cells_to_extract_selected)==0){
-          output_data[['selectedpoints']][[i]] <- NULL
+        if(length(cells_to_extract_selected)==0 | is.null(cells_to_extract_selected)){
+          #output_data[['selectedpoints']][[i]] <- NULL
         } else {
           output_data[['selectedpoints']][[i]] <- cells_to_extract_selected
         }
