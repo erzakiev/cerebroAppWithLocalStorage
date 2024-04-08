@@ -4,6 +4,7 @@
 overview_projection_update_plot <- function(input) {
   ## assign input data to new variables
   cells_df <- input[['cells_df']]
+  saveRDS(cells_df, file = 'cells_df.RDS', compress = T)
   print('printing head(cells_df)')
   print(head(cells_df))
   coordinates <- input[['coordinates']]
