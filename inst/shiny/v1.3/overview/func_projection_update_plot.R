@@ -4,6 +4,8 @@
 overview_projection_update_plot <- function(input) {
   ## assign input data to new variables
   cells_df <- input[['cells_df']]
+  print('printing head(cells_df)')
+  print(head(cells_df))
   coordinates <- input[['coordinates']]
   reset_axes <- input[['reset_axes']]
   plot_parameters <- input[['plot_parameters']]
@@ -73,14 +75,6 @@ overview_projection_update_plot <- function(input) {
       output_hover[['text']] <- unname(hover_info)
     }
     
-    
-    #print('printing final before pushing to the updating function continious output_meta from overview_projection_update_plot')
-    #print(output_meta)
-    #print('printing final before pushing to the updating function continious output_data from overview_projection_update_plot')
-    #print(output_data)
-    #print('printing final before pushing to the updating function continious output_hover from overview_projection_update_plot')
-    #print(output_hover)
-    
     ## send request to update projection to JavaScript functions (2D / 3D)
     saveRDS(list(output_meta, output_data, output_hover), file = 'output4updatePlot2DContinious.RDS', compress = T)
     if ( plot_parameters[['n_dimensions']] == 2 ) {
@@ -92,8 +86,6 @@ overview_projection_update_plot <- function(input) {
     } else if ( plot_parameters[['n_dimensions']] == 3 ) {
       output_data[['z']] <- coordinates[[3]]
       output_data[['z_range']] <- plot_parameters[["z_range"]]
-      #print('printing numerical z_range from overview_projection_update_plot')
-      #print(output_data[['z_range']])
       shinyjs::js$updatePlot3DContinuous(
         output_meta,
         output_data,
@@ -147,9 +139,6 @@ overview_projection_update_plot <- function(input) {
     }
     
         
-    #print('printing current categorical output_data from overview_projection_update_plot')
-    #print(output_data)
-    
     if ( plot_parameters[["draw_border"]] ) {
       output_data[['point_line']] <- list(
         color = "rgb(196,196,196)",
@@ -167,8 +156,6 @@ overview_projection_update_plot <- function(input) {
       i <- 1
       for ( j in names(color_assignments) ) {
         output_meta[['traces']][[i]] <- j
-        print('printing head(color_input)')
-        print(head(color_input))
         cells_to_extract <- which(color_input==j)
         output_data[['x']][[i]] <- coordinates[[1]][cells_to_extract]
         output_data[['y']][[i]] <- coordinates[[2]][cells_to_extract]
