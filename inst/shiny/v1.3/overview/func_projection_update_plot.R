@@ -131,8 +131,12 @@ overview_projection_update_plot <- function(input) {
         output_data[['identifier']][[i]] <- rownames(coordinates)[cells_to_extract]
         output_data[['color']][[i]] <- unname(color_assignments[which(names(color_assignments)==j)])
         cells_to_extract_selected <- selected_cells[selected_cells %in% cells_to_extract]
-        print('printing cells_to_extract_selected')
-        print(cells_to_extract_selected)
+        
+        print('printing head of cells_to_extract_selected')
+        print(head(cells_to_extract_selected))
+        
+        print('printing head of cells_to_extract_selected')
+        print(head(cells_to_extract_selected))
         if(length(cells_to_extract_selected)==0){
           output_data[['selectedpoints']][[i]] <- NULL
         } else {
@@ -165,8 +169,8 @@ overview_projection_update_plot <- function(input) {
       #print(output_group_centers)
       
       
-      print('printing output_data for diags')
-      print(output_data)
+      #print('printing output_data for diags')
+      #print(output_data)
       
       shinyjs::js$updatePlot2DCategorical(
         output_meta,
