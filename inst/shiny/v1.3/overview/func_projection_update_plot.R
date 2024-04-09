@@ -6,8 +6,8 @@ overview_projection_update_plot <- function(input) {
   cells_df <- input[['cells_df']]
   saveRDS(cells_df, file = 'cells_df.RDS', compress = T)
   rownames(cells_df) <- cells_df$cell_barcode
-  print('printing head(cells_df)')
-  print(head(cells_df))
+  #print('printing head(cells_df)')
+  #print(head(cells_df))
   coordinates <- input[['coordinates']]
   reset_axes <- input[['reset_axes']]
   plot_parameters <- input[['plot_parameters']]
@@ -143,13 +143,13 @@ overview_projection_update_plot <- function(input) {
         output_data[['y']][[i]] <- coordinates[[2]][cells_to_extract]
         output_data[['identifier']][[i]] <- rownames(coordinates)[cells_to_extract]
         output_data[['color']][[i]] <- unname(color_assignments[which(names(color_assignments)==j)])
-        print('printing head(cells_to_extract)')
-        print(head(cells_to_extract))
-        print('printing selected_cells_barcode')
-        print(head(selected_cells_barcode))
+        #print('printing head(cells_to_extract)')
+        #print(head(cells_to_extract))
+        #print('printing selected_cells_barcode')
+        #print(head(selected_cells_barcode))
         intersection <- (which(cells_df[cells_to_extract,1] %in% selected_cells_barcode)-1)
-        print('printing intersection')
-        print(intersection)
+        #print('printing intersection')
+        #print(intersection)
         output_data[['selectedpoints']][[i]] <- intersection
         if ( plot_parameters[["hover_info"]] ) {
           hover_info_matched <- match(
@@ -166,24 +166,7 @@ overview_projection_update_plot <- function(input) {
         x = group_centers_df[['x_median']],
         y = group_centers_df[['y_median']]
       )
-      
-      #print('printing final before pushing to the updating function categorical output_meta from overview_projection_update_plot')
-      #print(output_meta)
-      #print('printing final before pushing to the updating function categorical output_data from overview_projection_update_plot')
-      #print(output_data)
-      #print('printing final before pushing to the updating function categorical output_hover from overview_projection_update_plot')
-      #print(output_hover)
-      #print('printing final before pushing to the updating function categorical output_group_centers from overview_projection_update_plot')
-      #print(output_group_centers)
-      
-      
-      #print('printing output_data for diags')
-      #print(output_data)
-      
-      #output_data[['selectedpoints']] <- selected_cells
-      #print('printing head of selected_cells')
-      #print(head(selected_cells, 20))
-      
+    
       saveRDS(list(output_meta, output_data, output_hover, output_group_centers), file = 'output4updatePlot2DCategorical.RDS', compress = T)
       shinyjs::js$updatePlot2DCategorical(
         output_meta,
