@@ -29,7 +29,7 @@ output[["overview_details_selected_cells_plot"]] <- plotly::renderPlotly({
       dplyr::rename(X1 = 1, X2 = 2) %>%
       dplyr::mutate(
         identifier = paste0(X1, '-', X2),
-        group = ifelse(identifier %in% overview_projection_selected_cells()$identifier, 'selected', 'not selected'),
+        group = ifelse(cell_barcode %in% overview_projection_selected_cells()$customdata, 'selected', 'not selected'),
         group = factor(group, levels = c('selected', 'not selected'))
       )
   }
