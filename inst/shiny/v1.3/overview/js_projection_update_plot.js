@@ -225,8 +225,10 @@ shinyjs.updatePlot2DCategorical = function(params) {
   params = shinyjs.getParams(params, overview_projection_default_params);
   const data = [];
   for (let i = 0; i < params.data.x.length; i++) {
-  console.log('params.data.color[i].selectedpoints')
-  console.log(params.data.color[i].selectedpoints)
+  console.log('printing params.data.selectedpoints[i]')
+  console.log(params.data.selectedpoints[i])
+  console.log('printing params.data.selectedpoints[i].length')
+  console.log(params.data.selectedpoints[i].length)
   if (params.data.selectedpoints[i].length == 0) {
     data.push(
       {
@@ -315,12 +317,12 @@ shinyjs.updatePlot2DCategorical = function(params) {
       }
     );
   }
-  console.log('printing params.data.selectedpoints');
-  console.log(params.data.selectedpoints);
+  //console.log('printing params.data.selectedpoints');
+  //console.log(params.data.selectedpoints);
   
   
-  console.log('printing data.selectedpoints');
-  console.log(data.selectedpoints);
+  //console.log('printing data.selectedpoints');
+  //console.log(data.selectedpoints);
   
   const layout_here = Object.assign(overview_projection_layout_2D);
   //if (params.data.reset_axes) {
