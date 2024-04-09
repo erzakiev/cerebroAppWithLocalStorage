@@ -8,16 +8,16 @@
 output[["load_data_sample_info_UI"]] <- renderUI({
   tagList(
     fluidRow(
-      valueBoxOutput("load_data_experiment_name", width = 10),
+      valueBoxOutput("load_data_experiment_name", width = 12),
+    ),
+    fluidRow(
       valueBoxOutput("load_data_number_of_cells"),
-      valueBoxOutput("load_data_number_of_grouping_variables")
+      valueBoxOutput("load_data_number_of_grouping_variables"),
+      valueBoxOutput("load_data_organism")
     ),
     fluidRow(
-      valueBoxOutput("load_data_organism"),
       valueBoxOutput("load_data_date_of_analysis"),
-      valueBoxOutput("load_data_date_of_export")
-    ),
-    fluidRow(
+      valueBoxOutput("load_data_date_of_export"),
       valueBoxOutput("load_data_number_of_genes")
       )
   )
