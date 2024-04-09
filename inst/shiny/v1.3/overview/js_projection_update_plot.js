@@ -226,7 +226,7 @@ shinyjs.updatePlot2DCategorical = function(params) {
   const data = [];
   empty_selection = true;
   for (let i = 0; i < params.data.x.length; i++) {
-    if (params.data.selectedpoints[i].length == 0) {
+    if (params.data.selectedpoints[i].length != 0) {
       empty_selection = false;
     }
   }
@@ -258,10 +258,10 @@ shinyjs.updatePlot2DCategorical = function(params) {
       );
   } else {
     for (let i = 0; i < params.data.x.length; i++) {
-  console.log('printing params.data.selectedpoints[i]')
-  console.log(params.data.selectedpoints[i])
-  console.log('printing params.data.selectedpoints[i].length')
-  console.log(params.data.selectedpoints[i].length)
+  console.log('printing params.data.selectedpoints[i]');
+  console.log(params.data.selectedpoints[i]);
+  console.log('printing params.data.selectedpoints[i].length');
+  console.log(params.data.selectedpoints[i].length);
   if (params.data.selectedpoints[i].length == 0) {
     data.push(
       {
@@ -331,7 +331,7 @@ shinyjs.updatePlot2DCategorical = function(params) {
       xrange: params.data.xrange,
       yrange: params.data.yrange,
       customdata: params.data.identifier
-  })
+  });
   
   if (params.group_centers.group.length >= 1) {
     data.push(
