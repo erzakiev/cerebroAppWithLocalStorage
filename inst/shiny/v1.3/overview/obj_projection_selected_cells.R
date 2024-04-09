@@ -7,6 +7,7 @@ overview_projection_selected_cells <- reactive({
   ## generated
   #req(overview_projection_data_to_plot())
   ## check selection
+  
   if(is.null(plotly::event_data("plotly_brushing", source = "overview_projection")) ||
      length(plotly::event_data("plotly_brushing", source = "overview_projection")) == 0){
     
@@ -19,8 +20,7 @@ overview_projection_selected_cells <- reactive({
       if (
          is.null(plotly::event_data("plotly_selected", source = "overview_projection")) ||
          length(plotly::event_data("plotly_selected", source = "overview_projection")) == 0
-      ){warning('poopin')} else{
-        message('dood')
+      ){} else{
       plotly::event_data("plotly_selected", source = "overview_projection") %>%
         dplyr::mutate(identifier = paste0(x, '-', y)) %>%
         return()
