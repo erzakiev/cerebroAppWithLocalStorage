@@ -15,6 +15,7 @@ output[["overview_details_selected_cells_plot"]] <- plotly::renderPlotly({
     getProjection(input[["overview_projection_to_display"]]),
     getMetaData()
   )
+  saveRDS(cells_df, file = 'cells_df_from_out_details_selected_cells_plot.RDS', compress = T)
   ## check selection
   ## ... selection has not been made or there is no cell in it
   if ( is.null(overview_projection_selected_cells()) ) {
