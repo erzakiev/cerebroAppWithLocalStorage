@@ -75,7 +75,7 @@ output[["load_data_number_of_grouping_variables"]] <- renderValueBox({
 
 ## organism
 output[["load_data_organism"]] <- renderValueBox({
-  box(
+  valueBox(
     title = "Organism",
     #width = 5,
     background = "blue",
@@ -90,7 +90,7 @@ output[["load_data_organism"]] <- renderValueBox({
 ## date of analysis
 ## as.character() because the date is otherwise converted to interger
 output[["load_data_date_of_analysis"]] <- renderValueBox({
-  box(
+  valueBox(
     title = "Date when data was analyzed",
     #width = 5,
     background = "blue",
@@ -105,7 +105,7 @@ output[["load_data_date_of_analysis"]] <- renderValueBox({
 ## date of export
 ## as.character() because the date is otherwise converted to interger
 output[["load_data_date_of_export"]] <- renderValueBox({
-  box(
+  valueBox(
     title = "Date when data was exported",
     #width = 5,
     background = "blue",
