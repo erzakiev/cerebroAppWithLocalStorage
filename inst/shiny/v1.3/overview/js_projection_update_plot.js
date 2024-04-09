@@ -33,7 +33,8 @@ const overview_projection_layout_2D = {
       size: 11
     },
     align: 'left'
-  }
+  },
+  selectedpoints: true
 };
 
 // layout for 3D projections
