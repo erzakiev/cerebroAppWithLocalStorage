@@ -19,7 +19,7 @@ overview_projection_selected_cells <- reactive({
       if (
          is.null(plotly::event_data("plotly_selected", source = "overview_projection")) ||
          length(plotly::event_data("plotly_selected", source = "overview_projection")) == 0
-      ){} else{
+      ){return(NULL)} else{
       plotly::event_data("plotly_selected", source = "overview_projection") %>%
         dplyr::mutate(identifier = paste0(x, '-', y)) %>%
         return()
