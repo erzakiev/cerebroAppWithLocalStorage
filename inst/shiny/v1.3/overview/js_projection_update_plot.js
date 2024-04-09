@@ -231,7 +231,7 @@ shinyjs.updatePlot2DCategorical = function(params) {
     }
   }
   if(empty_selection == true) {
-    
+    console.log('the selection was empty so we dont highlight anything');
   for (let i = 0; i < params.data.x.length; i++) {
       data.push(
         {
@@ -258,6 +258,7 @@ shinyjs.updatePlot2DCategorical = function(params) {
   }
     
   } else {
+    console.log('the selection was NOT empty so we dont highlight anything');
     for (let i = 0; i < params.data.x.length; i++) {
       if (params.data.selectedpoints[i].length == 0) {
         data.push(
@@ -280,7 +281,19 @@ shinyjs.updatePlot2DCategorical = function(params) {
               bgcolor: params.data.color[i]
             },
             showlegend: true,
-            selectedpoints: []
+            selectedpoints: [],
+            selected: 
+            {
+              marker: {
+                opacity: 0.99
+              }
+            },
+            unselected: 
+            {
+              marker: {
+                opacity: 0.05
+              }
+            }
           }
         );
       } else {
