@@ -8,25 +8,14 @@ overview_projection_selected_cells <- reactive({
   #req(overview_projection_data_to_plot())
   ## check selection
   
-  print('printing length of plotly brushing')
-  print(length(plotly::event_data("plotly_brushing", source = "overview_projection")))
-  
-  if(is.null(plotly::event_data("plotly_brushing", source = "overview_projection")) ||
-     length(plotly::event_data("plotly_brushing", source = "overview_projection")) == 0){
-      
-      ## ... selection has not been made or there is no cell in it
-      return(NULL)
-      
-     } else {
-      ## ... selection has been made and at least 1 cell is in it
-      ## get number of selected cells
-      if (
-         is.null(plotly::event_data("plotly_selected", source = "overview_projection")) ||
-         length(plotly::event_data("plotly_selected", source = "overview_projection")) == 0
-      ){} else{
-      plotly::event_data("plotly_selected", source = "overview_projection") %>%
-        dplyr::mutate(identifier = paste0(x, '-', y)) %>%
-        return()
-      }
+  if (
+    is.null(plotly::event_data("plotly_selected", source = "overview_projection")) ||
+    length(plotly::event_data("plotly_selected", source = "overview_projection")) == 0
+  ){
+    return(NULL)
+  } else{
+    plotly::event_data("plotly_selected", source = "overview_projection") %>%
+      dplyr::mutate(identifier = paste0(x, '-', y)) %>%
+      return()
   }
 })
