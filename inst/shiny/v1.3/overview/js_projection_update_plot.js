@@ -116,8 +116,7 @@ const overview_projection_default_params = {
     x: [],
     y: [],
     z: []
-  },
-  selectedpoints: null
+  }
 }
 
 // update 2D projection with continuous coloring
@@ -153,12 +152,12 @@ shinyjs.updatePlot2DContinuous = function(params) {
     }
   );
   
-  console.log('printing params.data.selectedpoints');
-  console.log(params.data.selectedpoints);
+  //console.log('printing params.data.selectedpoints');
+  //console.log(params.data.selectedpoints);
   
   
-  console.log('printing data.selectedpoints');
-  console.log(data.selectedpoints);
+  //console.log('printing data.selectedpoints');
+  //console.log(data.selectedpoints);
   
   
   const layout_here = Object.assign(overview_projection_layout_2D);
@@ -226,6 +225,31 @@ shinyjs.updatePlot2DCategorical = function(params) {
   params = shinyjs.getParams(params, overview_projection_default_params);
   const data = [];
   for (let i = 0; i < params.data.x.length; i++) {
+    
+  if (params.data.color[i].length == 0) {
+    data.push(
+      {
+        x: params.data.x[i],
+        y: params.data.y[i],
+        name: params.meta.traces[i],
+        customdata: params.data.identifier[i],
+        mode: 'markers',
+        type: 'scattergl',
+        marker: {
+          size: params.data.point_size,
+          opacity: params.data.point_opacity,
+          line: params.data.point_line,
+          color: params.data.color[i]
+        },
+        hoverinfo: params.hover.hoverinfo,
+        text: params.hover.text[i],
+        hoverlabel: {
+          bgcolor: params.data.color[i]
+        },
+        showlegend: true
+      }
+    );
+  } else {
     data.push(
       {
         x: params.data.x[i],
@@ -261,6 +285,7 @@ shinyjs.updatePlot2DCategorical = function(params) {
         }
       }
     );
+  }
   }
 
   
