@@ -249,7 +249,7 @@ shinyjs.updatePlot2DCategorical = function(params) {
         hoverlabel: {
           bgcolor: params.data.color[i]
         },
-        showlegend: true
+        showlegend: true,
         selectedpoints: []
       }
     );
