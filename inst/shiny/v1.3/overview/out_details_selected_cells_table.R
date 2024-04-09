@@ -17,8 +17,8 @@ output[["overview_details_selected_cells_table"]] <- DT::renderDataTable({
   ## ... selection has been made and at least 1 cell is in it
   } else {
     ## extract cells for table
-    print('printing overview_projection_selected_cells() from out_details_selected_cells_table')
-    print(overview_projection_selected_cells())
+    print('printing head of overview_projection_selected_cells() from out_details_selected_cells_table')
+    print(head(overview_projection_selected_cells(), 3))
     cells_df <- cbind(
         getProjection(input[["overview_projection_to_display"]]),
         getMetaData()

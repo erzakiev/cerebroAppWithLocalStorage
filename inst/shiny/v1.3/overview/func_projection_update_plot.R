@@ -4,7 +4,7 @@
 overview_projection_update_plot <- function(input) {
   ## assign input data to new variables
   cells_df <- input[['cells_df']]
-  saveRDS(cells_df, file = 'cells_df.RDS', compress = T)
+  #saveRDS(cells_df, file = 'cells_df.RDS', compress = T)
   rownames(cells_df) <- cells_df$cell_barcode
   #print('printing head(cells_df)')
   #print(head(cells_df))
@@ -17,7 +17,7 @@ overview_projection_update_plot <- function(input) {
   selected_cells_df <- overview_projection_selected_cells()
   selected_cells <- selected_cells_df$pointNumber
   selected_cells_barcode <- selected_cells_df$customdata
-  saveRDS(selected_cells_df, file = 'overview_projection_selected_cells().RDS', compress = T)
+  #saveRDS(selected_cells_df, file = 'overview_projection_selected_cells().RDS', compress = T)
   ## follow this when the coloring variable is numeric
   if ( is.numeric(color_input) ) {
     ## put together meta data
@@ -79,7 +79,7 @@ overview_projection_update_plot <- function(input) {
     }
     
     ## send request to update projection to JavaScript functions (2D / 3D)
-    saveRDS(list(output_meta, output_data, output_hover), file = 'output4updatePlot2DContinious.RDS', compress = T)
+    #saveRDS(list(output_meta, output_data, output_hover), file = 'output4updatePlot2DContinious.RDS', compress = T)
     if ( plot_parameters[['n_dimensions']] == 2 ) {
       shinyjs::js$updatePlot2DContinuous(
         output_meta,
@@ -167,7 +167,7 @@ overview_projection_update_plot <- function(input) {
         y = group_centers_df[['y_median']]
       )
     
-      saveRDS(list(output_meta, output_data, output_hover, output_group_centers), file = 'output4updatePlot2DCategorical.RDS', compress = T)
+      #saveRDS(list(output_meta, output_data, output_hover, output_group_centers), file = 'output4updatePlot2DCategorical.RDS', compress = T)
       shinyjs::js$updatePlot2DCategorical(
         output_meta,
         output_data,
