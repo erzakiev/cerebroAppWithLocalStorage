@@ -8,7 +8,7 @@
 output[["load_data_sample_info_UI"]] <- renderUI({
   tagList(
     fluidRow(
-      valueBoxOutput("load_data_experiment_name"),
+      valueBoxOutput("load_data_experiment_name", width = 10),
       valueBoxOutput("load_data_number_of_cells"),
       valueBoxOutput("load_data_number_of_grouping_variables")
     ),
