@@ -226,11 +226,37 @@ shinyjs.updatePlot2DCategorical = function(params) {
   const data = [];
   empty_selection = true;
   for (let i = 0; i < params.data.x.length; i++) {
-    if (params.data.selectedpoints[i].length == 0){
+    if (params.data.selectedpoints[i].length == 0) {
       empty_selection = false;
     }
   }
-  if(empty_selection === true){
+  if(empty_selection == true) {
+    
+  for (let i = 0; i < params.data.x.length; i++) {
+    if (params.data.selectedpoints[i].length == 0) {
+      data.push(
+        {
+          x: params.data.x[i],
+          y: params.data.y[i],
+          name: params.meta.traces[i],
+          customdata: params.data.identifier[i],
+          mode: 'markers',
+          type: 'scattergl',
+          marker: {
+            size: params.data.point_size,
+            opacity: params.data.point_opacity,
+            line: params.data.point_line,
+            color: params.data.color[i]
+          },
+          hoverinfo: params.hover.hoverinfo,
+          text: params.hover.text[i],
+          hoverlabel: {
+            bgcolor: params.data.color[i]
+          },
+          showlegend: true
+        }
+      );
+  } else {
     for (let i = 0; i < params.data.x.length; i++) {
   console.log('printing params.data.selectedpoints[i]')
   console.log(params.data.selectedpoints[i])
@@ -258,35 +284,6 @@ shinyjs.updatePlot2DCategorical = function(params) {
         },
         showlegend: true,
         selectedpoints: []
-      }
-    );
-  } else {
-    for (let i = 0; i < params.data.x.length; i++) {
-  console.log('printing params.data.selectedpoints[i]')
-  console.log(params.data.selectedpoints[i])
-  console.log('printing params.data.selectedpoints[i].length')
-  console.log(params.data.selectedpoints[i].length)
-  if (params.data.selectedpoints[i].length == 0) {
-    data.push(
-      {
-        x: params.data.x[i],
-        y: params.data.y[i],
-        name: params.meta.traces[i],
-        customdata: params.data.identifier[i],
-        mode: 'markers',
-        type: 'scattergl',
-        marker: {
-          size: params.data.point_size,
-          opacity: params.data.point_opacity,
-          line: params.data.point_line,
-          color: params.data.color[i]
-        },
-        hoverinfo: params.hover.hoverinfo,
-        text: params.hover.text[i],
-        hoverlabel: {
-          bgcolor: params.data.color[i]
-        },
-        showlegend: true
       }
     );
   } else {
