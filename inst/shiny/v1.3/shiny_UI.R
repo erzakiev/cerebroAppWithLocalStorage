@@ -130,6 +130,7 @@ ui <- dashboardPage(
     #    $("header").find("nav").append(\'<span class="myClass"> Text Here </span>\');
     #  })
     # ')),
+    tags$head(tags$style(HTML(".small-box {height: 100px}"))),
     tags$script(HTML('
                            $(document).ready(function() {
                            $("header").find("nav").append(\'<div id="pageHeader" class="myClass"></div>\');
