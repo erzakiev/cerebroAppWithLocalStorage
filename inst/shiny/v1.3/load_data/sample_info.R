@@ -42,7 +42,7 @@ output[["load_data_experiment_name"]] <- renderValueBox({
     ),
     #width = 10,
     subtitle = "Experiment",
-    color = "light-blue"
+    color = "blue"
   )
 })
 
@@ -51,7 +51,7 @@ output[["load_data_number_of_cells"]] <- renderValueBox({
   valueBox(
     value = formatC(length(getCellNames()), format = "f", big.mark = ",", digits = 0),
     subtitle = "Cells",
-    color = "light-blue"
+    color = "blue"
   )
 })
 
@@ -59,7 +59,7 @@ output[["load_data_number_of_genes"]] <- renderValueBox({
   valueBox(
     value = formatC(length(getGeneNames()), format = "f", big.mark = ",", digits = 0),
     subtitle = "Genes",
-    color = "light-blue"
+    color = "blue"
   )
 })
 
@@ -69,7 +69,7 @@ output[["load_data_number_of_grouping_variables"]] <- renderValueBox({
   valueBox(
     value = length(getGroups()),
     subtitle = "Grouping variables",
-    color = "light-blue"
+    color = "blue"
   )
 })
 
@@ -78,7 +78,7 @@ output[["load_data_organism"]] <- renderValueBox({
   box(
     title = "Organism",
     #width = 5,
-    background = "light-blue",
+    background = "blue",
     ifelse(
       !is.null(getExperiment()$organism),
       getExperiment()$organism,
@@ -93,7 +93,7 @@ output[["load_data_date_of_analysis"]] <- renderValueBox({
   box(
     title = "Date when data was analyzed",
     #width = 5,
-    background = "light-blue",
+    background = "blue",
     ifelse(
       !is.null(getExperiment()$date_of_analysis),
       as.character(getExperiment()$date_of_analysis),
@@ -108,7 +108,7 @@ output[["load_data_date_of_export"]] <- renderValueBox({
   box(
     title = "Date when data was exported",
     #width = 5,
-    background = "light-blue",
+    background = "blue",
     ifelse(
       !is.null(getExperiment()$date_of_export),
       as.character(getExperiment()$date_of_export),
