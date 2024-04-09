@@ -5,6 +5,7 @@ overview_projection_update_plot <- function(input) {
   ## assign input data to new variables
   cells_df <- input[['cells_df']]
   saveRDS(cells_df, file = 'cells_df.RDS', compress = T)
+  rownames(cells_df) <- cells_df$cell_barcode
   print('printing head(cells_df)')
   print(head(cells_df))
   coordinates <- input[['coordinates']]
@@ -13,9 +14,10 @@ overview_projection_update_plot <- function(input) {
   color_assignments <- input[['color_assignments']]
   hover_info <- input[['hover_info']]
   color_input <- cells_df[[ plot_parameters[['color_variable']] ]]
-  selected_cells <- overview_projection_selected_cells()$pointNumber
-  selected_cells_barcode <- overview_projection_selected_cells()$customdata
-  saveRDS(overview_projection_selected_cells(), file = 'overview_projection_selected_cells().RDS', compress = T)
+  selected_cells_df <- overview_projection_selected_cells()
+  selected_cells <- selected_cells_df$pointNumber
+  selected_cells_barcode <- selected_cells_df$customdata
+  saveRDS(selected_cells_df, file = 'overview_projection_selected_cells().RDS', compress = T)
   ## follow this when the coloring variable is numeric
   if ( is.numeric(color_input) ) {
     ## put together meta data
@@ -102,9 +104,7 @@ overview_projection_update_plot <- function(input) {
       color_variable = plot_parameters[['color_variable']]
     )
     ## put together data
-    
-    if(length(selected_cells)==0 | is.null(selected_cells)){
-      output_data <- list(
+    output_data <- list(
         x = list(),
         y = list(),
         z = list(),
@@ -118,26 +118,7 @@ overview_projection_update_plot <- function(input) {
         z_range = plot_parameters[["z_range"]],
         #selectedpoints = selected_cells,
         reset_axes = reset_axes
-      )
-      
-    } else {
-      output_data <- list(
-        x = list(),
-        y = list(),
-        z = list(),
-        identifier = list(),
-        color = list(),
-        point_size = plot_parameters[["point_size"]],
-        point_opacity = plot_parameters[["point_opacity"]],
-        point_line = list(),
-        x_range = plot_parameters[["x_range"]],
-        y_range = plot_parameters[["y_range"]],
-        z_range = plot_parameters[["z_range"]],
-        selectedpoints = selected_cells,
-        reset_axes = reset_axes
-      )
-      
-    }
+    )
     
         
     if ( plot_parameters[["draw_border"]] ) {
@@ -166,7 +147,7 @@ overview_projection_update_plot <- function(input) {
         print(head(cells_to_extract))
         print('printing selected_cells_barcode')
         print(head(selected_cells_barcode))
-        intersection <- (which(cells_to_extract %in% selected_cells_barcode)-1)
+        intersection <- (which(cells_df[cells_to_extract,1] %in% selected_cells_barcode)-1)
         print('printing intersection')
         print(intersection)
         output_data[['selectedpoints']][[i]] <- intersection
