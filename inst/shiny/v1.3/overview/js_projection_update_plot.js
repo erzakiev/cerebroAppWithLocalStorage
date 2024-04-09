@@ -250,6 +250,7 @@ shinyjs.updatePlot2DCategorical = function(params) {
           bgcolor: params.data.color[i]
         },
         showlegend: true
+        selectedpoints: []
       }
     );
   } else {
