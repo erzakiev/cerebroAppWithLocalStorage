@@ -26,7 +26,8 @@ output[["overview_details_selected_cells_table"]] <- DT::renderDataTable({
     cells_df <- cells_df %>%
       dplyr::rename(X1 = 1, X2 = 2) %>%
       dplyr::mutate(identifier = paste0(X1, '-', X2)) %>%
-      dplyr::filter(identifier %in% overview_projection_selected_cells()$identifier) %>%
+      #dplyr::filter(identifier %in% overview_projection_selected_cells()$identifier) %>%
+      dplyr::filter(cell_barcode %in% overview_projection_selected_cells()$customdata) %>%
       dplyr::select(-identifier) %>%
       dplyr::select(cell_barcode, everything())
     ## check how many cells are left after filtering
