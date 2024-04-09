@@ -249,13 +249,13 @@ shinyjs.updatePlot2DCategorical = function(params) {
         selected: 
         {
           marker: {
-            opacity: 1
+            opacity: 0.99
           }
         },
         unselected: 
         {
           marker: {
-            opacity: 0.2
+            opacity: 0.15
           }
         }
       }
