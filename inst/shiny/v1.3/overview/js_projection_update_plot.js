@@ -245,7 +245,19 @@ shinyjs.updatePlot2DCategorical = function(params) {
           bgcolor: params.data.color[i]
         },
         showlegend: true,
-        selectedpoints: params.data.selectedpoints[i]
+        selectedpoints: params.data.selectedpoints[i],
+        selected: 
+        {
+          marker: {
+            opacity: 1
+          }
+        },
+        unselected: 
+        {
+          marker: {
+            opacity: 0.2
+          }
+        }
       }
     );
   }
