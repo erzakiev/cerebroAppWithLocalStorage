@@ -8,9 +8,12 @@ overview_projection_selected_cells <- reactive({
   #req(overview_projection_data_to_plot())
   ## check selection
   
+  print('printing length of plotly brushing')
+  print(length(plotly::event_data("plotly_brushing", source = "overview_projection")))
+  
   if(is.null(plotly::event_data("plotly_brushing", source = "overview_projection")) ||
      length(plotly::event_data("plotly_brushing", source = "overview_projection")) == 0){
-    
+      
       ## ... selection has not been made or there is no cell in it
       return(NULL)
       
