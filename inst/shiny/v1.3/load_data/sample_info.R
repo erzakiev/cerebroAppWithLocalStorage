@@ -40,7 +40,7 @@ output[["load_data_experiment_name"]] <- renderValueBox({
       getExperiment()$experiment_name,
       'not available'
     ),
-    width = 10,
+    #width = 10,
     subtitle = "Experiment",
     color = "light-blue"
   )
@@ -77,7 +77,7 @@ output[["load_data_number_of_grouping_variables"]] <- renderValueBox({
 output[["load_data_organism"]] <- renderValueBox({
   box(
     title = "Organism",
-    width = 5,
+    #width = 5,
     background = "light-blue",
     ifelse(
       !is.null(getExperiment()$organism),
@@ -92,7 +92,7 @@ output[["load_data_organism"]] <- renderValueBox({
 output[["load_data_date_of_analysis"]] <- renderValueBox({
   box(
     title = "Date when data was analyzed",
-    width = 5,
+    #width = 5,
     background = "light-blue",
     ifelse(
       !is.null(getExperiment()$date_of_analysis),
@@ -107,7 +107,7 @@ output[["load_data_date_of_analysis"]] <- renderValueBox({
 output[["load_data_date_of_export"]] <- renderValueBox({
   box(
     title = "Date when data was exported",
-    width = 5,
+    #width = 5,
     background = "light-blue",
     ifelse(
       !is.null(getExperiment()$date_of_export),
