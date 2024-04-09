@@ -225,9 +225,9 @@ shinyjs.updatePlot2DCategorical = function(params) {
   params = shinyjs.getParams(params, overview_projection_default_params);
   const data = [];
   for (let i = 0; i < params.data.x.length; i++) {
-  console.log('params.data.color[i].length')
-  console.log(params.data.color[i].length)
-  if (params.data.color[i].length == 0) {
+  console.log('params.data.color[i].selectedpoints')
+  console.log(params.data.color[i].selectedpoints)
+  if (params.data.selectedpoints[i].length == 0) {
     data.push(
       {
         x: params.data.x[i],
