@@ -123,7 +123,7 @@ ui <- dashboardPage(
             overflow: hidden;
             color: white;
             };
-        .small-box {height: 100px}
+        .small-box {height: 250px}
             '))),
     
     #tags$script(HTML('
