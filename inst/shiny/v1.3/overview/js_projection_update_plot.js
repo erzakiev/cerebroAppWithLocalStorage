@@ -117,7 +117,7 @@ const overview_projection_default_params = {
     y: [],
     z: []
   },
-  selectedpoints: true
+  selectedpoints: null
 }
 
 // update 2D projection with continuous coloring
