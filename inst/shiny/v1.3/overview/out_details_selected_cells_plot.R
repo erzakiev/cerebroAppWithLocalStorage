@@ -15,7 +15,7 @@ output[["overview_details_selected_cells_plot"]] <- plotly::renderPlotly({
     getProjection(input[["overview_projection_to_display"]]),
     getMetaData()
   )
-  saveRDS(cells_df, file = 'cells_df_from_out_details_selected_cells_plot.RDS', compress = T)
+  #saveRDS(cells_df, file = 'cells_df_from_out_details_selected_cells_plot.RDS', compress = T)
   ## check selection
   ## ... selection has not been made or there is no cell in it
   if ( is.null(overview_projection_selected_cells()) ) {
@@ -34,14 +34,16 @@ output[["overview_details_selected_cells_plot"]] <- plotly::renderPlotly({
       )
   }
   saveRDS(cells_df, file = 'cells_df_from_out_details_selected_cells_plot_after_mutation.RDS', compress = T)
-  
   color_variable <- input[["overview_selected_cells_plot_select_variable"]]
+  saveRDS(color_variable, file = 'color_variable.RDS')
   ## if the selected coloring variable is categorical, represent the selected
   ## cells in a bar chart
   if (
     is.factor(cells_df[[ color_variable ]]) ||
     is.character(cells_df[[ color_variable ]])
   ) {
+    
+    warning('The grouping var is categorical')
     ## filter table for selected cells
     cells_df <- cells_df %>%
       dplyr::filter(group == 'selected')
