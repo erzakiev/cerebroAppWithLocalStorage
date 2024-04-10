@@ -10,6 +10,14 @@ output[["expression_mww_test_result"]] <- renderUI({
       ),
       tagList(
         shinyWidgets::materialSwitch(
+          inputId = "expression_details_selected_cells_marker_genes_button",
+          label = "Calculate marker genes for selection automatically?",
+          value = FALSE,
+          status = "success",
+          inline = TRUE
+        ),
+      tagList(
+        shinyWidgets::materialSwitch(
           inputId = "expression_details_selected_cells_marker_genes_number_formatting",
           label = "Automatically format numbers:",
           value = TRUE,
@@ -34,7 +42,8 @@ output[["expression_mww_test_result"]] <- renderUI({
 ##----------------------------------------------------------------------------##
 output[["expression_mww_test_result_table"]] <- DT::renderDataTable({
   req(
-    expression_projection_selected_cells()
+    expression_projection_selected_cells(),
+    input[['expression_details_selected_cells_marker_genes_button']]
   )
   selected_cells <- expression_projection_selected_cells()
   #saveRDS(selected_cells, file = '~/Downloads/selected_cells.RDS', compress=T)
