@@ -10,6 +10,13 @@ output[["overview_selected_cells_marker_genes_table_UI"]] <- renderUI({
       ),
       tagList(
         shinyWidgets::materialSwitch(
+          inputId = "overview_selected_cells_marker_genes_table_Button",
+          label = "Automatically calculate marker genes:",
+          value = FALSE,
+          status = "success",
+          inline = TRUE
+        ),
+        shinyWidgets::materialSwitch(
           inputId = "overview_selected_cells_marker_genes_table_number_formatting",
           label = "Automatically format numbers:",
           value = TRUE,
@@ -33,6 +40,7 @@ output[["overview_selected_cells_marker_genes_table"]] <- DT::renderDataTable({
   req(
     overview_projection_selected_cells()
   )
+  req(input$overview_selected_cells_marker_genes_table_Button)
   selected_cells <- overview_projection_selected_cells()
   #saveRDS(selected_cells, file = '~/Downloads/selected_cells.RDS', compress=T)
   
