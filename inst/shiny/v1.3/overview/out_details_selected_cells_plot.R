@@ -100,6 +100,7 @@ output[["overview_details_selected_cells_plot"]] <- plotly::renderPlotly({
   ## if the selected coloring variable is numeric/continuous
   } else if ( is.numeric(cells_df[[ color_variable ]]) ) {
     ## remove unnecessary columns
+    warning('The grouping var is numericcc')
     cells_df <- cells_df %>%
       dplyr::select(group, tidyselect::all_of(color_variable))
     ## create violin/box plot
@@ -128,6 +129,7 @@ output[["overview_details_selected_cells_plot"]] <- plotly::renderPlotly({
       )
     y_axis_title <- colnames(cells_df)[2]
   }
+  warning('The grouping var is numericcc x2')
   plot %>%
   plotly::layout(
     title = "",
