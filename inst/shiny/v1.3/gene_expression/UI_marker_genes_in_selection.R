@@ -16,7 +16,6 @@ output[["expression_mww_test_result"]] <- renderUI({
           status = "success",
           inline = TRUE
         ),
-      tagList(
         shinyWidgets::materialSwitch(
           inputId = "expression_details_selected_cells_marker_genes_number_formatting",
           label = "Automatically format numbers:",
