@@ -5,6 +5,8 @@
 ##   - if numerical: box/violin plot
 ##----------------------------------------------------------------------------##
 output[["overview_details_selected_cells_plot"]] <- plotly::renderPlotly({
+  print('printing input[[overview_selected_cells_plot_select_variable]]')
+  print(input[["overview_selected_cells_plot_select_variable"]])
   req(
     input[["overview_projection_to_display"]],
     input[["overview_projection_to_display"]] %in% availableProjections(),
