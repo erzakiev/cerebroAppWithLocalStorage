@@ -34,6 +34,7 @@ tab_overview <- tabItem(
   ),
   uiOutput("overview_projection_UI"),
   uiOutput("overview_selected_cells_plot_UI"),
+  uiOutput("expression_by_group_overview_UI"),
   uiOutput("overview_selected_cells_table_UI"),
   uiOutput("overview_selected_cells_marker_genes_table_UI")
 )
