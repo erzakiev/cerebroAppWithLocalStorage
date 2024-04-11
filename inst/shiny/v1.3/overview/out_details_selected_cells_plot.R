@@ -5,10 +5,6 @@
 ##   - if numerical: box/violin plot
 ##----------------------------------------------------------------------------##
 output[["overview_details_selected_cells_plot"]] <- plotly::renderPlotly({
-  print('printing input[["overview_projection_to_display"]]')
-  print(input[["overview_projection_to_display"]])
-  print('printing input[[overview_selected_cells_plot_select_variable]]')
-  print(input[["overview_selected_cells_plot_select_variable"]])
   req(
     input[["overview_projection_to_display"]],
     input[["overview_projection_to_display"]] %in% availableProjections(),
@@ -47,7 +43,6 @@ output[["overview_details_selected_cells_plot"]] <- plotly::renderPlotly({
     is.character(cells_df[[ color_variable ]])
   ) {
     
-    warning('The grouping var is categorical')
     ## filter table for selected cells
     cells_df <- cells_df %>%
       dplyr::filter(group == 'selected')
@@ -100,7 +95,6 @@ output[["overview_details_selected_cells_plot"]] <- plotly::renderPlotly({
   ## if the selected coloring variable is numeric/continuous
   } else if ( is.numeric(cells_df[[ color_variable ]]) ) {
     ## remove unnecessary columns
-    warning('The grouping var is numericcc')
     cells_df <- cells_df %>%
       dplyr::select(group, tidyselect::all_of(color_variable))
     ## create violin/box plot
@@ -129,7 +123,6 @@ output[["overview_details_selected_cells_plot"]] <- plotly::renderPlotly({
       )
     y_axis_title <- colnames(cells_df)[2]
   }
-  warning('The grouping var is numericcc x2')
   plot %>%
   plotly::layout(
     title = "",

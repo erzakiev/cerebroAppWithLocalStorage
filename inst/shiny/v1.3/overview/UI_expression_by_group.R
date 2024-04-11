@@ -7,21 +7,21 @@
 ##----------------------------------------------------------------------------##
 ## UI element with input selection (which group to show) and plot.
 ##----------------------------------------------------------------------------##
-output[["expression_by_group_UI"]] <- renderUI({
+output[["expression_by_group_overview_UI"]] <- renderUI({
   fluidRow(
     cerebroBox(
       title = tagList(
-        boxTitle("Expression levels by group"),
+        boxTitle("Expression levels by group in selection"),
         cerebroInfoButton("expression_by_group_info")
       ),
       tagList(
         selectInput(
-          "expression_by_group_selected_group",
+          "overview_by_group_selected_group",
           label = "Select a group to show expression by:",
           choices = getGroups(),
           width = "100%"
         ),
-        plotly::plotlyOutput("expression_by_group")
+        plotly::plotlyOutput("expression_by_group_overview")
       )
     )
   )
@@ -31,11 +31,11 @@ output[["expression_by_group_UI"]] <- renderUI({
 ## Violin/box plot.
 ##----------------------------------------------------------------------------##
 
-output[["expression_by_group"]] <- plotly::renderPlotly({
+output[["expression_by_group_overview"]] <- plotly::renderPlotly({
   req(
-    expression_projection_data(),
-    expression_projection_expression_levels(),
-    input[["expression_by_group_selected_group"]]
+    input[["overview_projection_to_display"]],
+    input[["overview_projection_to_display"]] %in% availableProjections(),
+    input[["overview_by_group_selected_group"]]
   )
   ## check if user requested to show expression in separate panels
   ## ... separate panels requested and "gene" column present (which means
@@ -43,17 +43,14 @@ output[["expression_by_group"]] <- plotly::renderPlotly({
   ##     don't plot anything because data is not present
   ##     even if I merged all meta data in the data frame, it wouldn't be correct
   ##     because cells are plotted once per gene
-  cells_df <- expression_projection_data()
-  if (is.list(expression_projection_expression_levels())) {
-    cells_df$level <- do.call(cbind, expression_projection_expression_levels()) %>%
-      Matrix::rowMeans()
-  } else {
-    cells_df$level <- expression_projection_expression_levels()
-  }
+  
+  
+  cells_df <- getMetaData()
+
   ## prepare plot
   cells_df %>%
   plotly::plot_ly(
-    x = ~.[[ input[["expression_by_group_selected_group"]] ]],
+    x = ~.[[ input[["overview_by_group_selected_group"]] ]],
     y = ~level,
     type = "violin",
     box = list(
@@ -62,8 +59,8 @@ output[["expression_by_group"]] <- plotly::renderPlotly({
     meanline = list(
       visible = TRUE
     ),
-    color = ~.[[ input[["expression_by_group_selected_group"]] ]],
-    colors = reactive_colors()[[ input[["expression_by_group_selected_group"]] ]],
+    color = ~.[[ input[["overview_by_group_selected_group"]] ]],
+    colors = reactive_colors()[[ input[["overview_by_group_selected_group"]] ]],
     source = "subset",
     showlegend = FALSE,
     hoverinfo = "y",
@@ -89,26 +86,3 @@ output[["expression_by_group"]] <- plotly::renderPlotly({
     hovermode = "compare"
   )
 })
-
-##----------------------------------------------------------------------------##
-## Info box that gets shown when pressing the "info" button.
-##----------------------------------------------------------------------------##
-observeEvent(input[["expression_by_group_info"]], {
-  showModal(
-    modalDialog(
-      expression_by_group_info$text,
-      title = expression_by_group_info$title,
-      easyClose = TRUE,
-      footer = NULL,
-      size = "l"
-    )
-  )
-})
-
-##----------------------------------------------------------------------------##
-## Text in info box.
-##----------------------------------------------------------------------------##
-expression_by_group_info <- list(
-  title = "Expression levels by group",
-  text = p("Log-normalised expression of genes inserted above by group If more than 1 gene was provided, this reflects the average across all cells of each group")
-)
