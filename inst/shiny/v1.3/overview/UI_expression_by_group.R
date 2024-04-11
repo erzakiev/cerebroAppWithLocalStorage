@@ -51,7 +51,7 @@ output[["expression_by_group_overview"]] <- plotly::renderPlotly({
   cells_df %>%
   plotly::plot_ly(
     x = ~.[[ input[["overview_by_group_selected_group"]] ]],
-    y = ~level,
+    y = ~cells_df[[ input[["overview_by_group_selected_group"]] ]],
     type = "violin",
     box = list(
       visible = TRUE
