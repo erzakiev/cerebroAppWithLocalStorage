@@ -35,6 +35,7 @@ output[["expression_by_group_overview"]] <- plotly::renderPlotly({
     input[["overview_projection_to_display"]],
     input[["overview_projection_to_display"]] %in% availableProjections(),
     input[["overview_by_group_selected_group"]],
+    input[['overview_projection_point_color']]
   )
   
   ## check if user requested to show expression in separate panels
@@ -46,6 +47,14 @@ output[["expression_by_group_overview"]] <- plotly::renderPlotly({
   cells_df <- getMetaData()
   x_variable <- input[['overview_projection_point_color']]
   y_variable <- input[["overview_by_group_selected_group"]]
+  
+  print('printing x_variable')
+  print(x_variable)
+  
+  print('printing y_variable')
+  print(y_variable)
+  
+  saveRDS(object = cells_df, file = 'cells_df.RDS', compress = T)
   
   if (
     is.factor(x_variable) ||
