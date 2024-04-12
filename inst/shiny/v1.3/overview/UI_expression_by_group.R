@@ -55,12 +55,13 @@ output[["expression_by_group_overview"]] <- plotly::renderPlotly({
   print(y_variable)
   
   saveRDS(object = cells_df, file = 'cells_df.RDS', compress = T)
+  saveRDS(reactive_colors(), file = 'reactive_colors.RDS')
   
   if (
     is.factor(x_variable) ||
     is.character(x_variable)
   ){} else {
-    ## variable is categorical, don't proceed
+    ## variable isn't categorical, proceed
     
     ## prepare plot
     cells_df %>%
