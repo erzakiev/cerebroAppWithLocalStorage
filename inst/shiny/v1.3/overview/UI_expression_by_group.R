@@ -54,7 +54,15 @@ output[["expression_by_group_overview"]] <- plotly::renderPlotly({
     ## variable is categorical, can proceed
     
     ## prepare plot
+    print('printing input[[overview_by_group_selected_group]] from UI_expression_by_group')
+    print(input[["overview_by_group_selected_group"]])
     
+    print('printing color_variable from UI_expression_by_group')
+    print(color_variable)
+    
+    saveRDS(input[["overview_by_group_selected_group"]], file = 'input_overview_by_group_selected_group.RDS')
+    saveRDS(color_variable, file = 'color_variable.RDS')
+    saveRDS(object = cells_df, file = 'cells_df.RDS', compress = T)
     cells_df %>%
       plotly::plot_ly(
         x = ~cells_df[[ input[["overview_by_group_selected_group"]] ]],
