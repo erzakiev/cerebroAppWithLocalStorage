@@ -35,54 +35,63 @@ output[["expression_by_group_overview"]] <- plotly::renderPlotly({
   req(
     input[["overview_projection_to_display"]],
     input[["overview_projection_to_display"]] %in% availableProjections(),
-    input[["overview_by_group_selected_group"]]
+    input[["overview_by_group_selected_group"]],
   )
+  
   ## check if user requested to show expression in separate panels
   ## ... separate panels requested and "gene" column present (which means
   ##     expression was actually split by gene)
   ##     don't plot anything because data is not present
   ##     even if I merged all meta data in the data frame, it wouldn't be correct
   ##     because cells are plotted once per gene
-  
-  
   cells_df <- getMetaData()
-
-  ## prepare plot
-  cells_df %>%
-  plotly::plot_ly(
-    x = ~.[[ input[["overview_by_group_selected_group"]] ]],
-    y = ~cells_df[[ input[["overview_by_group_selected_group"]] ]],
-    type = "violin",
-    box = list(
-      visible = TRUE
-    ),
-    meanline = list(
-      visible = TRUE
-    ),
-    color = ~.[[ input[["overview_by_group_selected_group"]] ]],
-    colors = reactive_colors()[[ input[["overview_by_group_selected_group"]] ]],
-    source = "subset",
-    showlegend = FALSE,
-    hoverinfo = "y",
-    marker = list(
-      size = 5
-    )
-  ) %>%
-  plotly::layout(
-    title = "",
-    xaxis = list(
-      title = "",
-      mirror = TRUE,
-      showline = TRUE
-    ),
-    yaxis = list(
-      title = "Expression level",
-      range = c(0, max(cells_df$level, na.rm = TRUE) * 1.2),
-      hoverformat = ".2f",
-      mirror = TRUE,
-      showline = TRUE
-    ),
-    dragmode = "select",
-    hovermode = "compare"
-  )
+  color_variable <- input[["overview_selected_cells_plot_select_variable"]]
+  
+  if (
+    is.factor(cells_df[[ color_variable ]]) ||
+    is.character(cells_df[[ color_variable ]])
+  ){
+    ## variable is categorical, can proceed
+    
+    ## prepare plot
+    
+    cells_df %>%
+      plotly::plot_ly(
+        x = ~color_variable,
+        y = ~cells_df[[ input[["overview_by_group_selected_group"]] ]],
+        split = ~color_variable,
+        type = "violin",
+        box = list(
+          visible = TRUE
+        ),
+        meanline = list(
+          visible = TRUE
+        ),
+        color = ~.[[ input[["overview_by_group_selected_group"]] ]],
+        colors = reactive_colors()[[ input[["overview_by_group_selected_group"]] ]],
+        source = "subset",
+        showlegend = FALSE,
+        hoverinfo = "y",
+        marker = list(
+          size = 5
+        )
+      ) %>%
+      plotly::layout(
+        title = "",
+        xaxis = list(
+          title = "",
+          mirror = TRUE,
+          showline = TRUE
+        ),
+        yaxis = list(
+          title = "Expression level",
+          range = c(0, max(cells_df$level, na.rm = TRUE) * 1.2),
+          hoverformat = ".2f",
+          mirror = TRUE,
+          showline = TRUE
+        ),
+        dragmode = "select",
+        hovermode = "compare"
+      )
+  }
 })
