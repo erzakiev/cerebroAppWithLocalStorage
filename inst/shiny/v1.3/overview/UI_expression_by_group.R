@@ -45,8 +45,8 @@ output[["expression_by_group_overview"]] <- plotly::renderPlotly({
   ##     even if I merged all meta data in the data frame, it wouldn't be correct
   ##     because cells are plotted once per gene
   cells_df <- getMetaData()
-  x_variable <- input[['overview_projection_point_color']]
-  y_variable <- input[["overview_by_group_selected_group"]]
+  y_variable <- input[['overview_projection_point_color']]
+  x_variable <- input[["overview_by_group_selected_group"]]
   
   print('printing x_variable')
   print(x_variable)
@@ -54,21 +54,21 @@ output[["expression_by_group_overview"]] <- plotly::renderPlotly({
   print('printing y_variable')
   print(y_variable)
   
-  saveRDS(object = cells_df, file = 'cells_df.RDS', compress = T)
-  saveRDS(reactive_colors(), file = 'reactive_colors.RDS')
+  #saveRDS(object = cells_df, file = 'cells_df.RDS', compress = T)
+  #saveRDS(reactive_colors(), file = 'reactive_colors.RDS')
   
   if (
-    is.factor(x_variable) ||
-    is.character(x_variable)
+    is.factor(y_variable) ||
+    is.character(y_variable)
   ){} else {
     ## variable isn't categorical, proceed
     
     ## prepare plot
     cells_df %>%
       plotly::plot_ly(
-        x = ~x_variable,
-        y = ~y_variable,
-        split = ~x_variable,
+        x = ~.data[[x_variable]],
+        y = ~.data[[y_variable]],
+        split = ~.data[[x_variable]],
         type = "violin",
         box = list(
           visible = TRUE
@@ -76,8 +76,8 @@ output[["expression_by_group_overview"]] <- plotly::renderPlotly({
         meanline = list(
           visible = TRUE
         ),
-        color = ~x_variable,
-        colors = reactive_colors()[[ y_variable ]],
+        color = ~.data[[x_variable]],
+        colors = reactive_colors()[[ x_variable ]],
         source = "subset",
         showlegend = FALSE,
         hoverinfo = "y",
@@ -94,7 +94,6 @@ output[["expression_by_group_overview"]] <- plotly::renderPlotly({
         ),
         yaxis = list(
           title = "Expression level",
-          range = c(0, max(cells_df$level, na.rm = TRUE) * 1.2),
           hoverformat = ".2f",
           mirror = TRUE,
           showline = TRUE
@@ -102,5 +101,4 @@ output[["expression_by_group_overview"]] <- plotly::renderPlotly({
         dragmode = "select",
         hovermode = "compare"
       )
-  }
 })
