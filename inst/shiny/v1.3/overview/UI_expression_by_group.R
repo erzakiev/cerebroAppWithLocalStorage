@@ -94,6 +94,7 @@ output[["expression_by_group_overview"]] <- plotly::renderPlotly({
         ),
         yaxis = list(
           title = "Expression level",
+          range = c(0, max(cells_df[[y_variable]], na.rm = TRUE) * 1.2),
           hoverformat = ".2f",
           mirror = TRUE,
           showline = TRUE
