@@ -101,4 +101,5 @@ output[["expression_by_group_overview"]] <- plotly::renderPlotly({
         dragmode = "select",
         hovermode = "compare"
       )
+    }
 })
