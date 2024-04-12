@@ -50,8 +50,8 @@ output[["expression_by_group_overview"]] <- plotly::renderPlotly({
   if (
     is.factor(cells_df[[ color_variable ]]) ||
     is.character(cells_df[[ color_variable ]])
-  ){
-    ## variable is categorical, can proceed
+  ){} else {
+    ## variable is categorical, don't proceed
     
     ## prepare plot
     print('printing input[[overview_by_group_selected_group]] from UI_expression_by_group')
