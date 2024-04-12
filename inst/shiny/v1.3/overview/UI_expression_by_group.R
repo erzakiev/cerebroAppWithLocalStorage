@@ -48,11 +48,11 @@ output[["expression_by_group_overview"]] <- plotly::renderPlotly({
   y_variable <- input[['overview_projection_point_color']]
   x_variable <- input[["overview_by_group_selected_group"]]
   
-  print('printing x_variable')
-  print(x_variable)
+  #print('printing x_variable')
+  #print(x_variable)
   
-  print('printing y_variable')
-  print(y_variable)
+  #print('printing y_variable')
+  #print(y_variable)
   
   #saveRDS(object = cells_df, file = 'cells_df.RDS', compress = T)
   #saveRDS(reactive_colors(), file = 'reactive_colors.RDS')
