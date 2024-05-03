@@ -53,10 +53,7 @@ Imports:
   tidyr (>= 1.1.0),
   tidyselect(>= 1.1.0),
   utils,
-  viridis (>= 0.5.1),
-  presto
-Remotes:
-  immunogenomics/presto
+  viridis (>= 0.5.1)
 Suggests:
   formattable (>= 0.2.0.1),
   ggtree (>= 1.14.6),
