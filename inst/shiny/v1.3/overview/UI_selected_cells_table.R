@@ -23,7 +23,7 @@ output[["overview_selected_cells_table_UI"]] <- renderUI({
           status = "primary",
           inline = TRUE
         ),
-        DT::dataTableOutput("overview_details_selected_cells_table", server=F)
+        DT::dataTableOutput("overview_details_selected_cells_table")
       )
     )
   )

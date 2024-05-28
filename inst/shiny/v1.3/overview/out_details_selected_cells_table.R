@@ -53,4 +53,4 @@ output[["overview_details_selected_cells_table"]] <- DT::renderDataTable({
       )
     }
   }
-})
+}, server=F)
