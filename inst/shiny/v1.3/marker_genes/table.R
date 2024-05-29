@@ -182,7 +182,7 @@ output[["marker_genes_table"]] <- DT::renderDataTable({
       page_length_menu = c(20, 50, 100)
     )
   }
-})
+}, server=F)
 
 ##----------------------------------------------------------------------------##
 ## Alternative text message if no marker genes were found.

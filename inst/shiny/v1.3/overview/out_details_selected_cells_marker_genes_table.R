@@ -51,4 +51,4 @@ output[["overview_selected_cells_marker_genes_table"]] <- DT::renderDataTable({
       )
     }
   }
-})
+}, server=F)

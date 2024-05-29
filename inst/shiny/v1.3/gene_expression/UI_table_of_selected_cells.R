@@ -99,7 +99,7 @@ output[["expression_details_selected_cells"]] <- DT::renderDataTable({
       )
     }
   }
-})
+}, server=F)
 
 ##----------------------------------------------------------------------------##
 ## Info box that gets shown when pressing the "info" button.

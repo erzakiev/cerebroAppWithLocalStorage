@@ -117,8 +117,7 @@ output[["expression_mww_test_result_table"]] <- DT::renderDataTable({
   )
   print('diag line 71 ok')
   return(d1)
-}#,
-#server=FALSE, 
+}, server=FALSE 
 #rownames=FALSE
 )
 
