@@ -199,7 +199,6 @@ prettifyTable <- function(
       selection = "single",
       style = "bootstrap",
       options = list(
-        server=F,
         buttons = table_buttons,
         columnDefs = list(
           list(targets = "_all", className = 'dt-middle'),
