@@ -198,6 +198,7 @@ prettifyTable <- function(
       rownames = FALSE,
       selection = "single",
       style = "bootstrap",
+      server = F, 
       options = list(
         buttons = table_buttons,
         columnDefs = list(
