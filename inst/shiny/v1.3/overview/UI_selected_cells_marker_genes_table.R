@@ -115,7 +115,6 @@ output[["overview_selected_cells_marker_genes_table"]] <- DT::renderDataTable({
   )
   #print('diag line 71 ok')
   return(d1)
-}#,
-#server=FALSE, 
+}, server=FALSE
 #rownames=FALSE
 )
