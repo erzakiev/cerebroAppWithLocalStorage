@@ -62,7 +62,8 @@ output[["color_assignments_UI"]] <- renderUI({
           )
         }
       }
-
+      print('printing group_list from color-management:')
+      print(group_list)
       group_list
     })
   )
