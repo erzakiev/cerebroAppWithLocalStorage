@@ -31,6 +31,7 @@ output[["color_assignments_UI"]] <- renderUI({
                 label = group_level,
                 value = reactive_colors()[[ group_name ]][ group_level ]
               )
+              print('line 34 ok')
             }
             color_list
           })
