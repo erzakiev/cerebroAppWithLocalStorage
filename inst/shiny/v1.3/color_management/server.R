@@ -26,6 +26,16 @@ output[["color_assignments_UI"]] <- renderUI({
             color_list <- list()
             for ( group_level in getGroupLevels(group_name) ) {
               print('line 28 ok')
+
+              print('group_level:')
+              print(group_level)
+              print('group_name:')
+              print(group_name)
+              print('reactive_colors():')
+              print(reactive_colors())
+              print('reactive_colors()[[ group_name ]][ group_level ]:')
+              print(reactive_colors()[[ group_name ]][ group_level ])
+              
               color_list[[ group_level ]] <- colourpicker::colourInput(
                 inputId = paste0('color_', group_name, '_', gsub(group_level, pattern = '[^[:alnum:]]', replacement = '_')),
                 label = group_level,
