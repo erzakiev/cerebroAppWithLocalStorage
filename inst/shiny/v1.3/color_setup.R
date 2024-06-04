@@ -89,5 +89,7 @@ reactive_colors <- reactive({
       }
     }
   }
+  print('printing eventual colors tho')
+  print(colors)
   return(colors)
 })
