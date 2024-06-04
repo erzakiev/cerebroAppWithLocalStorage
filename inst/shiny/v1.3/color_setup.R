@@ -29,8 +29,8 @@ cell_cycle_colorset <- setNames(
 ##----------------------------------------------------------------------------##
 reactive_colors <- reactive({
   req(data_set())
-  print('printing head of data_set()')
-  print(head(data_set()))
+  print('printing data_set()')
+  print(data_set())
   ## get cell meta data
   meta_data <- getMetaData()
   colors <- list()
