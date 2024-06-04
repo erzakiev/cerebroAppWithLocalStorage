@@ -12,7 +12,7 @@ output[["color_assignments_UI"]] <- renderUI({
     tagList({
       group_list <- list()
       for ( group_name in getGroups() ) {
-        print('line 15 ok')
+        #print('line 15 ok')
         group_list[[ group_name ]] <- box(
           title = tagList(
             boxTitle(group_name),
@@ -25,23 +25,23 @@ output[["color_assignments_UI"]] <- renderUI({
           tagList({
             color_list <- list()
             for ( group_level in getGroupLevels(group_name) ) {
-              print('line 28 ok')
+              #print('line 28 ok')
 
-              print('group_level:')
-              print(group_level)
-              print('group_name:')
-              print(group_name)
-              print('reactive_colors():')
-              print(reactive_colors())
-              print('reactive_colors()[[ group_name ]][ group_level ]:')
-              print(reactive_colors()[[ group_name ]][ group_level ])
+              #print('group_level:')
+              #print(group_level)
+              #print('group_name:')
+              #print(group_name)
+              #print('reactive_colors():')
+              #print(reactive_colors())
+              #print('reactive_colors()[[ group_name ]][ group_level ]:')
+              #print(reactive_colors()[[ group_name ]][ group_level ])
               
               color_list[[ group_level ]] <- colourpicker::colourInput(
                 inputId = paste0('color_', group_name, '_', gsub(group_level, pattern = '[^[:alnum:]]', replacement = '_')),
                 label = group_level,
                 value = reactive_colors()[[ group_name ]][ group_level ]
               )
-              print('line 34 ok')
+              #print('line 34 ok')
             }
             color_list
           })
@@ -52,7 +52,7 @@ output[["color_assignments_UI"]] <- renderUI({
       ## also for those
       if ( length(getCellCycle()) > 0 ) {
         for ( column in getCellCycle() ) {
-          print('line 44 ok')
+          #print('line 44 ok')
           group_list[[ column ]] <- box(
             title = tagList(
               boxTitle(column),
@@ -65,7 +65,7 @@ output[["color_assignments_UI"]] <- renderUI({
             tagList({
               color_list <- list()
               for ( state in unique(as.character(getMetaData()[[ column ]])) ) {
-                print('line 57 ok')
+                #print('line 57 ok')
                 color_list[[ state ]] <- colourpicker::colourInput(
                   inputId = paste0('color_', column, '_', gsub(state, pattern = '[^[:alnum:]]', replacement = '_')),
                   label = state,

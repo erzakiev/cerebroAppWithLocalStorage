@@ -33,6 +33,8 @@ reactive_colors <- reactive({
   meta_data <- getMetaData()
   colors <- list()
   ## go through all groups
+  print('printing getGroups() from reactive_colors()')
+  print(getGroups())
   for ( group_name in getGroups() ) {
     ## if color selection from the "Color management" tab exist, assign those
     ## colors, otherwise assign colors from default colorset
@@ -52,6 +54,7 @@ reactive_colors <- reactive({
   }
   ## go through columns with cell cycle info
   if ( length(getCellCycle()) > 0 ) {
+    
     for ( column in getCellCycle() ) {
       ## if color selection from the "Color management" tab exist, assign those
       ## colors, otherwise assign colors from cell cycle colorset
