@@ -33,18 +33,29 @@ reactive_colors <- reactive({
   meta_data <- getMetaData()
   colors <- list()
   ## go through all groups
-  print('printing getGroups() from reactive_colors()')
-  print(getGroups())
+  print('\n\nprinting diag messages from reactive_colors() below\n')
+  
   for ( group_name in getGroups() ) {
     ## if color selection from the "Color management" tab exist, assign those
     ## colors, otherwise assign colors from default colorset
+    print('\nprinting group_name:')
+    print(group_name)
+    print('\nprinting getGroupLevels(group_name)')
+    print(getGroupLevels(group_name))
+    
+    print("\ninput[[ paste0('color_', group_name, '_', getGroupLevels(group_name)[1])]]")
+    print(input[[ paste0('color_', group_name, '_', getGroupLevels(group_name)[1])]])
+    
+    
     if ( !is.null(input[[ paste0('color_', group_name, '_', getGroupLevels(group_name)[1]) ]]) ) {
+      print('\nif statement is true, entering for loop')
       for ( group_level in getGroupLevels(group_name) ) {
         ## it seems that special characters are not handled well in input/output
         ## so I replace them with underscores using gsub()
         colors[[ group_name ]][ group_level ] <- input[[ paste0('color_', group_name, '_', gsub(group_level, pattern = '[^[:alnum:]]', replacement = '_')) ]]
       }
     } else {
+      print('\nif statement is false, entering default colorset assignment phase')
       colors[[ group_name ]] <- default_colorset[seq_along(getGroupLevels(group_name))]
       names(colors[[ group_name ]]) <- getGroupLevels(group_name)
       if ( 'N/A' %in% getGroupLevels(group_name) ) {
