@@ -55,6 +55,9 @@ output[["load_data_select_file_UI"]] <- renderUI({
 ## Text message if Cerebro was launched in "open" mode.
 ##----------------------------------------------------------------------------##
 
+cat("printing input[[ paste0('color_', getGroups()[1], '_', getGroupLevels(group_name)[1])]]")
+print(input[[ paste0('color_', getGroups()[1], '_', getGroupLevels(group_name)[1])]])
+
 output[["load_data_mode_open"]] <- renderText({
   if (
     exists('Cerebro.options') &&

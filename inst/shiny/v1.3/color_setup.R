@@ -89,15 +89,15 @@ reactive_colors <- reactive({
       }
     }
   }
-  cat('\n reactive_colors was triggered and outputted something')
-  cat('\n printing str(data_set())')
-  print(str(data_set()))
-  cat('\n printing colors')
-  print(colors)
-  cat('\n\n printing input \n\n')
-  print(input)
-  cat('\n\n printing str(getExperiment()) \n\n')
-  print(str(getExperiment()))
+  #cat('\n reactive_colors was triggered and outputted something')
+  #cat('\n printing str(data_set())')
+  #print(str(data_set()))
+  #cat('\n printing colors')
+  #print(colors)
+  #cat('\n\n printing input \n\n')
+  #print(input)
+  #cat('\n\n printing str(getExperiment()) \n\n')
+  #print(str(getExperiment()))
   
   
   return(colors)
