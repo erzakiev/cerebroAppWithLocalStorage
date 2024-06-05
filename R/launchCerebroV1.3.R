@@ -167,5 +167,5 @@ launchCerebroV1.3 <- function(
       '##---------------------------------------------------------------------------##'
     )
   )
-runApp(shiny::shinyApp(ui = ui, server = server), host='0.0.0.0',port=3839, launch.browser=FALSE)
+runApp(shiny::shinyApp(ui = ui, server = server), host='0.0.0.0',launch.browser=FALSE)
 }
