@@ -96,5 +96,9 @@ reactive_colors <- reactive({
   print(colors)
   cat('\n\n printing input \n\n')
   print(input)
+  cat('\n\n printing str(getExperiment()) \n\n')
+  print(str(getExperiment()))
+  
+  
   return(colors)
 })
