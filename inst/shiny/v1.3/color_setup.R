@@ -33,7 +33,7 @@ reactive_colors <- reactive({
   meta_data <- getMetaData()
   colors <- list()
   ## go through all groups
-  print('\n\n printing diag messages from reactive_colors() below\n')
+  cat('\n\n printing diag messages from reactive_colors() below\n')
   
   for ( group_name in getGroups() ) {
     ## if color selection from the "Color management" tab exist, assign those
@@ -89,10 +89,10 @@ reactive_colors <- reactive({
       }
     }
   }
-  print('reactive_colors was triggered and outputted something')
-  print('printing str(data_set())')
+  cat('\n reactive_colors was triggered and outputted something')
+  cat('\n printing str(data_set())')
   print(str(data_set()))
-  print('printing colors')
+  cat('\n printing colors')
   print(colors)
   return(colors)
 })
