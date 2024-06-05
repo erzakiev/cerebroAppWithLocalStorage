@@ -92,5 +92,7 @@ reactive_colors <- reactive({
   print('reactive_colors was triggered and outputted something')
   print('printing str(data_set())')
   print(str(data_set()))
+  print('printing colors')
+  print(colors)
   return(colors)
 })
