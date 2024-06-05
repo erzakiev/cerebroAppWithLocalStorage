@@ -94,5 +94,7 @@ reactive_colors <- reactive({
   print(str(data_set()))
   cat('\n printing colors')
   print(colors)
+  cat('\n\n printing input \n\n')
+  print(input)
   return(colors)
 })
