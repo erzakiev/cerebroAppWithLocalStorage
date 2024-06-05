@@ -29,48 +29,48 @@ cell_cycle_colorset <- setNames(
 ##----------------------------------------------------------------------------##
 reactive_colors <- reactive({
   req(data_set())
-  #print('printing data_set()')
-  #print(data_set())
+  print('printing data_set()')
+  print(data_set())
   ## get cell meta data
   meta_data <- getMetaData()
   colors <- list()
   ## go through all groups
-  #print('\n\n printing diag messages from reactive_colors() below\n')
+  print('\n\n printing diag messages from reactive_colors() below\n')
   
   for ( group_name in getGroups() ) {
     ## if color selection from the "Color management" tab exist, assign those
     ## colors, otherwise assign colors from default colorset
-    #print('\n printing group_name:')
-    #print(group_name)
-    #print('\n printing getGroupLevels(group_name)')
-    #print(getGroupLevels(group_name))
+    print('\n printing group_name:')
+    print(group_name)
+    print('\n printing getGroupLevels(group_name)')
+    print(getGroupLevels(group_name))
     
-    #print("\n input[[ paste0('color_', group_name, '_', getGroupLevels(group_name)[1])]]")
-    #print(input[[ paste0('color_', group_name, '_', getGroupLevels(group_name)[1])]])
+    print("\n input[[ paste0('color_', group_name, '_', getGroupLevels(group_name)[1])]]")
+    print(input[[ paste0('color_', group_name, '_', getGroupLevels(group_name)[1])]])
     
     
     if ( all(!(is.null(input[[ paste0('color_', group_name, '_', getGroupLevels(group_name)[1]) ]]) ))) {
-      #print('\n if statement is true, entering for loop')
+      print('\n if statement is true, entering for loop')
       for ( group_level in getGroupLevels(group_name) ) {
         ## it seems that special characters are not handled well in input/output
         ## so I replace them with underscores using gsub()
-        #print("\n printing gsub(group_level, pattern = '[^[:alnum:]]', replacement = '_'))")
-        #print(gsub(group_level, pattern = '[^[:alnum:]]', replacement = '_'))
-        #print("\n printin paste0('color_', group_name, '_', gsub(group_level, pattern = '[^[:alnum:]]', replacement = '_'))")
-        #print(paste0('color_', group_name, '_', gsub(group_level, pattern = '[^[:alnum:]]', replacement = '_')))
-        #print("\n printing input[[ paste0('color_', group_name, '_', gsub(group_level, pattern = '[^[:alnum:]]', replacement = '_')) ]]")
-        #print(input[[ paste0('color_', group_name, '_', gsub(group_level, pattern = '[^[:alnum:]]', replacement = '_')) ]])
+        print("\n printing gsub(group_level, pattern = '[^[:alnum:]]', replacement = '_'))")
+        print(gsub(group_level, pattern = '[^[:alnum:]]', replacement = '_'))
+        print("\n printin paste0('color_', group_name, '_', gsub(group_level, pattern = '[^[:alnum:]]', replacement = '_'))")
+        print(paste0('color_', group_name, '_', gsub(group_level, pattern = '[^[:alnum:]]', replacement = '_')))
+        print("\n printing input[[ paste0('color_', group_name, '_', gsub(group_level, pattern = '[^[:alnum:]]', replacement = '_')) ]]")
+        print(input[[ paste0('color_', group_name, '_', gsub(group_level, pattern = '[^[:alnum:]]', replacement = '_')) ]])
         colors[[ group_name ]][ group_level ] <- input[[ paste0('color_', group_name, '_', gsub(group_level, pattern = '[^[:alnum:]]', replacement = '_')) ]]
       }
     } else {
-      #print('\n if statement is false, entering default colorset assignment phase')
+      print('\n if statement is false, entering default colorset assignment phase')
       colors[[ group_name ]] <- default_colorset[seq_along(getGroupLevels(group_name))]
       names(colors[[ group_name ]]) <- getGroupLevels(group_name)
       if ( 'N/A' %in% getGroupLevels(group_name) ) {
         colors[[ group_name ]][ which(names(colors[[ group_name ]]) == 'N/A') ] <- '#898989'
       }
-      #print('printing colors[[ group_name ]] in default colorset assignment phase')
-      #print(colors[[ group_name ]])
+      print('printing colors[[ group_name ]] in default colorset assignment phase')
+      print(colors[[ group_name ]])
     }
   }
   ## go through columns with cell cycle info
@@ -91,8 +91,9 @@ reactive_colors <- reactive({
       }
     }
   }
-  #print('printing eventual colors tho')
-  #print(colors)
-  print('diag: reactive colors function has triggered')
+  print('printing eventual colors tho')
+  print(colors)
+  print('printing str(data_set())')
+  print(str(data_set()))
   return(colors)
 })
