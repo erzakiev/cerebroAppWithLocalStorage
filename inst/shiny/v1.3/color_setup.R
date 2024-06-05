@@ -49,7 +49,7 @@ reactive_colors <- reactive({
     print(input[[ paste0('color_', group_name, '_', getGroupLevels(group_name)[1])]])
     
     
-    if ( !is.null(input[[ paste0('color_', group_name, '_', getGroupLevels(group_name)[1]) ]]) ) {
+    if ( !all(is.null(input[[ paste0('color_', group_name, '_', getGroupLevels(group_name)[1]) ]]) )) {
       print('\n if statement is true, entering for loop')
       for ( group_level in getGroupLevels(group_name) ) {
         ## it seems that special characters are not handled well in input/output
