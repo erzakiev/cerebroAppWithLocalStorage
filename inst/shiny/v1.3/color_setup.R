@@ -69,6 +69,8 @@ reactive_colors <- reactive({
       if ( 'N/A' %in% getGroupLevels(group_name) ) {
         colors[[ group_name ]][ which(names(colors[[ group_name ]]) == 'N/A') ] <- '#898989'
       }
+      print('printing colors[[ group_name ]] in default colorset assignment phase')
+      print(colors[[ group_name ]])
     }
   }
   ## go through columns with cell cycle info
