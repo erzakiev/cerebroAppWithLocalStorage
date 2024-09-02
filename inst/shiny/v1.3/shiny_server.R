@@ -98,6 +98,7 @@ server <- function(input, output, session) {
       print('printing input[[input_file]]')
       print(input[["input_file"]])
       path_to_load <- input[["input_file"]]$datapath
+      print(paste0('trying to copy ', path_to_load, 'to', paste0(prefix,input[["input_file"]]$name)))
       file.copy(from = path_to_load, to = paste0(prefix,input[["input_file"]]$name), overwrite = T)
       ## take path or object from 'Cerebro.options' if it is set and points to an
       ## existing file or object
