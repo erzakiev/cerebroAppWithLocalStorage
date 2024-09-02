@@ -95,7 +95,8 @@ server <- function(input, output, session) {
       file.exists(input[["input_file"]]$datapath)
     ) {
       #print("line 81 ok")
-      #print(input[["input_file"]])
+      print('printing input[[input_file]]')
+      print(input[["input_file"]])
       path_to_load <- input[["input_file"]]$datapath
       file.copy(from = path_to_load, to = paste0(prefix,input[["input_file"]]$name), overwrite = T)
       ## take path or object from 'Cerebro.options' if it is set and points to an
