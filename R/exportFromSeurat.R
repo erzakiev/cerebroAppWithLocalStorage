@@ -86,7 +86,7 @@ exportFromSeurat <- function(
       call. = FALSE
     )
   }
-
+  message('Check 1 completed successfully')
   ## check that Seurat package is at least v3.0
   if ( utils::packageVersion('Seurat') < 3 ) {
     stop(
@@ -97,7 +97,7 @@ exportFromSeurat <- function(
       call. = FALSE
     )
   }
-
+  message('Check 2 completed successfully')
   ## check if provided object is of class "Seurat"
   if ( class(object) != "Seurat" ) {
     stop(
@@ -107,7 +107,7 @@ exportFromSeurat <- function(
       call. = FALSE
     )
   }
-
+  message('Check 3 completed successfully')
   ## check version of Seurat object and stop if it is lower than 3
   if ( object@version < 3 ) {
     stop(
@@ -117,7 +117,7 @@ exportFromSeurat <- function(
       call. = FALSE
     )
   }
-
+  message('Check 4 completed successfully')
   ## `groups`
   if ( any(groups %in% names(object@meta.data) == FALSE ) ) {
     stop(
@@ -131,7 +131,7 @@ exportFromSeurat <- function(
       call. = FALSE
     )
   }
-
+  message('Check 5 completed successfully')
   ## `nUMI`
   if ( ( nUMI %in% names(object@meta.data) == FALSE ) ) {
     stop(
@@ -142,6 +142,7 @@ exportFromSeurat <- function(
       call. = FALSE
     )
   }
+  message('Check 6 completed successfully')
 
   ## `nGene`
   if ( (nGene %in% names(object@meta.data) == FALSE ) ) {
@@ -153,6 +154,7 @@ exportFromSeurat <- function(
       call. = FALSE
     )
   }
+  message('Check 7 completed successfully')
 
   ## `cell_cycle`
   if ( any(cell_cycle %in% names(object@meta.data) == FALSE ) ) {
@@ -167,6 +169,7 @@ exportFromSeurat <- function(
       call. = FALSE
     )
   }
+  message('Check 8 completed successfully')
 
   ## check if provided assay exists
   if ( (assay %in% names(object@assays) == FALSE ) ) {
@@ -178,7 +181,7 @@ exportFromSeurat <- function(
       call. = FALSE
     )
   }
-
+  message('Check 9 completed successfully')
   ##--------------------------------------------------------------------------##
   ## initialize Cerebro object
   ##--------------------------------------------------------------------------##
@@ -195,7 +198,7 @@ exportFromSeurat <- function(
       )
     )
   }
-
+  message('Check 10 completed successfully')
   ## create new Cerebro object
   export <- Cerebro_v1.3$new()
 
@@ -217,6 +220,7 @@ exportFromSeurat <- function(
     Seurat::GetAssayData(object, assay = assay, slot = slot),
     silent = TRUE
   )
+  message('Check 11 getting expression_data completed successfully')
 
   ## check if provided slot exists in provided assay
   if ( class(expression_data) == 'try-error' ) {
@@ -227,7 +231,7 @@ exportFromSeurat <- function(
       call. = FALSE
     )
   }
-
+  message('Check 12 checking if provided slot exists completed successfully')
   ## convert expression data to "RleArray" if requested, if it is "dgCMatrix" or
   ## "matrix" format, and if the "DelayedArray" package is available
   if (
