@@ -87,17 +87,7 @@ exportFromSeurat <- function(
     )
   }
   message('Check 1 completed successfully')
-  ## check that Seurat package is at least v3.0
-  if ( utils::packageVersion('Seurat') < 3 ) {
-    stop(
-      paste0(
-        "The installed Seurat package is of version `", utils::packageVersion('Seurat'),
-        "`, but at least v3.0 is required."
-      ),
-      call. = FALSE
-    )
-  }
-  message('Check 2 completed successfully')
+  
   ## check if provided object is of class "Seurat"
   if ( class(object) != "Seurat" ) {
     stop(
