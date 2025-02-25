@@ -100,15 +100,15 @@ exportFromSeurat <- function(
   message('Check 3 completed successfully')
 
   ## check version of Seurat object and stop if it is lower than 3
-  if ( object@version < 3 ) {
-    stop(
-      paste0(
-        "Provided Seurat object has version `", object@version, "` but must be at least 3.0."
-      ),
-      call. = FALSE
-    )
-  }
-  message('Check 4 completed successfully')
+  #if ( object@version < 3 ) {
+  #  stop(
+  #    paste0(
+  #      "Provided Seurat object has version `", object@version, "` but must be at least 3.0."
+  #    ),
+  #    call. = FALSE
+  #  )
+  #}
+  #message('Check 4 completed successfully')
 
 
 
