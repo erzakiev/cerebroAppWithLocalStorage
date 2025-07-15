@@ -75,16 +75,17 @@ getEnrichedPathways <- function(
     )
   }
 
+  # breaks the code since R v 4.4+
   ## check that Seurat package is at least v3.0
-  if ( utils::packageVersion('Seurat') < 3 ) {
-    stop(
-      paste0(
-        "The installed Seurat package is of version `", utils::packageVersion('Seurat'),
-        "`, but at least v3.0 is required."
-      ),
-      call. = FALSE
-    )
-  }
+  #if ( utils::packageVersion('Seurat') < 3 ) {
+  #  stop(
+  #    paste0(
+  #      "The installed Seurat package is of version `", utils::packageVersion('Seurat'),
+  #      "`, but at least v3.0 is required."
+  #    ),
+  #    call. = FALSE
+  #  )
+  #}
 
   ## check if provided object is of class "Seurat"
   if ( class(object) != "Seurat" ) {
@@ -96,15 +97,16 @@ getEnrichedPathways <- function(
     )
   }
 
+  # breaks the code since R v 4.4+
   ## check version of Seurat object and stop if it is lower than 3
-  if ( object@version < 3 ) {
-    stop(
-      paste0(
-        "Provided Seurat object has version `", object@version, "` but must be at least 3.0."
-      ),
-      call. = FALSE
-    )
-  }
+  #if ( object@version < 3 ) {
+  #  stop(
+  #    paste0(
+  #      "Provided Seurat object has version `", object@version, "` but must be at least 3.0."
+  #    ),
+  #    call. = FALSE
+  #  )
+  #}
 
   ## check if marker genes are present and stop if they aren't
   if (
