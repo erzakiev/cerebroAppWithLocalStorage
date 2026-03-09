@@ -211,7 +211,7 @@ exportFromSeurat <- function(
 
   ## get expression data
   expression_data <- try(
-    Seurat::LayerData(object, assay = assay, layer = layer),
+    Seurat::GetAssayData(object, assay = assay, layer = layer),
     silent = TRUE
   )
   message('Check 11 getting expression_data completed successfully')
