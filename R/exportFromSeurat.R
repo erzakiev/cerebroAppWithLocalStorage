@@ -6,9 +6,9 @@
 #'
 #' @param object Seurat object.
 #' @param assay Assay to pull expression values from; defaults to \code{RNA}.
-#' @param slot Slot to pull expression values from; defaults to \code{data}. It
+#' @param layer layer to pull expression values from; defaults to \code{data}. It
 #' is recommended to use sparse data (such as log-transformed or raw counts)
-#' instead of dense data (such as the \code{scaled} slot) to avoid performance
+#' instead of dense data (such as the \code{scaled} layer) to avoid performance
 #' bottlenecks in the Cerebro interface.
 #' @param file Where to save the output.
 #' @param experiment_name Experiment name.
@@ -62,7 +62,7 @@
 exportFromSeurat <- function(
   object,
   assay = 'RNA',
-  slot = 'data',
+  layer = 'data',
   file,
   experiment_name,
   organism,
@@ -211,21 +211,21 @@ exportFromSeurat <- function(
 
   ## get expression data
   expression_data <- try(
-    Seurat::GetAssayData(object, assay = assay, slot = slot),
+    Seurat::LayerData(object, assay = assay, layer = layer),
     silent = TRUE
   )
   message('Check 11 getting expression_data completed successfully')
 
-  ## check if provided slot exists in provided assay
+  ## check if provided layer exists in provided assay
   if ( class(expression_data) == 'try-error' ) {
     stop(
       paste0(
-        'Slot `', slot, '` could not be found in `', assay, '` assay slot.'
+        'layer `', layer, '` could not be found in `', assay, '` assay layer.'
       ),
       call. = FALSE
     )
   }
-  message('Check 12 checking if provided slot exists completed successfully')
+  message('Check 12 checking if provided layer exists completed successfully')
   ## convert expression data to "RleArray" if requested, if it is "dgCMatrix" or
   ## "matrix" format, and if the "DelayedArray" package is available
   if (
@@ -695,7 +695,7 @@ exportFromSeurat <- function(
       )
     }
 
-    ## go through categories in `extra_material` slot
+    ## go through categories in `extra_material` layer
     for ( category in names(object@misc$extra_material) ) {
 
       ## do this if category is `tables`
