@@ -29,7 +29,8 @@ expression_projection_expression_levels <- reactive({
     } else {
       expression_levels <- unname(getMeanExpressionForCells(
         cells = expression_projection_data()$cell_barcode,
-        genes = expression_selected_genes()$genes_to_display_present
+        genes = expression_selected_genes()$genes_to_display_present,
+        input[['AUCell']]
       ))
     }
   }
