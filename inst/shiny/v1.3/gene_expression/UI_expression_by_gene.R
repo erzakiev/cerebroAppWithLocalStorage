@@ -36,7 +36,7 @@ output[["expression_by_gene"]] <- plotly::renderPlotly({
     ## - sort genes by mean expression from high to low
     ## - show only first 50 genes if more are available
     expression_levels <- getMeanExpressionForGenes(expression_selected_genes()$genes_to_display_present) %>%
-    dplyr::slice_max(expression, n = 50)
+      dplyr::slice_max(expression, n = 50)
   }
   ## prepare color scale, either "viridis" or other
   ## ...

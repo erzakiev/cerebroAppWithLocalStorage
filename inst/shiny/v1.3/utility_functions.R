@@ -846,9 +846,13 @@ getMeanExpressionForGenes <- function(genes) {
     return(data_set()$getMeanExpressionForGenes(genes))
   }
 }
-getMeanExpressionForCells <- function(cells, genes) {
+getMeanExpressionForCells <- function(cells, genes, AUCell) {
   if ( 'Cerebro_v1.3' %in% class(data_set()) ) {
-    return(data_set()$getMeanExpressionForCells(cells, genes))
+    if(AUCell){
+      return(getAUCellExpressionForCells(data_set()$expression, cells, genes))
+    } else {
+      return(data_set()$getMeanExpressionForCells(cells, genes))
+    }
   }
 }
 getExpressionMatrix <- function(...) {
@@ -990,4 +994,14 @@ getExtraPlot <- function(name) {
   if ( 'Cerebro_v1.3' %in% class(data_set()) ) {
     return(data_set()$getExtraPlot(name))
   }
+}
+
+getAUCellExpressionForCells <- function(ds, cells, genes){
+  Counts <- ds[genes, cells]
+  cells_rankings <-AUCell::AUCell_buildRankings(Counts, nCores = 12, plotStats = TRUE)
+  
+  # Calculate enrichment scores
+  cells_AUC <- AUCell::AUCell_run(exprMat = Counts,
+                          geneSets = Genesets, 
+                          aucMaxRank=nrow(cells_rankings)*0.05)
 }

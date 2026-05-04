@@ -4,6 +4,12 @@
 output[["expression_projection_additional_parameters_UI"]] <- renderUI({
   tagList(
     selectInput(
+      "AUCell",
+      label = "Calculate AUCell instead of mean expression?",
+      choices = c("TRUE", "FALSE"),
+      selected = "FALSE"
+    ),
+    selectInput(
       "expression_projection_plotting_order",
       label = "Plotting order",
       choices = c("Random", "Highest expression on top"),
