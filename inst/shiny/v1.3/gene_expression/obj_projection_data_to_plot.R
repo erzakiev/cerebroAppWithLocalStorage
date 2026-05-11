@@ -28,7 +28,8 @@ expression_projection_data_to_plot_raw <- reactive({
     color_settings = expression_projection_parameters_color(),
     hover_info = expression_projection_hover_info(),
     trajectory = expression_projection_trajectory(),
-    separate_panels = input[["expression_projection_genes_in_separate_panels"]]
+    separate_panels = input[["expression_projection_genes_in_separate_panels"]],
+    expression_projection_color_range_quantiled = input[["expression_projection_color_range_quantiled"]]
   )
   # message(str(to_return))
   return(to_return)

@@ -20,12 +20,12 @@ output[["expression_projection_UI"]] <- renderUI({
           ),
           tagList(
             shinyWidgets::radioGroupButtons(
-               inputId = "expression_analysis_mode",
-               label = NULL,
-               choices = c("Gene(s)", "Gene set"),
-               status = "primary",
-               justified = TRUE,
-               width = "100%"
+              inputId = "expression_analysis_mode",
+              label = NULL,
+              choices = c("Gene(s)", "Gene set"),
+              status = "primary",
+              justified = TRUE,
+              width = "100%"
             ),
             uiOutput("expression_projection_input_type_UI"),
             uiOutput("expression_projection_select_projection_UI")
@@ -74,8 +74,16 @@ output[["expression_projection_UI"]] <- renderUI({
             )
           ),
           tagList(
+            radioButtons(
+              inputId = "expression_projection_color_range_quantiled",
+              label = "Quantiles?",
+              choices = c("Yes" = "TRUE", "No" = "FALSE"),
+              selected = "FALSE",
+              inline = TRUE
+            ),
             uiOutput("expression_projection_color_scale_UI"),
             uiOutput("expression_projection_color_range_UI"),
+            uiOutput("expression_projection_color_range_UI_Quantiles"),
           ),
           collapsed = TRUE
         )

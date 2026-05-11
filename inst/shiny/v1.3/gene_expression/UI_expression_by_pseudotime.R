@@ -79,6 +79,8 @@ output[["expression_by_pseudotime"]] <- plotly::renderPlotly({
     "pseudotime" %in% colnames(expression_projection_data())
   )
   cells_df <- expression_projection_data()
+  # what is this df? 
+  saveRDS(cells_df, file = 'cells_df.RDS')
   ## prepare hover info
   hover_info <- buildHoverInfoForProjections(cells_df)
   ## add expression levels to hover info
@@ -96,55 +98,112 @@ output[["expression_by_pseudotime"]] <- plotly::renderPlotly({
     color_scale <- input[["expression_projection_color_scale"]]
   }
   ## prepare plot
-  plot <- plotly::plot_ly() %>%
-    plotly::add_trace(
-      data = cells_df,
-      x = ~pseudotime,
-      y = ~level,
-      type = "scatter",
-      mode = "markers",
-      marker = list(
-        colorbar = list(
-          title = "Expression"
+  
+  
+  if(input[["expression_projection_color_range_quantiles"]][1]!=0 & 
+     input[["expression_projection_color_range_quantiles"]][2]!=100){
+    plot <- plotly::plot_ly() %>%
+      plotly::add_trace(
+        data = cells_df,
+        x = ~pseudotime,
+        y = ~level,
+        type = "scatter",
+        mode = "markers",
+        marker = list(
+          colorbar = list(
+            title = "Expression"
+          ),
+          color = ~level,
+          opacity = input[["expression_projection_point_opacity"]],
+          colorscale = color_scale,
+          cauto = FALSE,
+          #cmin = quantile(x, probs = input[["expression_projection_color_range_quantiles"]][1], na.rm = TRUE),
+          #cmax = quantile(x, probs = input[["expression_projection_color_range_quantiles"]][2], na.rm = TRUE),,
+          reversescale = TRUE,
+          line = list(
+            color = "rgb(196,196,196)",
+            width = 1
+          ),
+          size = input[["expression_projection_point_size"]],
+          showscale = FALSE
         ),
-        color = ~level,
-        opacity = input[["expression_projection_point_opacity"]],
-        colorscale = color_scale,
-        cauto = FALSE,
-        cmin = input[["expression_projection_color_range"]][1],
-        cmax = input[["expression_projection_color_range"]][2],
-        reversescale = TRUE,
-        line = list(
-          color = "rgb(196,196,196)",
-          width = 1
+        hoverinfo = "text",
+        text = ~hover_info
+      ) %>%
+      plotly::layout(
+        xaxis = list(
+          title = "Pseudotime",
+          mirror = TRUE,
+          showline = TRUE,
+          zeroline = FALSE
         ),
-        size = input[["expression_projection_point_size"]],
-        showscale = FALSE
-      ),
-      hoverinfo = "text",
-      text = ~hover_info
-    ) %>%
-    plotly::layout(
-      xaxis = list(
-        title = "Pseudotime",
-        mirror = TRUE,
-        showline = TRUE,
-        zeroline = FALSE
-      ),
-      yaxis = list(
-        title = "Expression level",
-        mirror = TRUE,
-        showline = TRUE,
-        zeroline = FALSE
-      ),
-      hoverlabel = list(
-        font = list(
-          size = 11,
-          color = "black"
+        yaxis = list(
+          title = "Expression level",
+          mirror = TRUE,
+          showline = TRUE,
+          zeroline = FALSE
         ),
-        bgcolor = "lightgrey"
+        hoverlabel = list(
+          font = list(
+            size = 11,
+            color = "black"
+          ),
+          bgcolor = "lightgrey"
+        )
       )
-    )
+  } else {
+    plot <- plotly::plot_ly() %>%
+      plotly::add_trace(
+        data = cells_df,
+        x = ~pseudotime,
+        y = ~level,
+        type = "scatter",
+        mode = "markers",
+        marker = list(
+          colorbar = list(
+            title = "Expression"
+          ),
+          color = ~level,
+          opacity = input[["expression_projection_point_opacity"]],
+          colorscale = color_scale,
+          cauto = FALSE,
+          cmin = input[["expression_projection_color_range"]][1],
+          cmax = input[["expression_projection_color_range"]][2],
+          reversescale = TRUE,
+          line = list(
+            color = "rgb(196,196,196)",
+            width = 1
+          ),
+          size = input[["expression_projection_point_size"]],
+          showscale = FALSE
+        ),
+        hoverinfo = "text",
+        text = ~hover_info
+      ) %>%
+      plotly::layout(
+        xaxis = list(
+          title = "Pseudotime",
+          mirror = TRUE,
+          showline = TRUE,
+          zeroline = FALSE
+        ),
+        yaxis = list(
+          title = "Expression level",
+          mirror = TRUE,
+          showline = TRUE,
+          zeroline = FALSE
+        ),
+        hoverlabel = list(
+          font = list(
+            size = 11,
+            color = "black"
+          ),
+          bgcolor = "lightgrey"
+        )
+      )
+  }
+  
+  
   ## add trend line if activated
   if ( input[["expression_by_pseudotime_show_trend_line"]] == TRUE ) {
     ## calculate smoothened trend line

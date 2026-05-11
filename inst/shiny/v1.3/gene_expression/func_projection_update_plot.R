@@ -53,6 +53,26 @@ expression_projection_update_plot <- function(input) {
     scale = color_settings[['color_scale']],
     range = color_settings[['color_range']]
   )
+  
+  #saveRDS(expression_levels, 'expression_levels.RDS')
+  saveRDS(color_settings[['color_range']], 'color_settingscolor_range.RDS')
+  saveRDS(input[["expression_projection_color_range_quantiled"]], 'input_expression_projection_color_range_quantiled.RDS')
+  
+  if(isTRUE(as.logical(
+    input[["expression_projection_color_range_quantiled"]]
+  ))){
+    raaaange <- as.vector(quantile(expression_levels, 
+                       probs = color_settings[['color_range']], 
+                       na.rm = TRUE))
+    saveRDS(raaaange, 'raaaange.RDS')
+    
+    output_color <- list(
+      scale = color_settings[['color_scale']],
+      range = raaaange
+    )
+  }
+  
+  
   ## prepare hover info
   output_hover <- list(
     hoverinfo = ifelse(plot_parameters[["hover_info"]], 'text', 'skip'),

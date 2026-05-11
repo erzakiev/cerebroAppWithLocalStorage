@@ -3,6 +3,8 @@
 ##----------------------------------------------------------------------------##
 output[["expression_projection_color_range_UI"]] <- renderUI({
   req(expression_projection_expression_levels())
+  req(input[["expression_projection_color_range_quantiled"]])
+  if(as.logical(input[["expression_projection_color_range_quantiled"]])==TRUE) return(NULL)
   ## get range of expression levels
   if (input[["expression_projection_genes_in_separate_panels"]] == TRUE) {
     expression_levels <- c()
@@ -38,12 +40,59 @@ output[["expression_projection_color_range_UI"]] <- renderUI({
   )
 })
 
+
+output[["expression_projection_color_range_UI_Quantiles"]] <- renderUI({
+  req(expression_projection_expression_levels())
+  req(input[["expression_projection_color_range_quantiled"]])
+  if(as.logical(input[["expression_projection_color_range_quantiled"]])!=TRUE) return(NULL)
+  ## get range of expression levels
+  if (input[["expression_projection_genes_in_separate_panels"]] == TRUE) {
+    expression_levels <- c()
+    for (i in length(expression_projection_expression_levels())) {
+      expression_levels <- c(
+        expression_levels,
+        expression_projection_expression_levels()
+      )
+    }
+    expression_range <- range(expression_levels)
+  } else {
+    expression_range <- range(expression_projection_expression_levels())
+  }
+  ## adjust expression range for color scale
+  ## ... there is no range (from 0 to 0)
+  if (
+    expression_range[1] == 0 &&
+    expression_range[2] == 0
+  ) {
+    ## set range to 0-1
+    expression_range[2] <- 1
+    ## ... otherwise
+  } else {
+    expression_range <- c(0, 1)
+  }
+  sliderInput(
+    "expression_projection_color_range_quantiles",
+    label = "Quantiles of color scale",
+    min = expression_range[1],
+    max = expression_range[2],
+    value = expression_range
+  )
+})
+
+
 ## make sure elements are loaded even though the box is collapsed
 outputOptions(
   output,
   "expression_projection_color_range_UI",
   suspendWhenHidden = FALSE
 )
+
+outputOptions(
+  output,
+  "expression_projection_color_range_UI_Quantiles",
+  suspendWhenHidden = FALSE
+)
+
 
 ##----------------------------------------------------------------------------##
 ## Info box that gets shown when pressing the "info" button.
