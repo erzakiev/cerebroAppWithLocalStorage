@@ -890,6 +890,7 @@ getMeanExpressionForGenes <- function(genes) {
 }
 getMeanExpressionForCells <- function(cells, genes, AUCell=F) {
   if ( 'Cerebro_v1.3' %in% class(data_set()) ) {
+    AUCell <- as.logical(AUCell)
     if(AUCell){
       toRetAucell <- getAUCellExpressionForCells(data_set()$expression, cells, genes)
       #saveRDS(toRetAucell, 'toRetAucell.RDS')

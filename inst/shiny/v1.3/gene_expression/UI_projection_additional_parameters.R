@@ -3,11 +3,12 @@
 ##----------------------------------------------------------------------------##
 output[["expression_projection_additional_parameters_UI"]] <- renderUI({
   tagList(
-    selectInput(
-      "AUCell",
+    radioButtons(
+      inputId = "AUCell",
       label = "Calculate AUCell instead of mean expression?",
-      choices = c("TRUE", "FALSE"),
-      selected = "FALSE"
+      choices = c("Yes" = "TRUE", "No" = "FALSE"),
+      selected = "FALSE",
+      inline = TRUE
     ),
     selectInput(
       "expression_projection_plotting_order",
