@@ -21,11 +21,35 @@ output[["expression_by_group_UI"]] <- renderUI({
           choices = getGroups(),
           width = "100%"
         ),
-        plotly::plotlyOutput("expression_by_group")
+        plotly::plotlyOutput("expression_by_group"),
+        downloadButton("download_excel", "Download data in excel format")
       )
     )
   )
 })
+
+output[['download_excel']] <- downloadHandler(
+  filename = function() {
+    paste0("data_", Sys.Date(), ".xlsx")
+  },
+  content = function(file) {
+    openxlsx::write.xlsx(
+      {
+        cells_df <- expression_projection_data()
+        if (is.list(expression_projection_expression_levels())) {
+          cells_df$expression_level <- do.call(cbind, expression_projection_expression_levels()) %>%
+            Matrix::rowMeans()
+        } else {
+          cells_df$expression_level <- expression_projection_expression_levels()
+        }
+        cells_df
+      },
+      file
+    )
+  }
+)
+
+
 
 ##----------------------------------------------------------------------------##
 ## Violin/box plot.
